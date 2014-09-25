@@ -1,0 +1,18 @@
+﻿<Application x:Class="SuperbEdit.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SuperbEdit">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:AppBootstrapper x:Key="bootstrapper" />
+                </ResourceDictionary>
+                <ResourceDictionary Source="Themes\Styles.xaml" />
+                <ResourceDictionary Source="Resources\Converters.xaml">
+                    
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

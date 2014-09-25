@@ -1,0 +1,68 @@
+<Window x:Class="SuperbEdit.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Style="{StaticResource {x:Type Window}}"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="File">
+                <MenuItem Header="New" x:Name="NewFile"></MenuItem>
+                <MenuItem Header="New Window" x:Name="NewWindow"></MenuItem>
+                <MenuItem Header="Open" x:Name="OpenFile"></MenuItem>
+                <MenuItem Header="Open Folder" IsEnabled="False"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Save" x:Name="Save"></MenuItem>
+                <MenuItem Header="Save As..." x:Name="SaveAs"></MenuItem>
+                <MenuItem Header="Save All..." x:Name="SaveAll"></MenuItem>
+                <Separator Visibility="{Binding IsSecondaryWindow, Converter={StaticResource inverseBooleanToVisibility}}"></Separator>
+                <MenuItem Header="Exit" x:Name="Exit" Visibility="{Binding IsSecondaryWindow, Converter={StaticResource inverseBooleanToVisibility}}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo" x:Name="Undo"></MenuItem>
+                <MenuItem Header="Redo" x:Name="Redo"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Cut" x:Name="Cut"></MenuItem>
+                <MenuItem Header="Copy" x:Name="Copy"></MenuItem>
+                <MenuItem Header="Paste" x:Name="Paste"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Toggle FullScreen" x:Name="ToggleFullscreen"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" x:Name="About"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Attach Back" x:Name="AttachBack" HorizontalAlignment="Right" Visibility="{Binding IsSecondaryWindow, Converter={StaticResource booleanToVisibility}}"></MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem x:Name="Status">Ready</StatusBarItem>
+        </StatusBar>
+        <TabControl x:Name="Items">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ContextMenu>
+                            <ContextMenu Style="{StaticResource {x:Type ContextMenu}}">
+                                <MenuItem Header="Deatch" cal:Message.Attach="DeatchItem($dataContext)"></MenuItem>
+                                <MenuItem Header="Close"  cal:Message.Attach="CloseItem($dataContext)"></MenuItem>
+                            </ContextMenu>
+                        </Grid.ContextMenu>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding DisplayName}" Grid.Column="0" />
+                        <TextBlock Text="*" Grid.Column="1" Visibility="{Binding HasChanges, Converter={StaticResource booleanToVisibility}}" />
+                    </Grid>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+    </DockPanel>
+
+</Window>
