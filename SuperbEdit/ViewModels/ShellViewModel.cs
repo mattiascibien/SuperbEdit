@@ -120,6 +120,22 @@ namespace SuperbEdit.ViewModels
             if (ActiveItem != null) ActiveItem.Redo();
         }
 
+
+        public void Cut()
+        {
+            if (ActiveItem != null) ActiveItem.Cut();
+        }
+
+        public void Copy()
+        {
+            if (ActiveItem != null) ActiveItem.Copy();
+        }
+
+        public void Paste()
+        {
+            if (ActiveItem != null) ActiveItem.Paste();
+        }
+
         public void Exit()
         {
             TryClose();

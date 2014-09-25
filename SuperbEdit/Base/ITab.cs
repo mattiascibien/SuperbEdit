@@ -18,5 +18,11 @@ namespace SuperbEdit.Base
         void Undo();
 
         void Redo();
+
+        void Cut();
+
+        void Copy();
+
+        void Paste();
     }
 }

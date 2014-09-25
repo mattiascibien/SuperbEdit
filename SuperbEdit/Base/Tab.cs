@@ -30,6 +30,9 @@ namespace SuperbEdit.Base
         public abstract bool SaveAs();
         public abstract void Undo();
         public abstract void Redo();
+        public abstract void Cut();
+        public abstract void Copy();
+        public abstract void Paste();
 
         protected Tab()
         {

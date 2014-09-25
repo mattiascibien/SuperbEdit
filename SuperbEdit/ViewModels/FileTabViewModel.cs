@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
@@ -8,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SuperbEdit.Views;
+using AurelienRibon.Ui.SyntaxHighlightBox;
 
 namespace SuperbEdit.ViewModels
 {
@@ -111,12 +114,33 @@ namespace SuperbEdit.ViewModels
 
         public override void Undo()
         {
+            var view = this.GetView() as FileTabView;
 
+            (view.FileContent as TextBox).Undo();
         }
 
         public override void Redo()
         {
+            var view = this.GetView() as FileTabView;
+            (view.FileContent as TextBox).Redo();
+        }
 
+        public override void Cut()
+        {
+            var view = this.GetView() as FileTabView;
+            (view.FileContent as TextBox).Cut();
+        }
+
+        public override void Copy()
+        {
+            var view = this.GetView() as FileTabView;
+            (view.FileContent as TextBox).Copy();
+        }
+
+        public override void Paste()
+        {
+            var view = this.GetView() as FileTabView;
+            (view.FileContent as TextBox).Paste();
         }
 
         public override void CanClose(Action<bool> callback)
