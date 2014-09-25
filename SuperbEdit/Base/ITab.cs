@@ -11,9 +11,9 @@ namespace SuperbEdit.Base
     {
         bool HasChanges { get; set; }
 
-        void Save();
+        bool Save();
 
-        void SaveAs();
+        bool SaveAs();
 
         void Undo();
 

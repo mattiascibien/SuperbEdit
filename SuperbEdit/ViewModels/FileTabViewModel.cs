@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System.Windows;
+using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
 using System;
@@ -63,13 +64,23 @@ namespace SuperbEdit.ViewModels
             FilePath = filePath;
             DisplayName = Path.GetFileName(filePath);
 
+            if (!File.Exists(FilePath))
+            {
+                string directoryName = Path.GetDirectoryName(FilePath);
+                if (!Directory.Exists(directoryName))
+                {
+                    Directory.CreateDirectory(directoryName);
+                }
+
+                File.Create(FilePath).Dispose();
+            }
             string fileContents = File.ReadAllText(FilePath);
             _originalFileContent = fileContents;
             FileContent = _originalFileContent;
-            
+
         }
 
-        public override void Save()
+        public override bool Save()
         {
             if (FilePath != "")
             {
@@ -77,37 +88,61 @@ namespace SuperbEdit.ViewModels
                 _originalFileContent = FileContent;
                 HasChanges = false;
                 DisplayName = Path.GetFileName(FilePath);
+                return true; 
             }
-            else
-            {
-                SaveAs();
-            }
-
+            return SaveAs();
         }
 
-        public override void SaveAs()
+        public override bool SaveAs()
         {
             SaveFileDialog dialog = new SaveFileDialog();
 
             if (dialog.ShowDialog().Value)
             {
-                FilePath = dialog.SafeFileName;
+                FilePath = dialog.FileName;
                 _originalFileContent = FileContent;
                 File.WriteAllText(FilePath, FileContent);
                 HasChanges = false;
                 DisplayName = Path.GetFileName(FilePath);
+                return true;
             }
+            return false;
         }
 
         public override void Undo()
         {
-            
+
         }
 
         public override void Redo()
         {
-           
+
         }
 
+
+        public override void CanClose(Action<bool> callback)
+        {
+            if (HasChanges)
+            {
+                switch (
+                    MessageBox.Show("Save Changes to " + DisplayName + "?", "SuperbEdit", MessageBoxButton.YesNoCancel,
+                        MessageBoxImage.Question))
+                {
+                    case MessageBoxResult.Yes:
+                        callback(Save());
+                        break;
+                    case MessageBoxResult.No:
+                        callback(true);
+                        break;
+                    case MessageBoxResult.Cancel:
+                        callback(false);
+                        break;
+                }
+            }
+            else
+            {
+                callback(true);
+            }
+        }
     }
 }

@@ -26,8 +26,8 @@ namespace SuperbEdit.Base
             }
         }
 
-        public abstract void Save();
-        public abstract void SaveAs();
+        public abstract bool Save();
+        public abstract bool SaveAs();
         public abstract void Undo();
         public abstract void Redo();
 

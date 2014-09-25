@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
@@ -114,6 +117,27 @@ namespace SuperbEdit.ViewModels
         public void Exit()
         {
             TryClose();
+        }
+
+        public void OpenDefaultConfig()
+        {
+            Items.Add(new FileTabViewModel(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "config.json")));
+        }
+
+        public void OpenUserConfig()
+        {
+            Items.Add(new FileTabViewModel(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".sperbedit", "config.json")));
+        }
+
+
+        public void CloseActiveItem()
+        {
+            if (ActiveItem != null) CloseItem(ActiveItem);
+        }
+
+        private void CloseItem(Tab item)
+        {
+            item.TryClose();
         }
     }
 }

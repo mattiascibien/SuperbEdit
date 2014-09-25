@@ -1,8 +1,7 @@
 <Window x:Class="SuperbEdit.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Style="{StaticResource {x:Type Window}}"
-        xmlns:cal="http://www.caliburnproject.org"
-        xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop">
+        xmlns:cal="http://www.caliburnproject.org">
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -20,6 +19,8 @@
                 <MenuItem Header="Save" x:Name="Save"></MenuItem>
                 <MenuItem Header="Save As..." x:Name="SaveAs"></MenuItem>
                 <MenuItem Header="Save All..." x:Name="SaveAll"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Close" x:Name="CloseActiveItem"></MenuItem>
                 <Separator Visibility="{Binding IsSecondaryWindow, Converter={StaticResource inverseBooleanToVisibility}}"></Separator>
                 <MenuItem Header="Exit" x:Name="Exit" Visibility="{Binding IsSecondaryWindow, Converter={StaticResource inverseBooleanToVisibility}}"></MenuItem>
             </MenuItem>
@@ -33,6 +34,10 @@
             </MenuItem>
             <MenuItem Header="View">
                 <MenuItem Header="Toggle FullScreen" x:Name="ToggleFullscreen"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Preferences">
+                <MenuItem Header="Settings - User" x:Name="OpenUserConfig"></MenuItem>
+                <MenuItem Header="Settings - Default" x:Name="OpenDefaultConfig"></MenuItem>
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem Header="About" x:Name="About"></MenuItem>
