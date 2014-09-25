@@ -76,13 +76,13 @@ namespace SuperbEdit.ViewModels
                 File.WriteAllText(FilePath, FileContent);
                 _originalFileContent = FileContent;
                 HasChanges = false;
+                DisplayName = Path.GetFileName(FilePath);
             }
             else
             {
                 SaveAs();
             }
 
-            DisplayName = Path.GetFileName(FilePath);
         }
 
         public override void SaveAs()
@@ -95,9 +95,8 @@ namespace SuperbEdit.ViewModels
                 _originalFileContent = FileContent;
                 File.WriteAllText(FilePath, FileContent);
                 HasChanges = false;
+                DisplayName = Path.GetFileName(FilePath);
             }
-
-            DisplayName = Path.GetFileName(FilePath);
         }
 
         public override void Undo()
