@@ -1,5 +1,7 @@
 # SuperbEdit
 
+[![Build status](https://ci.appveyor.com/api/projects/status/qtijlp8fk8o2vfdu)](https://ci.appveyor.com/project/mattiascibien/superbedit)
+
 ## Synopsis
 
 SuperbEdit is an advanced programmers' text editor with a tabbed interface written in C# and WPF. It aims to be extremely customizable and extensible.
