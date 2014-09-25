@@ -58,8 +58,7 @@ namespace SuperbEdit.ViewModels
         public void NewFile()
         {
             var item = new FileTabViewModel();
-            Items.Add(item);
-            ActivateItem(item);
+            OpenTab(item);
         }
 
         public void OpenFile()
@@ -69,9 +68,14 @@ namespace SuperbEdit.ViewModels
             if(dialog.ShowDialog().Value)
             {
                 var fileTabViewModel = new FileTabViewModel(dialog.FileName);
-                Items.Add(fileTabViewModel);
-                ActivateItem(fileTabViewModel);
+                OpenTab(fileTabViewModel);
             }
+        }
+
+        private void OpenTab(Tab tab)
+        {
+            Items.Add(tab);
+            ActivateItem(tab);
         }
 
         public void  AttachBack()
@@ -121,12 +125,12 @@ namespace SuperbEdit.ViewModels
 
         public void OpenDefaultConfig()
         {
-            Items.Add(new FileTabViewModel(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "config.json")));
+           OpenTab(new FileTabViewModel(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "config.json")));
         }
 
         public void OpenUserConfig()
         {
-            Items.Add(new FileTabViewModel(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".sperbedit", "config.json")));
+            OpenTab(new FileTabViewModel(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".superbedit", "config.json")));
         }
 
 
