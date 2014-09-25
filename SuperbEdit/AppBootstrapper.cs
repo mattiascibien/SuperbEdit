@@ -17,6 +17,7 @@ namespace SuperbEdit {
 
             container.Singleton<IWindowManager, WindowManager>();
             container.Singleton<IEventAggregator, EventAggregator>();
+            container.Singleton<IConfig, Config>();
             container.PerRequest<IShell, ShellViewModel>();
         }
 

@@ -37,6 +37,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AurelienRibon.Ui.SyntaxHighlightBox">
       <HintPath>..\packages\AurelienRibon.Ui.SyntaxHighlightBox.2.0.2\lib\NET40\AurelienRibon.Ui.SyntaxHighlightBox.dll</HintPath>
@@ -79,6 +82,7 @@
     <Compile Include="Base\Tab.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="IConfig.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
@@ -145,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Highlighters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
