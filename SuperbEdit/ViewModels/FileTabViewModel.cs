@@ -119,7 +119,6 @@ namespace SuperbEdit.ViewModels
 
         }
 
-
         public override void CanClose(Action<bool> callback)
         {
             if (HasChanges)
@@ -143,6 +142,19 @@ namespace SuperbEdit.ViewModels
             {
                 callback(true);
             }
+        }
+
+
+        public void CloseItem(Tab item)
+        {
+           ScreenExtensions.CloseItem((IConductor)item.Parent, item);
+        }
+
+
+        public void DetachItem(Tab item)
+        {
+            //TODO: use the interace ISHell
+            ((ShellViewModel)(item.Parent)).DetachItem(item);
         }
     }
 }

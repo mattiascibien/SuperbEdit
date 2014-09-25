@@ -50,9 +50,11 @@ namespace SuperbEdit.ViewModels
         }
 
 
-        public void NewWindow()
+        public ShellViewModel NewWindow()
         {
-            _windowManager.ShowWindow(new ShellViewModel(_windowManager, _parentViewModel ?? this, true));
+            var shellViewModel = new ShellViewModel(_windowManager, _parentViewModel ?? this, true);
+            _windowManager.ShowWindow(shellViewModel);
+            return shellViewModel;
         }
 
         public void NewFile()
@@ -142,6 +144,16 @@ namespace SuperbEdit.ViewModels
         private void CloseItem(Tab item)
         {
             item.TryClose();
+        }
+
+
+
+        public void DetachItem(Tab item)
+        {
+            var shellViewModel = NewWindow();
+            shellViewModel.Items.Add(item);
+            shellViewModel.ActivateItem(item);
+            Items.Remove(item);
         }
     }
 }

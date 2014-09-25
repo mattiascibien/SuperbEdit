@@ -1,7 +1,8 @@
 <Window x:Class="SuperbEdit.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Style="{StaticResource {x:Type Window}}"
-        xmlns:cal="http://www.caliburnproject.org">
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -53,7 +54,7 @@
                     <Grid>
                         <Grid.ContextMenu>
                             <ContextMenu Style="{StaticResource {x:Type ContextMenu}}">
-                                <MenuItem Header="Deatch" cal:Message.Attach="DeatchItem($dataContext)"></MenuItem>
+                                <MenuItem Header="Deatch" cal:Message.Attach="DetachItem($dataContext)"></MenuItem>
                                 <MenuItem Header="Close"  cal:Message.Attach="CloseItem($dataContext)"></MenuItem>
                             </ContextMenu>
                         </Grid.ContextMenu>
@@ -64,6 +65,25 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding DisplayName}" Grid.Column="0" />
                         <TextBlock Text="*" Grid.Column="1" Visibility="{Binding HasChanges, Converter={StaticResource booleanToVisibility}}" />
+                        <TextBlock Text="&#10006;" Margin="3,0,0,0" Grid.Column="2">
+                             <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <cal:ActionMessage MethodName="CloseItem">
+                                            <cal:Parameter Value="$dataContext"/>
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property= "Foreground" Value="{StaticResource ForegroundBrush}"/>
+                                    <Style.Triggers>
+                                        <Trigger Property ="IsMouseOver" Value="True">
+                                            <Setter Property= "Foreground" Value="{StaticResource MouseOverForegroundBrush}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </Grid>
                 </DataTemplate>
             </TabControl.ItemTemplate>
