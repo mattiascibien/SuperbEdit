@@ -49,6 +49,38 @@
             <StatusBarItem x:Name="Status">Ready</StatusBarItem>
         </StatusBar>
         <TabControl x:Name="Items">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer HorizontalScrollBarVisibility="Hidden" x:Name="scroll" Grid.Row="0" Grid.Column="0"  VerticalScrollBarVisibility="Hidden" >
+                            <TabPanel x:Name="HeaderPanel"
+                          Panel.ZIndex ="1" 
+                          KeyboardNavigation.TabIndex="1"
+                          Margin="2,2,2,0"
+                          IsItemsHost="true"/>
+                        </ScrollViewer>
+                        <RepeatButton VerticalAlignment="Bottom"  Command="ScrollBar.PageLeftCommand" Grid.Row="0" Grid.Column="1" CommandTarget="{Binding ElementName=scroll}" Style="{DynamicResource RepeatLeftButtonStyle}">
+                            
+                        </RepeatButton>
+                        <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageRightCommand" CommandTarget="{Binding ElementName=scroll}" Grid.Row="0" Grid.Column="2" Style="{DynamicResource RepeatRightButtonStyle}" >
+                            
+                        </RepeatButton>
+                        <ContentPresenter x:Name="PART_SelectedContentHost"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      Margin="{TemplateBinding Padding}"
+                                      ContentSource="SelectedContent" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
