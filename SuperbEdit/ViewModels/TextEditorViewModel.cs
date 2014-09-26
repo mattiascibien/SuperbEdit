@@ -14,7 +14,7 @@ using AurelienRibon.Ui.SyntaxHighlightBox;
 
 namespace SuperbEdit.ViewModels
 {
-    public sealed class FileTabViewModel : Tab
+    public sealed class TextEditorViewModel : Tab
     {
         private string _filePath;
         public string FilePath
@@ -53,7 +53,8 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-        public FileTabViewModel()
+
+        public TextEditorViewModel()
         {
             DisplayName = "New File";
 
@@ -62,7 +63,7 @@ namespace SuperbEdit.ViewModels
             FilePath = "";
         }
 
-        public FileTabViewModel(string filePath)
+        public TextEditorViewModel(string filePath)
         {
             FilePath = filePath;
             DisplayName = Path.GetFileName(filePath);
@@ -114,32 +115,32 @@ namespace SuperbEdit.ViewModels
 
         public override void Undo()
         {
-            var view = this.GetView() as FileTabView;
+            var view = this.GetView() as TextEditorView;
 
             (view.FileContent as TextBox).Undo();
         }
 
         public override void Redo()
         {
-            var view = this.GetView() as FileTabView;
+            var view = this.GetView() as TextEditorView;
             (view.FileContent as TextBox).Redo();
         }
 
         public override void Cut()
         {
-            var view = this.GetView() as FileTabView;
+            var view = this.GetView() as TextEditorView;
             (view.FileContent as TextBox).Cut();
         }
 
         public override void Copy()
         {
-            var view = this.GetView() as FileTabView;
+            var view = this.GetView() as TextEditorView;
             (view.FileContent as TextBox).Copy();
         }
 
         public override void Paste()
         {
-            var view = this.GetView() as FileTabView;
+            var view = this.GetView() as TextEditorView;
             (view.FileContent as TextBox).Paste();
         }
 
@@ -182,9 +183,9 @@ namespace SuperbEdit.ViewModels
         }
 
 
-        public override void SetHighlighter(IHighlighter highlighter)
+        public void SetHighlighter(IHighlighter highlighter)
         {
-            var view = this.GetView() as FileTabView;
+            var view = this.GetView() as TextEditorView;
             (view.FileContent as SyntaxHighlightBox).CurrentHighlighter = highlighter;
         }
     }

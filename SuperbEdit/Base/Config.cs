@@ -5,9 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using SuperbEdit.Constants;
 
-namespace SuperbEdit
+namespace SuperbEdit.Base
 {
     public class Config : IConfig
     {

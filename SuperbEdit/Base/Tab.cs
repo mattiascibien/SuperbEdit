@@ -34,7 +34,6 @@ namespace SuperbEdit.Base
         public abstract void Cut();
         public abstract void Copy();
         public abstract void Paste();
-        public abstract void SetHighlighter(IHighlighter highlighter);
 
         protected Tab()
         {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Reflection;
-using SuperbEdit.Constants;
+using SuperbEdit.Base;
 
 namespace SuperbEdit.ViewModels
 {

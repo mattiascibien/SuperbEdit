@@ -26,6 +26,5 @@ namespace SuperbEdit.Base
 
         void Paste();
 
-        void SetHighlighter(IHighlighter highlighter);
     }
 }

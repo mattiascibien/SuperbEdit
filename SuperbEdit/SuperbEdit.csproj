@@ -78,14 +78,14 @@
     <Compile Include="Base\IShell.cs" />
     <Compile Include="Base\ITab.cs" />
     <Compile Include="Base\Tab.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="Constants\Folders.cs" />
+    <Compile Include="Base\Config.cs" />
+    <Compile Include="Base\Folders.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
-    <Compile Include="IConfig.cs" />
+    <Compile Include="Base\IConfig.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\FileTabViewModel.cs" />
+    <Compile Include="ViewModels\TextEditorViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FileTabView.xaml">
+    <Page Include="Views\TextEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

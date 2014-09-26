@@ -8,7 +8,6 @@ using AurelienRibon.Ui.SyntaxHighlightBox;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
-using SuperbEdit.Constants;
 
 namespace SuperbEdit.ViewModels
 {
@@ -68,7 +67,7 @@ namespace SuperbEdit.ViewModels
 
         public void NewFile()
         {
-            var item = new FileTabViewModel();
+            var item = new TextEditorViewModel();
             OpenTab(item);
         }
 
@@ -78,7 +77,7 @@ namespace SuperbEdit.ViewModels
 
             if(dialog.ShowDialog().Value)
             {
-                var fileTabViewModel = new FileTabViewModel(dialog.FileName);
+                var fileTabViewModel = new TextEditorViewModel(dialog.FileName);
                 OpenTab(fileTabViewModel);
             }
         }
@@ -152,12 +151,12 @@ namespace SuperbEdit.ViewModels
 
         public void OpenDefaultConfig()
         {
-           OpenTab(new FileTabViewModel(Path.Combine(Folders.ProgramFolder, "config.json")));
+           OpenTab(new TextEditorViewModel(Path.Combine(Folders.ProgramFolder, "config.json")));
         }
 
         public void OpenUserConfig()
         {
-            OpenTab(new FileTabViewModel(Path.Combine(Folders.UserFolder, "config.json")));
+            OpenTab(new TextEditorViewModel(Path.Combine(Folders.UserFolder, "config.json")));
         }
 
 
@@ -184,7 +183,7 @@ namespace SuperbEdit.ViewModels
         public void SetHighlighter(RoutedEventArgs eventArgs)
         {
             
-            if(ActiveItem != null) ActiveItem.SetHighlighter(
+            if(ActiveItem != null) (ActiveItem as TextEditorViewModel).SetHighlighter(
                 HighlighterManager.Instance.Highlighters[
                 (eventArgs.OriginalSource as MenuItem).Header.ToString()]
                 );
