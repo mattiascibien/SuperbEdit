@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Reflection;
+using SuperbEdit.Constants;
 
 namespace SuperbEdit.ViewModels
 {
@@ -24,7 +25,7 @@ namespace SuperbEdit.ViewModels
 
         public string License
         {
-            get { return File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Docs", "LICENSE.md")); }
+            get { return File.ReadAllText(Path.Combine(Folders.DocumentationFolder, "LICENSE.md")); }
         }
 
         public AboutViewModel()

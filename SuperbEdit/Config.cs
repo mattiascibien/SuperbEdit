@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using SuperbEdit.Constants;
 
 namespace SuperbEdit
 {
@@ -16,10 +17,9 @@ namespace SuperbEdit
 
         public Config()
         {
-            _defaultConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(Assembly.GetCallingAssembly().Location));
+            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder);
             _defaultConfigWatcher.Filter = "config.json";
-            _userConfigWatcher = new FileSystemWatcher(
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".superbedit"));
+            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder);
             _userConfigWatcher.Filter = "config.json";
 
             _defaultConfigWatcher.EnableRaisingEvents = true;

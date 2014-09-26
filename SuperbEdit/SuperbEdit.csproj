@@ -79,6 +79,7 @@
     <Compile Include="Base\ITab.cs" />
     <Compile Include="Base\Tab.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Constants\Folders.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="IConfig.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />

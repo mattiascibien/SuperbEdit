@@ -8,6 +8,7 @@ using AurelienRibon.Ui.SyntaxHighlightBox;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
+using SuperbEdit.Constants;
 
 namespace SuperbEdit.ViewModels
 {
@@ -151,12 +152,12 @@ namespace SuperbEdit.ViewModels
 
         public void OpenDefaultConfig()
         {
-           OpenTab(new FileTabViewModel(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "config.json")));
+           OpenTab(new FileTabViewModel(Path.Combine(Folders.ProgramFolder, "config.json")));
         }
 
         public void OpenUserConfig()
         {
-            OpenTab(new FileTabViewModel(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".superbedit", "config.json")));
+            OpenTab(new FileTabViewModel(Path.Combine(Folders.UserFolder, "config.json")));
         }
 
 
