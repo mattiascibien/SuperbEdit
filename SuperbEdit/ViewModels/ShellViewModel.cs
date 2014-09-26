@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
+using AurelienRibon.Ui.SyntaxHighlightBox;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
@@ -30,6 +34,10 @@ namespace SuperbEdit.ViewModels
             }
         }
 
+        public ICollection<IHighlighter> Highlighters
+        {
+            get { return HighlighterManager.Instance.Highlighters.Values; }
+        }
 
         public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
         {
@@ -170,6 +178,15 @@ namespace SuperbEdit.ViewModels
             shellViewModel.Items.Add(item);
             shellViewModel.ActivateItem(item);
             Items.Remove(item);
+        }
+
+        public void SetHighlighter(RoutedEventArgs eventArgs)
+        {
+            
+            if(ActiveItem != null) ActiveItem.SetHighlighter(
+                HighlighterManager.Instance.Highlighters[
+                (eventArgs.OriginalSource as MenuItem).Header.ToString()]
+                );
         }
     }
 }

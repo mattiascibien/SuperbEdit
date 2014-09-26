@@ -34,6 +34,9 @@
                 <MenuItem Header="Paste" x:Name="Paste"></MenuItem>
             </MenuItem>
             <MenuItem Header="View">
+                <MenuItem Header="Highlighters" cal:Action.TargetWithoutContext="{Binding}" cal:Message.Attach="SetHighlighter($eventArgs)" x:Name="Highlighters">
+                </MenuItem>
+                <Separator></Separator>
                 <MenuItem Header="Toggle FullScreen" x:Name="ToggleFullscreen"></MenuItem>
             </MenuItem>
             <MenuItem Header="Preferences">

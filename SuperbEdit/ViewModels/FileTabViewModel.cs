@@ -180,5 +180,12 @@ namespace SuperbEdit.ViewModels
             //TODO: use the interace ISHell
             ((ShellViewModel)(item.Parent)).DetachItem(item);
         }
+
+
+        public override void SetHighlighter(IHighlighter highlighter)
+        {
+            var view = this.GetView() as FileTabView;
+            (view.FileContent as SyntaxHighlightBox).CurrentHighlighter = highlighter;
+        }
     }
 }

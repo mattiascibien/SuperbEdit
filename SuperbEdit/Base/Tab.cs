@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using AurelienRibon.Ui.SyntaxHighlightBox;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace SuperbEdit.Base
         public abstract void Cut();
         public abstract void Copy();
         public abstract void Paste();
+        public abstract void SetHighlighter(IHighlighter highlighter);
 
         protected Tab()
         {
