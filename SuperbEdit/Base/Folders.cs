@@ -1,27 +1,44 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Reflection;
 
 namespace SuperbEdit.Base
 {
-    public static class Folders
+    [Export(typeof(IFolders))]
+    public class Folders : IFolders
     {
-        public static readonly string ProgramFolder = 
-            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public string ProgramFolder
+        {
+            get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); }
+        }
 
-        public static readonly string DefaultPackagesFolder =
-            Path.Combine(ProgramFolder, "Packages");
 
-        public static readonly string UserFolder =
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".superbedit");
+        public string DefaultPackagesFolder
+        {
+            get { return Path.Combine(ProgramFolder, "Packages"); }
+        }
 
-        public static readonly string UserPackagesFolder =
-            Path.Combine(UserFolder, "Packages");
+        public string UserFolder
+        {
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".superbedit"); }
+        }
 
-        public static readonly string HighlighterFolder =
-            Path.Combine(ProgramFolder, "Highlighters");
+        public string UserPackagesFolder
+        {
+            get { return Path.Combine(UserFolder, "Packages"); }
+        }
 
-        public static readonly string DocumentationFolder =
-            Path.Combine(ProgramFolder, "Docs");
+        public string HighlighterFolder
+        {
+            get { return Path.Combine(ProgramFolder, "Highlighters"); }
+        }
+
+
+        public string DocumentationFolder
+        {
+            get { return Path.Combine(ProgramFolder, "Docs"); }
+        }
+
     }
 }

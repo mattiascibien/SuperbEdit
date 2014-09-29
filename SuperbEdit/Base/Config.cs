@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -8,17 +9,20 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.Base
 {
+    [Export(typeof(IConfig))]
     public class Config : IConfig
     {
         private FileSystemWatcher _defaultConfigWatcher;
         private FileSystemWatcher _userConfigWatcher;
 
+        [Import]
+        private IFolders folders;
 
         public Config()
         {
-            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder);
+            _defaultConfigWatcher = new FileSystemWatcher(folders.ProgramFolder);
             _defaultConfigWatcher.Filter = "config.json";
-            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder);
+            _userConfigWatcher = new FileSystemWatcher(folders.UserFolder);
             _userConfigWatcher.Filter = "config.json";
 
             _defaultConfigWatcher.EnableRaisingEvents = true;

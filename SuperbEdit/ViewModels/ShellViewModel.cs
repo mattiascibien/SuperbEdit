@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -11,11 +12,16 @@ using SuperbEdit.Base;
 
 namespace SuperbEdit.ViewModels
 {
+    [Export(typeof(IShell))]
     public sealed class ShellViewModel : Conductor<Tab>.Collection.OneActive, IShell
     {
         private readonly ShellViewModel _parentViewModel;
 
         private readonly IWindowManager _windowManager;
+
+
+        [Import]
+        private IFolders folders;
 
         private bool _isSecondaryWindow;
         public bool IsSecondaryWindow
@@ -51,7 +57,7 @@ namespace SuperbEdit.ViewModels
             //Items.Add(new FileTabViewModel());
         }
 
-
+        [ImportingConstructor]
         public ShellViewModel(IWindowManager windowManager) : this(windowManager, null, false)
         {
 
@@ -151,12 +157,12 @@ namespace SuperbEdit.ViewModels
 
         public void OpenDefaultConfig()
         {
-           OpenTab(new TextEditorViewModel(Path.Combine(Folders.ProgramFolder, "config.json")));
+           OpenTab(new TextEditorViewModel(Path.Combine(folders.ProgramFolder, "config.json")));
         }
 
         public void OpenUserConfig()
         {
-            OpenTab(new TextEditorViewModel(Path.Combine(Folders.UserFolder, "config.json")));
+            OpenTab(new TextEditorViewModel(Path.Combine(folders.UserFolder, "config.json")));
         }
 
 

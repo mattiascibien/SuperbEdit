@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -11,8 +12,12 @@ using SuperbEdit.Base;
 
 namespace SuperbEdit.ViewModels
 {
+    [Export]
     public sealed class AboutViewModel : Screen
     {
+        [Import]
+        private IFolders folders;
+
         public string Version
         {
             get
@@ -25,7 +30,7 @@ namespace SuperbEdit.ViewModels
 
         public string License
         {
-            get { return File.ReadAllText(Path.Combine(Folders.DocumentationFolder, "LICENSE.md")); }
+            get { return File.ReadAllText(Path.Combine(folders.DocumentationFolder, "LICENSE.md")); }
         }
 
         public AboutViewModel()

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel.Composition;
+using System.Windows;
 using System.Windows.Controls;
 using Caliburn.Micro;
 using Microsoft.Win32;
@@ -14,6 +15,7 @@ using AurelienRibon.Ui.SyntaxHighlightBox;
 
 namespace SuperbEdit.ViewModels
 {
+    [Export(typeof(ITab))]
     public sealed class TextEditorViewModel : Tab
     {
         private string _filePath;
