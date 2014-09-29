@@ -180,7 +180,7 @@ namespace SuperbEdit.ViewModels
 
 
 
-        public void DetachItem(Tab item)
+        public void DetachItem(ITab item)
         {
             var shellViewModel = NewWindow();
             shellViewModel.Items.Add(item);

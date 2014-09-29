@@ -180,10 +180,15 @@ namespace SuperbEdit.TextEditor.ViewModels
             }
         }
 
+        public void DetachItem(Tab item)
+        {
+            IShell shell = item.Parent as IShell;
+            shell.DetachItem(item);
+        }
 
         public void CloseItem(Tab item)
         {
-           ScreenExtensions.CloseItem((IConductor)item.Parent, item);
+           ((IConductor)item.Parent).CloseItem(item);
         }
 
     }
