@@ -43,6 +43,10 @@
                 <MenuItem Header="Toggle FullScreen" x:Name="ToggleFullscreen" />
             </MenuItem>
             <MenuItem Header="Preferences">
+                <MenuItem Header="Packages">
+                    <MenuItem Header="Open User Packages Folder" x:Name="OpenUserPackages"></MenuItem>
+                    <MenuItem Header="Open Default Packages Folder" x:Name="OpenDefaultPackages"></MenuItem>
+                </MenuItem>
                 <MenuItem Header="Settings - User" x:Name="OpenUserConfig" />
                 <MenuItem Header="Settings - Default" x:Name="OpenDefaultConfig" />
             </MenuItem>

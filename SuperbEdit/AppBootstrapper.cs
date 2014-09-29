@@ -23,22 +23,7 @@ namespace SuperbEdit
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            var assemblies = new List<Assembly>
-            {
-                Assembly.GetExecutingAssembly(),
-                Assembly.LoadFrom("SuperbEdit.Base.dll")
-            };
-
-            foreach (string assembly in Directory.GetFiles(Folders.DefaultPackagesFolder, "*.dll"))
-            {
-                assemblies.Add(Assembly.LoadFrom(assembly));
-
-                //TODO: go deeper
-            }
-
-            //TODO: implement loading of user packages
-
-            return assemblies;
+            return AssemblyListComposer.GetAssemblyList(false);
         }
 
         protected override void Configure()

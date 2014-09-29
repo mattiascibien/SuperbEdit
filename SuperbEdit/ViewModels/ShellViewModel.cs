@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using Caliburn.Micro;
@@ -174,6 +175,16 @@ namespace SuperbEdit.ViewModels
             item.TryClose();
         }
 
+
+        public void OpenDefaultPackages()
+        {
+            Process.Start(Folders.DefaultPackagesFolder);
+        }
+
+        public void OpenUserPackages()
+        {
+            Process.Start(Folders.UserPackagesFolder);
+        }
 
         public void SetHighlighter(RoutedEventArgs eventArgs)
         {
