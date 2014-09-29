@@ -11,6 +11,7 @@ namespace SuperbEdit
     using Caliburn.Micro;
     using SuperbEdit.Base;
     using SuperbEdit.ViewModels;
+    using System.IO;
 
     public class AppBootstrapper : BootstrapperBase
     {
@@ -23,11 +24,22 @@ namespace SuperbEdit
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            return new[] {
+            var assemblies = new List<Assembly>
+            {
                 Assembly.GetExecutingAssembly(),
-                Assembly.LoadFrom("SuperbEdit.Base.dll"),
-                Assembly.LoadFrom("SuperbEdit.TextEditor.dll"),
+                Assembly.LoadFrom("SuperbEdit.Base.dll")
             };
+
+            foreach (var assembly in Directory.GetFiles(Folders.DefaultPackagesFolder, "*.dll"))
+            {
+                assemblies.Add(Assembly.LoadFrom(assembly));
+
+                //TODO: go deeper
+            }
+
+            //TODO: implement loading of user packages
+
+            return assemblies;
         }
 
         protected override void Configure()

@@ -15,8 +15,6 @@ namespace SuperbEdit.ViewModels
     [Export]
     public sealed class AboutViewModel : Screen
     {
-        [Import]
-        private IFolders folders;
 
         public string Version
         {
@@ -30,7 +28,7 @@ namespace SuperbEdit.ViewModels
 
         public string License
         {
-            get { return File.ReadAllText(Path.Combine(folders.DocumentationFolder, "LICENSE.md")); }
+            get { return File.ReadAllText(Path.Combine(Folders.DocumentationFolder, "LICENSE.md")); }
         }
 
         public AboutViewModel()

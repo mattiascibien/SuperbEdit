@@ -4,10 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit", "SuperbEdit\SuperbEdit.csproj", "{D639B85B-13BA-4A1D-89FA-939938CE071B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{171B9C34-0D04-4371-A129-EB3E7AAF245C} = {171B9C34-0D04-4371-A129-EB3E7AAF245C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit.Base", "SuperbEdit.Base\SuperbEdit.Base.csproj", "{072112B6-0D71-4A38-B920-7C7105829B7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit.TextEditor", "SuperbEdit.TextEditor\SuperbEdit.TextEditor.csproj", "{171B9C34-0D04-4371-A129-EB3E7AAF245C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Default Pacakges", "Default Pacakges", "{B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +35,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{171B9C34-0D04-4371-A129-EB3E7AAF245C} = {B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}
 	EndGlobalSection
 EndGlobal

@@ -16,16 +16,13 @@ namespace SuperbEdit.Base
         private FileSystemWatcher _userConfigWatcher;
 
 
-        private IFolders _folders;
-
 
         [ImportingConstructor]
-        public Config(IFolders folders)
+        public Config()
         {
-            _folders = folders;
-            _defaultConfigWatcher = new FileSystemWatcher(folders.ProgramFolder);
+            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder);
             _defaultConfigWatcher.Filter = "config.json";
-            _userConfigWatcher = new FileSystemWatcher(folders.UserFolder);
+            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder);
             _userConfigWatcher.Filter = "config.json";
 
             _defaultConfigWatcher.EnableRaisingEvents = true;

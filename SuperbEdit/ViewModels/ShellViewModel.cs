@@ -18,9 +18,6 @@ namespace SuperbEdit.ViewModels
 
         private readonly IWindowManager _windowManager;
 
-        [Import]
-        private IFolders folders;
-
         [Import] 
         private ExportFactory<ITab> tabFactory; 
 
@@ -156,14 +153,14 @@ namespace SuperbEdit.ViewModels
         {
         
             var fileTabViewModel = tabFactory.CreateExport().Value;
-            fileTabViewModel.SetFile(Path.Combine(folders.ProgramFolder, "config.json"));
+            fileTabViewModel.SetFile(Path.Combine(Folders.ProgramFolder, "config.json"));
             OpenTab(fileTabViewModel);
         }
 
         public void OpenUserConfig()
         {
            var fileTabViewModel = tabFactory.CreateExport().Value;
-            fileTabViewModel.SetFile(Path.Combine(folders.UserFolder, "config.json"));
+           fileTabViewModel.SetFile(Path.Combine(Folders.UserFolder, "config.json"));
             OpenTab(fileTabViewModel);
         }
 

@@ -5,37 +5,36 @@ using System.Reflection;
 
 namespace SuperbEdit.Base
 {
-    [Export(typeof(IFolders))]
-    public class Folders : IFolders
+    public static class Folders
     {
-        public string ProgramFolder
+        public static string ProgramFolder
         {
             get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); }
         }
 
 
-        public string DefaultPackagesFolder
+        public static string DefaultPackagesFolder
         {
             get { return Path.Combine(ProgramFolder, "Packages"); }
         }
 
-        public string UserFolder
+        public static string UserFolder
         {
             get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".superbedit"); }
         }
 
-        public string UserPackagesFolder
+        public static string UserPackagesFolder
         {
             get { return Path.Combine(UserFolder, "Packages"); }
         }
 
-        public string HighlighterFolder
+        public static string HighlighterFolder
         {
             get { return Path.Combine(ProgramFolder, "Highlighters"); }
         }
 
 
-        public string DocumentationFolder
+        public static string DocumentationFolder
         {
             get { return Path.Combine(ProgramFolder, "Docs"); }
         }
