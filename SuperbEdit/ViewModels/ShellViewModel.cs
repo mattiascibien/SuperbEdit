@@ -21,6 +21,9 @@ namespace SuperbEdit.ViewModels
         [Import]
         private IFolders folders;
 
+        [Import] 
+        private ExportFactory<ITab> tabFactory; 
+
         private bool _isSecondaryWindow;
         public bool IsSecondaryWindow
         {
@@ -66,7 +69,7 @@ namespace SuperbEdit.ViewModels
 
         public void NewFile()
         {
-            var item = IoC.Get<ITab>();
+            var item = tabFactory.CreateExport().Value;
             OpenTab(item);
         }
 
@@ -76,7 +79,7 @@ namespace SuperbEdit.ViewModels
 
             if(dialog.ShowDialog().Value)
             {
-                var fileTabViewModel = IoC.Get<ITab>();
+                var fileTabViewModel = tabFactory.CreateExport().Value;
                 fileTabViewModel.SetFile(dialog.FileName);
                 OpenTab(fileTabViewModel);
             }
