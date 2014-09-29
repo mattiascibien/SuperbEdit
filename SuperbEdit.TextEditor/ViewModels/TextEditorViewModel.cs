@@ -10,10 +10,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SuperbEdit.Views;
+using SuperbEdit.TextEditor.Views;
 using AurelienRibon.Ui.SyntaxHighlightBox;
 
-namespace SuperbEdit.ViewModels
+namespace SuperbEdit.TextEditor.ViewModels
 {
     [Export(typeof(ITab))]
     public sealed class TextEditorViewModel : Tab
@@ -63,27 +63,6 @@ namespace SuperbEdit.ViewModels
             _originalFileContent = "";
             FileContent = _originalFileContent;
             FilePath = "";
-        }
-
-        public TextEditorViewModel(string filePath)
-        {
-            FilePath = filePath;
-            DisplayName = Path.GetFileName(filePath);
-
-            if (!File.Exists(FilePath))
-            {
-                string directoryName = Path.GetDirectoryName(FilePath);
-                if (!Directory.Exists(directoryName))
-                {
-                    Directory.CreateDirectory(directoryName);
-                }
-
-                File.Create(FilePath).Dispose();
-            }
-            string fileContents = File.ReadAllText(FilePath);
-            _originalFileContent = fileContents;
-            FileContent = _originalFileContent;
-
         }
 
         public override bool Save()
@@ -146,6 +125,37 @@ namespace SuperbEdit.ViewModels
             (view.FileContent as TextBox).Paste();
         }
 
+        public override void SetFile(string filePath)
+        {
+            if (filePath == "")
+            {
+                DisplayName = "New File";
+
+                _originalFileContent = "";
+                FileContent = _originalFileContent;
+                FilePath = "";
+            }
+            else
+            {
+                FilePath = filePath;
+                DisplayName = Path.GetFileName(filePath);
+
+                if (!File.Exists(FilePath))
+                {
+                    string directoryName = Path.GetDirectoryName(FilePath);
+                    if (!Directory.Exists(directoryName))
+                    {
+                        Directory.CreateDirectory(directoryName);
+                    }
+
+                    File.Create(FilePath).Dispose();
+                }
+                string fileContents = File.ReadAllText(FilePath);
+                _originalFileContent = fileContents;
+                FileContent = _originalFileContent;
+            }
+        }
+
         public override void CanClose(Action<bool> callback)
         {
             if (HasChanges)
@@ -175,13 +185,6 @@ namespace SuperbEdit.ViewModels
         public void CloseItem(Tab item)
         {
            ScreenExtensions.CloseItem((IConductor)item.Parent, item);
-        }
-
-
-        public void DetachItem(Tab item)
-        {
-            //TODO: use the interace ISHell
-            ((ShellViewModel)(item.Parent)).DetachItem(item);
         }
 
 

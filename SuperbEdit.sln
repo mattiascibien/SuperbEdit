@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AurelienRibon.Ui.SyntaxHigh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit.Base", "SuperbEdit.Base\SuperbEdit.Base.csproj", "{072112B6-0D71-4A38-B920-7C7105829B7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit.TextEditor", "SuperbEdit.TextEditor\SuperbEdit.TextEditor.csproj", "{171B9C34-0D04-4371-A129-EB3E7AAF245C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{072112B6-0D71-4A38-B920-7C7105829B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{072112B6-0D71-4A38-B920-7C7105829B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{072112B6-0D71-4A38-B920-7C7105829B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{171B9C34-0D04-4371-A129-EB3E7AAF245C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{171B9C34-0D04-4371-A129-EB3E7AAF245C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{171B9C34-0D04-4371-A129-EB3E7AAF245C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{171B9C34-0D04-4371-A129-EB3E7AAF245C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

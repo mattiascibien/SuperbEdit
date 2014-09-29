@@ -13,7 +13,7 @@ using SuperbEdit.Base;
 namespace SuperbEdit.ViewModels
 {
     [Export(typeof(IShell))]
-    public sealed class ShellViewModel : Conductor<Tab>.Collection.OneActive, IShell
+    public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
         private readonly ShellViewModel _parentViewModel;
 
@@ -72,7 +72,7 @@ namespace SuperbEdit.ViewModels
 
         public void NewFile()
         {
-            var item = new TextEditorViewModel();
+            var item = IoC.Get<ITab>();
             OpenTab(item);
         }
 
@@ -82,12 +82,13 @@ namespace SuperbEdit.ViewModels
 
             if(dialog.ShowDialog().Value)
             {
-                var fileTabViewModel = new TextEditorViewModel(dialog.FileName);
+                var fileTabViewModel = IoC.Get<ITab>();
+                fileTabViewModel.SetFile(dialog.FileName);
                 OpenTab(fileTabViewModel);
             }
         }
 
-        private void OpenTab(Tab tab)
+        private void OpenTab(ITab tab)
         {
             Items.Add(tab);
             ActivateItem(tab);
@@ -156,12 +157,12 @@ namespace SuperbEdit.ViewModels
 
         public void OpenDefaultConfig()
         {
-           OpenTab(new TextEditorViewModel(Path.Combine(folders.ProgramFolder, "config.json")));
+         //OpenTab(new TextEditorViewModel(Path.Combine(folders.ProgramFolder, "config.json")));
         }
 
         public void OpenUserConfig()
         {
-            OpenTab(new TextEditorViewModel(Path.Combine(folders.UserFolder, "config.json")));
+           // OpenTab(new TextEditorViewModel(Path.Combine(folders.UserFolder, "config.json")));
         }
 
 
@@ -170,7 +171,7 @@ namespace SuperbEdit.ViewModels
             if (ActiveItem != null) CloseItem(ActiveItem);
         }
 
-        private void CloseItem(Tab item)
+        private void CloseItem(ITab item)
         {
             item.TryClose();
         }
@@ -188,10 +189,10 @@ namespace SuperbEdit.ViewModels
         public void SetHighlighter(RoutedEventArgs eventArgs)
         {
             
-            if(ActiveItem != null) (ActiveItem as TextEditorViewModel).SetHighlighter(
-                HighlighterManager.Instance.Highlighters[
-                (eventArgs.OriginalSource as MenuItem).Header.ToString()]
-                );
+            //if(ActiveItem != null) (ActiveItem as TextEditorViewModel).SetHighlighter(
+            //    HighlighterManager.Instance.Highlighters[
+            //    (eventArgs.OriginalSource as MenuItem).Header.ToString()]
+            //    );
         }
     }
 }

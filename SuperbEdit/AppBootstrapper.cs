@@ -25,7 +25,8 @@ namespace SuperbEdit
         {
             return new[] {
                 Assembly.GetExecutingAssembly(),
-                Assembly.LoadFrom("SuperbEdit.Base.dll")
+                Assembly.LoadFrom("SuperbEdit.Base.dll"),
+                Assembly.LoadFrom("SuperbEdit.TextEditor.dll"),
             };
         }
 

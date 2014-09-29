@@ -25,5 +25,7 @@ namespace SuperbEdit.Base
 
         void Paste();
 
+
+        void SetFile(string filePath);
     }
 }
