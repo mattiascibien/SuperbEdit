@@ -1,58 +1,21 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SuperbEdit.TextEditor.Views;
 
 namespace SuperbEdit.TextEditor.ViewModels
 {
-    [Export(typeof(ITab))]
+    [Export(typeof (ITab))]
     public sealed class TextEditorViewModel : Tab
     {
+        private string _fileContent;
         private string _filePath;
-        public string FilePath
-        {
-            get
-            {
-                return _filePath;
-            }
-            set
-            {
-                if (_filePath != value)
-                {
-                    _filePath = value;
-                    NotifyOfPropertyChange(() => FilePath);
-                }
-            }
-        }
 
         private string _originalFileContent = "";
-
-        private string _fileContent;
-        public string FileContent
-        {
-            get
-            {
-                return _fileContent;
-            }
-            set
-            {
-                if (_fileContent != value)
-                {
-                    _fileContent = value;
-                    HasChanges = _originalFileContent != _fileContent;
-                    NotifyOfPropertyChange(() => FileContent);
-                }
-            }
-        }
 
 
         public TextEditorViewModel()
@@ -64,6 +27,33 @@ namespace SuperbEdit.TextEditor.ViewModels
             FilePath = "";
         }
 
+        public string FilePath
+        {
+            get { return _filePath; }
+            set
+            {
+                if (_filePath != value)
+                {
+                    _filePath = value;
+                    NotifyOfPropertyChange(() => FilePath);
+                }
+            }
+        }
+
+        public string FileContent
+        {
+            get { return _fileContent; }
+            set
+            {
+                if (_fileContent != value)
+                {
+                    _fileContent = value;
+                    HasChanges = _originalFileContent != _fileContent;
+                    NotifyOfPropertyChange(() => FileContent);
+                }
+            }
+        }
+
         public override bool Save()
         {
             if (FilePath != "")
@@ -72,14 +62,14 @@ namespace SuperbEdit.TextEditor.ViewModels
                 _originalFileContent = FileContent;
                 HasChanges = false;
                 DisplayName = Path.GetFileName(FilePath);
-                return true; 
+                return true;
             }
             return SaveAs();
         }
 
         public override bool SaveAs()
         {
-            SaveFileDialog dialog = new SaveFileDialog();
+            var dialog = new SaveFileDialog();
 
             if (dialog.ShowDialog().Value)
             {
@@ -95,33 +85,33 @@ namespace SuperbEdit.TextEditor.ViewModels
 
         public override void Undo()
         {
-            var view = this.GetView() as TextEditorView;
+            var view = GetView() as TextEditorView;
 
-            (view.FileContent as TextBox).Undo();
+            view.FileContent.Undo();
         }
 
         public override void Redo()
         {
-            var view = this.GetView() as TextEditorView;
-            (view.FileContent as TextBox).Redo();
+            var view = GetView() as TextEditorView;
+            view.FileContent.Redo();
         }
 
         public override void Cut()
         {
-            var view = this.GetView() as TextEditorView;
-            (view.FileContent as TextBox).Cut();
+            var view = GetView() as TextEditorView;
+            view.FileContent.Cut();
         }
 
         public override void Copy()
         {
-            var view = this.GetView() as TextEditorView;
-            (view.FileContent as TextBox).Copy();
+            var view = GetView() as TextEditorView;
+            view.FileContent.Copy();
         }
 
         public override void Paste()
         {
-            var view = this.GetView() as TextEditorView;
-            (view.FileContent as TextBox).Paste();
+            var view = GetView() as TextEditorView;
+            view.FileContent.Paste();
         }
 
         public override void SetFile(string filePath)
@@ -182,14 +172,13 @@ namespace SuperbEdit.TextEditor.ViewModels
 
         public void DetachItem(Tab item)
         {
-            IShell shell = item.Parent as IShell;
+            var shell = item.Parent as IShell;
             shell.DetachItem(item);
         }
 
         public void CloseItem(Tab item)
         {
-           ((IConductor)item.Parent).CloseItem(item);
+            ((IConductor) item.Parent).CloseItem(item);
         }
-
     }
 }

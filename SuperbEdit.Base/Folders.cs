@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.IO;
 using System.Reflection;
 
@@ -20,7 +19,10 @@ namespace SuperbEdit.Base
 
         public static string UserFolder
         {
-            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".superbedit"); }
+            get
+            {
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".superbedit");
+            }
         }
 
         public static string UserPackagesFolder
@@ -38,6 +40,5 @@ namespace SuperbEdit.Base
         {
             get { return Path.Combine(ProgramFolder, "Docs"); }
         }
-
     }
 }

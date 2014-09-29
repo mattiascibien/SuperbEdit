@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperbEdit.Base
 {
-    [Export(typeof(IConfig))]
+    [Export(typeof (IConfig))]
     public class Config : IConfig
     {
         private FileSystemWatcher _defaultConfigWatcher;
         private FileSystemWatcher _userConfigWatcher;
-
 
 
         [ImportingConstructor]
@@ -34,12 +27,10 @@ namespace SuperbEdit.Base
 
         private void UserConfigWatcherOnChanged(object sender, FileSystemEventArgs fileSystemEventArgs)
         {
-            
         }
 
         private void DefaultConfigWatcherOnChanged(object sender, FileSystemEventArgs fileSystemEventArgs)
         {
-            
         }
     }
 }

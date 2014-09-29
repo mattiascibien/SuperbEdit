@@ -1,21 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
+using Caliburn.Micro;
+using SuperbEdit.Base;
 
 namespace SuperbEdit
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.Composition;
-    using Caliburn.Micro;
-    using SuperbEdit.Base;
-    using SuperbEdit.ViewModels;
-    using System.IO;
-
     public class AppBootstrapper : BootstrapperBase
     {
-        CompositionContainer container;
+        private CompositionContainer container;
 
         public AppBootstrapper()
         {
@@ -30,7 +29,7 @@ namespace SuperbEdit
                 Assembly.LoadFrom("SuperbEdit.Base.dll")
             };
 
-            foreach (var assembly in Directory.GetFiles(Folders.DefaultPackagesFolder, "*.dll"))
+            foreach (string assembly in Directory.GetFiles(Folders.DefaultPackagesFolder, "*.dll"))
             {
                 assemblies.Add(Assembly.LoadFrom(assembly));
 
@@ -61,8 +60,8 @@ namespace SuperbEdit
 
         protected override object GetInstance(Type service, string key)
         {
-            var contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(service) : key;
-            var exports = container.GetExportedValues<object>(contract);
+            string contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(service) : key;
+            IEnumerable<object> exports = container.GetExportedValues<object>(contract);
             if (exports.Any())
                 return exports.First();
             throw new Exception(string.Format("Could not locate any instances of contract {0}.", contract));
@@ -78,7 +77,7 @@ namespace SuperbEdit
             container.SatisfyImportsOnce(instance);
         }
 
-        protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
+        protected override void OnStartup(object sender, StartupEventArgs e)
         {
             DisplayRootViewFor<IShell>();
         }

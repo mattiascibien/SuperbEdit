@@ -9,15 +9,15 @@ namespace SuperbEdit.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var flag = false;
+            bool flag = false;
             if (value is bool)
             {
-                flag = (bool)value;
+                flag = (bool) value;
             }
 
             if (parameter != null)
             {
-                if (bool.Parse((string)parameter))
+                if (bool.Parse((string) parameter))
                 {
                     flag = !flag;
                 }
@@ -26,18 +26,15 @@ namespace SuperbEdit.Converters
             {
                 return Visibility.Collapsed;
             }
-            else
-            {
-                return Visibility.Visible;
-            }
+            return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var back = ((value is Visibility) && (((Visibility)value) == Visibility.Collapsed));
+            bool back = ((value is Visibility) && (((Visibility) value) == Visibility.Collapsed));
             if (parameter != null)
             {
-                if ((bool)parameter)
+                if ((bool) parameter)
                 {
                     back = !back;
                 }

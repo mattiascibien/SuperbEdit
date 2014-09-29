@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
 using System.Reflection;
+using Caliburn.Micro;
 using SuperbEdit.Base;
 
 namespace SuperbEdit.ViewModels
@@ -15,6 +10,10 @@ namespace SuperbEdit.ViewModels
     [Export]
     public sealed class AboutViewModel : Screen
     {
+        public AboutViewModel()
+        {
+            DisplayName = "About SuperbEdit";
+        }
 
         public string Version
         {
@@ -29,11 +28,6 @@ namespace SuperbEdit.ViewModels
         public string License
         {
             get { return File.ReadAllText(Path.Combine(Folders.DocumentationFolder, "LICENSE.md")); }
-        }
-
-        public AboutViewModel()
-        {
-            DisplayName = "About SuperbEdit";
         }
     }
 }

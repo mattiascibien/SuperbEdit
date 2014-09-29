@@ -1,42 +1,22 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
-using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
 
 namespace SuperbEdit.ViewModels
 {
-    [Export(typeof(IShell))]
+    [Export(typeof (IShell))]
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
         private readonly ShellViewModel _parentViewModel;
 
         private readonly IWindowManager _windowManager;
 
-        [Import] 
-        private ExportFactory<ITab> tabFactory; 
-
         private bool _isSecondaryWindow;
-        public bool IsSecondaryWindow
-        {
-            get
-            {
-                return _isSecondaryWindow;
-            }
-            set
-            {
-                if(_isSecondaryWindow != value)
-                {
-                    _isSecondaryWindow = value;
-                    NotifyOfPropertyChange(() => IsSecondaryWindow);
-                }
-            }
-        }
+
+        [Import] private ExportFactory<ITab> tabFactory;
 
         public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
         {
@@ -53,7 +33,27 @@ namespace SuperbEdit.ViewModels
         [ImportingConstructor]
         public ShellViewModel(IWindowManager windowManager) : this(windowManager, null, false)
         {
+        }
 
+        public bool IsSecondaryWindow
+        {
+            get { return _isSecondaryWindow; }
+            set
+            {
+                if (_isSecondaryWindow != value)
+                {
+                    _isSecondaryWindow = value;
+                    NotifyOfPropertyChange(() => IsSecondaryWindow);
+                }
+            }
+        }
+
+        public void DetachItem(ITab item)
+        {
+            ShellViewModel shellViewModel = NewWindow();
+            shellViewModel.Items.Add(item);
+            shellViewModel.ActivateItem(item);
+            Items.Remove(item);
         }
 
 
@@ -66,7 +66,7 @@ namespace SuperbEdit.ViewModels
 
         public void NewFile()
         {
-            var item = tabFactory.CreateExport().Value;
+            ITab item = tabFactory.CreateExport().Value;
             OpenTab(item);
         }
 
@@ -74,9 +74,9 @@ namespace SuperbEdit.ViewModels
         {
             var dialog = new OpenFileDialog();
 
-            if(dialog.ShowDialog().Value)
+            if (dialog.ShowDialog().Value)
             {
-                var fileTabViewModel = tabFactory.CreateExport().Value;
+                ITab fileTabViewModel = tabFactory.CreateExport().Value;
                 fileTabViewModel.SetFile(dialog.FileName);
                 OpenTab(fileTabViewModel);
             }
@@ -88,10 +88,10 @@ namespace SuperbEdit.ViewModels
             ActivateItem(tab);
         }
 
-        public void  AttachBack()
+        public void AttachBack()
         {
-            _parentViewModel.Items.AddRange(this.Items);
-            this.TryClose();
+            _parentViewModel.Items.AddRange(Items);
+            TryClose();
         }
 
         public void About()
@@ -112,7 +112,7 @@ namespace SuperbEdit.ViewModels
 
         public void SaveAll()
         {
-            foreach (var tab in Items)
+            foreach (ITab tab in Items)
             {
                 tab.Save();
             }
@@ -151,16 +151,15 @@ namespace SuperbEdit.ViewModels
 
         public void OpenDefaultConfig()
         {
-        
-            var fileTabViewModel = tabFactory.CreateExport().Value;
+            ITab fileTabViewModel = tabFactory.CreateExport().Value;
             fileTabViewModel.SetFile(Path.Combine(Folders.ProgramFolder, "config.json"));
             OpenTab(fileTabViewModel);
         }
 
         public void OpenUserConfig()
         {
-           var fileTabViewModel = tabFactory.CreateExport().Value;
-           fileTabViewModel.SetFile(Path.Combine(Folders.UserFolder, "config.json"));
+            ITab fileTabViewModel = tabFactory.CreateExport().Value;
+            fileTabViewModel.SetFile(Path.Combine(Folders.UserFolder, "config.json"));
             OpenTab(fileTabViewModel);
         }
 
@@ -176,18 +175,8 @@ namespace SuperbEdit.ViewModels
         }
 
 
-
-        public void DetachItem(ITab item)
-        {
-            var shellViewModel = NewWindow();
-            shellViewModel.Items.Add(item);
-            shellViewModel.ActivateItem(item);
-            Items.Remove(item);
-        }
-
         public void SetHighlighter(RoutedEventArgs eventArgs)
         {
-            
             //if(ActiveItem != null) (ActiveItem as TextEditorViewModel).SetHighlighter(
             //    HighlighterManager.Instance.Highlighters[
             //    (eventArgs.OriginalSource as MenuItem).Header.ToString()]
