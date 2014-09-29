@@ -19,7 +19,6 @@ namespace SuperbEdit.ViewModels
 
         private readonly IWindowManager _windowManager;
 
-
         [Import]
         private IFolders folders;
 

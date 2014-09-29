@@ -24,7 +24,8 @@ namespace SuperbEdit
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
             return new[] {
-                Assembly.GetExecutingAssembly()
+                Assembly.GetExecutingAssembly(),
+                Assembly.LoadFrom("SuperbEdit.Base.dll")
             };
         }
 

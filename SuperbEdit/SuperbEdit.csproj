@@ -76,14 +76,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="Base\IFolders.cs" />
-    <Compile Include="Base\IShell.cs" />
-    <Compile Include="Base\ITab.cs" />
-    <Compile Include="Base\Tab.cs" />
-    <Compile Include="Base\Config.cs" />
-    <Compile Include="Base\Folders.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
-    <Compile Include="Base\IConfig.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
@@ -153,6 +146,10 @@
     <Resource Include="Assets\icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SuperbEdit.Base\SuperbEdit.Base.csproj">
+      <Project>{072112b6-0d71-4a38-b920-7c7105829b7c}</Project>
+      <Name>SuperbEdit.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SyntaxHighlightBox\AurelienRibon.Ui.SyntaxHighlightBox.csproj">
       <Project>{10a9ecd3-ae1e-494d-9a27-8a32dd581759}</Project>
       <Name>AurelienRibon.Ui.SyntaxHighlightBox</Name>
