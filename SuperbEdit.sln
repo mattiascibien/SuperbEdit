@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit.TextEditor", "Su
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Default Pacakges", "Default Pacakges", "{B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyModule", "DummyModule\DummyModule.csproj", "{69CF859D-5406-473B-B2B2-C87E175CDFEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,11 +34,16 @@ Global
 		{171B9C34-0D04-4371-A129-EB3E7AAF245C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{171B9C34-0D04-4371-A129-EB3E7AAF245C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{171B9C34-0D04-4371-A129-EB3E7AAF245C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69CF859D-5406-473B-B2B2-C87E175CDFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69CF859D-5406-473B-B2B2-C87E175CDFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69CF859D-5406-473B-B2B2-C87E175CDFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69CF859D-5406-473B-B2B2-C87E175CDFEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{171B9C34-0D04-4371-A129-EB3E7AAF245C} = {B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}
+		{69CF859D-5406-473B-B2B2-C87E175CDFEF} = {B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}
 	EndGlobalSection
 EndGlobal
