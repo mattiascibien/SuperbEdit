@@ -154,12 +154,17 @@ namespace SuperbEdit.ViewModels
 
         public void OpenDefaultConfig()
         {
-         //OpenTab(new TextEditorViewModel(Path.Combine(folders.ProgramFolder, "config.json")));
+        
+            var fileTabViewModel = tabFactory.CreateExport().Value;
+            fileTabViewModel.SetFile(Path.Combine(folders.ProgramFolder, "config.json"));
+            OpenTab(fileTabViewModel);
         }
 
         public void OpenUserConfig()
         {
-           // OpenTab(new TextEditorViewModel(Path.Combine(folders.UserFolder, "config.json")));
+           var fileTabViewModel = tabFactory.CreateExport().Value;
+            fileTabViewModel.SetFile(Path.Combine(folders.UserFolder, "config.json"));
+            OpenTab(fileTabViewModel);
         }
 
 
