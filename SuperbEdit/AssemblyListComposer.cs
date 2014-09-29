@@ -6,21 +6,24 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using SuperbEdit.Base;
 
 namespace SuperbEdit
 {
     public static class AssemblyListComposer
     {
+        public static List<Assembly> loadedAssemblies;
+
         public static IEnumerable<Assembly> GetAssemblyList(bool pure = false)
         {
-            var assemblies = new List<Assembly>
+            loadedAssemblies = new List<Assembly>
             {
                 Assembly.GetExecutingAssembly(),
                 Assembly.LoadFrom("SuperbEdit.Base.dll")
             };
 
-            GetAssembliesInFolder(assemblies, Folders.DefaultPackagesFolder);
+            GetAssembliesInFolder(loadedAssemblies, Folders.DefaultPackagesFolder);
 
             if (!Directory.Exists(Folders.UserFolder))
                 Directory.CreateDirectory(Folders.UserFolder);
@@ -28,9 +31,9 @@ namespace SuperbEdit
             if (!Directory.Exists(Folders.UserPackagesFolder))
                 Directory.CreateDirectory(Folders.UserPackagesFolder);
 
-            GetAssembliesInFolder(assemblies, Folders.UserPackagesFolder);
+            GetAssembliesInFolder(loadedAssemblies, Folders.UserPackagesFolder);
 
-            return assemblies;
+            return loadedAssemblies;
         }
 
         private static void GetAssembliesInFolder(List<Assembly> assemblies, string folder)

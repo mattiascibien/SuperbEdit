@@ -2,8 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Windows.Documents;
 using Caliburn.Micro;
 using SuperbEdit.Base;
+using System.Collections.Generic;
 
 namespace SuperbEdit.ViewModels
 {
@@ -23,6 +25,11 @@ namespace SuperbEdit.ViewModels
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
                 return fvi.FileVersion;
             }
+        }
+
+        public IEnumerable<Assembly> LoadedPackages
+        {
+            get { return AssemblyListComposer.loadedAssemblies; }
         }
 
         public string License
