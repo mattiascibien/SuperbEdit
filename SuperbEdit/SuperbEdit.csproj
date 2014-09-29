@@ -149,10 +149,6 @@
       <Project>{171b9c34-0d04-4371-a129-eb3e7aaf245c}</Project>
       <Name>SuperbEdit.TextEditor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SyntaxHighlightBox\AurelienRibon.Ui.SyntaxHighlightBox.csproj">
-      <Project>{10a9ecd3-ae1e-494d-9a27-8a32dd581759}</Project>
-      <Name>AurelienRibon.Ui.SyntaxHighlightBox</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Highlighters\VHDL.xml">

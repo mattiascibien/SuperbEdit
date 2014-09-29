@@ -5,7 +5,6 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using AurelienRibon.Ui.SyntaxHighlightBox;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
@@ -37,11 +36,6 @@ namespace SuperbEdit.ViewModels
                     NotifyOfPropertyChange(() => IsSecondaryWindow);
                 }
             }
-        }
-
-        public ICollection<IHighlighter> Highlighters
-        {
-            get { return HighlighterManager.Instance.Highlighters.Values; }
         }
 
         public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)

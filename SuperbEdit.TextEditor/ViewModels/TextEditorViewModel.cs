@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SuperbEdit.TextEditor.Views;
-using AurelienRibon.Ui.SyntaxHighlightBox;
 
 namespace SuperbEdit.TextEditor.ViewModels
 {
@@ -187,11 +186,5 @@ namespace SuperbEdit.TextEditor.ViewModels
            ScreenExtensions.CloseItem((IConductor)item.Parent, item);
         }
 
-
-        public void SetHighlighter(IHighlighter highlighter)
-        {
-            var view = this.GetView() as TextEditorView;
-            (view.FileContent as SyntaxHighlightBox).CurrentHighlighter = highlighter;
-        }
     }
 }
