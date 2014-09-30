@@ -41,6 +41,8 @@
                           cal:Message.Attach="SetHighlighter($eventArgs)" x:Name="Highlighters" />
                 <Separator />
                 <MenuItem Header="Toggle FullScreen" x:Name="ToggleFullscreen" />
+                <Separator />
+                <MenuItem Header="Command Window" x:Name="ToggleCommandWindow" />
             </MenuItem>
             <MenuItem Header="Preferences">
                 <MenuItem Header="Packages">
@@ -59,59 +61,78 @@
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem x:Name="Status">Ready</StatusBarItem>
         </StatusBar>
-        <TabControl x:Name="Items">
-            <TabControl.Template>
-                <ControlTemplate TargetType="TabControl">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <ScrollViewer HorizontalScrollBarVisibility="Hidden" x:Name="scroll" Grid.Row="0"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border x:Name="CommandWindow" Grid.Column="1" Grid.Row="0" Panel.ZIndex="1000" Background="{DynamicResource MenuBackground}" Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}">
+                <StackPanel Margin="3" Orientation="Vertical">
+                    <TextBox  FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}"></TextBox>
+                    <ListBox>
+                        <ListBoxItem FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}">Example Command #1</ListBoxItem>
+                        <ListBoxItem FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}">Example Command #2</ListBoxItem>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+            <TabControl x:Name="Items" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TabControl.Template>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden" x:Name="scroll" Grid.Row="0"
                                       Grid.Column="0" VerticalScrollBarVisibility="Hidden">
-                            <TabPanel x:Name="HeaderPanel"
+                                <TabPanel x:Name="HeaderPanel"
                                       Panel.ZIndex="1"
                                       KeyboardNavigation.TabIndex="1"
                                       Margin="2,2,2,0"
                                       IsItemsHost="true" />
-                        </ScrollViewer>
-                        <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageLeftCommand" Grid.Row="0"
+                            </ScrollViewer>
+                            <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageLeftCommand" Grid.Row="0"
                                       Grid.Column="1" CommandTarget="{Binding ElementName=scroll}"
                                       Style="{DynamicResource RepeatLeftButtonStyle}" />
-                        <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageRightCommand"
+                            <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageRightCommand"
                                       CommandTarget="{Binding ElementName=scroll}" Grid.Row="0" Grid.Column="2"
                                       Style="{DynamicResource RepeatRightButtonStyle}" />
-                        <ContentPresenter x:Name="PART_SelectedContentHost"
+                            <ContentPresenter x:Name="PART_SelectedContentHost"
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                           Margin="{TemplateBinding Padding}"
                                           ContentSource="SelectedContent" Grid.Column="0" Grid.ColumnSpan="3"
                                           Grid.Row="1" />
-                    </Grid>
-                </ControlTemplate>
-            </TabControl.Template>
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ContextMenu>
-                            <ContextMenu Style="{StaticResource {x:Type ContextMenu}}">
-                                <MenuItem Header="Deatch" cal:Message.Attach="DetachItem($dataContext)" />
-                                <MenuItem Header="Close" cal:Message.Attach="CloseItem($dataContext)" />
-                            </ContextMenu>
-                        </Grid.ContextMenu>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding DisplayName}" Grid.Column="0" />
-                        <TextBlock Text="*" Grid.Column="1"
+                        </Grid>
+                    </ControlTemplate>
+                </TabControl.Template>
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ContextMenu>
+                                <ContextMenu Style="{StaticResource {x:Type ContextMenu}}">
+                                    <MenuItem Header="Deatch" cal:Message.Attach="DetachItem($dataContext)" />
+                                    <MenuItem Header="Close" cal:Message.Attach="CloseItem($dataContext)" />
+                                </ContextMenu>
+                            </Grid.ContextMenu>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding DisplayName}" Grid.Column="0" />
+                            <TextBlock Text="*" Grid.Column="1"
                                    Visibility="{Binding HasChanges, Converter={StaticResource booleanToVisibility}}" />
-                        <TextBlock Text="&#10006;" Margin="5,0,0,0" Grid.Column="2">
+                            <TextBlock Text="&#10006;" Margin="5,0,0,0" Grid.Column="2">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseLeftButtonDown">
                                     <cal:ActionMessage MethodName="CloseItem">
@@ -119,22 +140,24 @@
                                     </cal:ActionMessage>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Foreground"
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground"
                                                     Value="{StaticResource MouseOverForegroundBrush}" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                    </Grid>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-        </TabControl>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+            </TabControl>
+        </Grid>
+        
     </DockPanel>
 
 </Window>

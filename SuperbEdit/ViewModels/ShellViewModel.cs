@@ -5,12 +5,16 @@ using System.Windows;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
+using SuperbEdit.Views;
 
 namespace SuperbEdit.ViewModels
 {
     [Export(typeof (IShell))]
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
+
+        private bool isFullScreen = false;
+
         private readonly ShellViewModel _parentViewModel;
 
         private readonly IWindowManager _windowManager;
@@ -20,6 +24,20 @@ namespace SuperbEdit.ViewModels
         [Import] private IConfig config;
 
         [Import] private TabService tabService;
+
+        public bool _commandWindowVisible;
+        public bool CommandWindowVisible
+        {
+            get { return _commandWindowVisible; }
+            set
+            {
+                if (_commandWindowVisible != value)
+                {
+                    _commandWindowVisible = value;
+                    NotifyOfPropertyChange(() => CommandWindowVisible);
+                }
+            }
+        }
 
         public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
         {
@@ -195,6 +213,44 @@ namespace SuperbEdit.ViewModels
             //    HighlighterManager.Instance.Highlighters[
             //    (eventArgs.OriginalSource as MenuItem).Header.ToString()]
             //    );
+        }
+
+        public void ToggleFullscreen()
+        {
+            var view = GetView() as Window;
+            if (isFullScreen)
+            {
+                view.WindowState = WindowState.Normal;
+                view.WindowStyle = WindowStyle.SingleBorderWindow;
+                view.ResizeMode = ResizeMode.CanResize;
+                view.Topmost = false;
+                isFullScreen = false;
+            }
+            else
+            {
+                view.WindowState = WindowState.Maximized;
+                view.WindowStyle = WindowStyle.None;
+                view.ResizeMode = ResizeMode.NoResize;
+                view.Topmost = true;
+                isFullScreen = true;
+            }
+
+        }
+
+        public void ToggleCommandWindow()
+        {
+            if (CommandWindowVisible)
+            {
+                CommandWindowVisible = false;
+                var view = GetView() as ShellView;
+            }
+            else
+            {
+                CommandWindowVisible = true;
+                var view = GetView() as ShellView;
+                view.CommandWindow.Focus();
+            }
+            
         }
     }
 }
