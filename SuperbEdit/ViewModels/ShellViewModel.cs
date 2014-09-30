@@ -17,9 +17,9 @@ namespace SuperbEdit.ViewModels
 
         private bool _isSecondaryWindow;
 
-        [Import] private ExportFactory<ITab> tabFactory;
-
         [Import] private IConfig config;
+
+        [Import] private TabService tabService;
 
         public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
         {
@@ -69,7 +69,7 @@ namespace SuperbEdit.ViewModels
 
         public void NewFile()
         {
-            ITab item = tabFactory.CreateExport().Value;
+            ITab item = tabService.RequestDefaultTab();
             OpenTab(item);
         }
 
@@ -79,7 +79,7 @@ namespace SuperbEdit.ViewModels
 
             if (dialog.ShowDialog().Value)
             {
-                ITab fileTabViewModel = tabFactory.CreateExport().Value;
+                ITab fileTabViewModel = tabService.RequestDefaultTab();
                 fileTabViewModel.SetFile(dialog.FileName);
                 OpenTab(fileTabViewModel);
             }
@@ -154,14 +154,14 @@ namespace SuperbEdit.ViewModels
 
         public void OpenDefaultConfig()
         {
-            ITab fileTabViewModel = tabFactory.CreateExport().Value;
+            ITab fileTabViewModel = tabService.RequestDefaultTab();
             fileTabViewModel.SetFile(Path.Combine(Folders.ProgramFolder, "config.json"));
             OpenTab(fileTabViewModel);
         }
 
         public void OpenUserConfig()
         {
-            ITab fileTabViewModel = tabFactory.CreateExport().Value;
+            ITab fileTabViewModel = tabService.RequestDefaultTab();
             fileTabViewModel.SetFile(Path.Combine(Folders.UserFolder, "config.json"));
             OpenTab(fileTabViewModel);
         }

@@ -8,6 +8,7 @@ namespace SuperbEdit.Base
 {
     public interface ITabMetadata
     {
-        bool IsDefault { get; }
+        bool IsFallback { get; }
+        string Name { get; }
     }
 }

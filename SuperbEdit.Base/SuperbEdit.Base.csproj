@@ -48,8 +48,10 @@
     <Compile Include="IConfig.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ITab.cs" />
+    <Compile Include="ITabMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tab.cs" />
+    <Compile Include="TabService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

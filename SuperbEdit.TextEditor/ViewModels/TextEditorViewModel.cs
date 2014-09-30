@@ -10,6 +10,8 @@ using SuperbEdit.TextEditor.Views;
 namespace SuperbEdit.TextEditor.ViewModels
 {
     [Export(typeof (ITab))]
+    [ExportMetadata("IsFallback", true)]
+    [ExportMetadata("Name", "TextEditor")]
     public sealed class TextEditorViewModel : Tab
     {
         private string _fileContent;
