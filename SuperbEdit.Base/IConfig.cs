@@ -2,5 +2,7 @@
 {
     public interface IConfig
     {
+        dynamic UserConfig { get; }
+        dynamic DefaultConfig { get; }
     }
 }
