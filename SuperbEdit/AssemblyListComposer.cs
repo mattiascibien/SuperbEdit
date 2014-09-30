@@ -15,6 +15,11 @@ namespace SuperbEdit
     {
         public static List<Assembly> loadedAssemblies;
 
+        /// <summary>
+        /// Loads the assemblies from Packages folders
+        /// </summary>
+        /// <param name="pure">If 'true' loads packages only from program folders</param>
+        /// <returns></returns>
         public static IEnumerable<Assembly> GetAssemblyList(bool pure = false)
         {
             loadedAssemblies = new List<Assembly>
@@ -25,13 +30,16 @@ namespace SuperbEdit
 
             GetAssembliesInFolder(loadedAssemblies, Folders.DefaultPackagesFolder);
 
-            if (!Directory.Exists(Folders.UserFolder))
-                Directory.CreateDirectory(Folders.UserFolder);
+            if (!pure)
+            {
+                if (!Directory.Exists(Folders.UserFolder))
+                    Directory.CreateDirectory(Folders.UserFolder);
 
-            if (!Directory.Exists(Folders.UserPackagesFolder))
-                Directory.CreateDirectory(Folders.UserPackagesFolder);
+                if (!Directory.Exists(Folders.UserPackagesFolder))
+                    Directory.CreateDirectory(Folders.UserPackagesFolder);
 
-            GetAssembliesInFolder(loadedAssemblies, Folders.UserPackagesFolder);
+                GetAssembliesInFolder(loadedAssemblies, Folders.UserPackagesFolder);
+            }
 
             return loadedAssemblies;
         }
@@ -41,18 +49,18 @@ namespace SuperbEdit
             foreach (string assembly in Directory.GetFiles(folder, "*.dll"))
             {
                 assemblies.Add(Assembly.LoadFrom(assembly));
+            }
 
-                foreach (var subDir in Directory.GetDirectories(folder))
+            foreach (var subDir in Directory.GetDirectories(folder))
+            {
+                if (!subDir.EndsWith("x86") && !subDir.EndsWith("x64"))
                 {
-                    if (!subDir.EndsWith("x86") && !subDir.EndsWith("x64"))
-                    {
-                        GetAssembliesInFolder(assemblies, subDir);
-                    }
-                    else
-                    {
-                        //Ignore the folder since it contains native DLLs
-                        continue;
-                    }
+                    GetAssembliesInFolder(assemblies, subDir);
+                }
+                else
+                {
+                    //Ignore the folder since it contains native DLLs
+                    continue;
                 }
             }
         }

@@ -32,5 +32,6 @@ namespace SuperbEdit.Base
         public abstract void Copy();
         public abstract void Paste();
         public abstract void SetFile(string filePath);
+        public abstract void RegisterCommands();
     }
 }

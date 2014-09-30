@@ -23,7 +23,8 @@ namespace SuperbEdit
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            return AssemblyListComposer.GetAssemblyList(false);
+            
+            return AssemblyListComposer.GetAssemblyList(Environment.GetCommandLineArgs().Contains("-pure"));
         }
 
         protected override void Configure()

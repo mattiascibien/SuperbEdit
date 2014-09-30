@@ -71,15 +71,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Border x:Name="CommandWindow" Grid.Column="1" Grid.Row="0" Panel.ZIndex="1000" Background="{DynamicResource MenuBackground}" Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}">
-                <StackPanel Margin="3" Orientation="Vertical">
-                    <TextBox  FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}"></TextBox>
-                    <ListBox>
-                        <ListBoxItem FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}">Example Command #1</ListBoxItem>
-                        <ListBoxItem FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}">Example Command #2</ListBoxItem>
-                    </ListBox>
-                </StackPanel>
-            </Border>
+            <ContentControl  Grid.Column="1" x:Name="CommandWindow"  Grid.Row="0" Panel.ZIndex="1000" Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}" />
             <TabControl x:Name="Items" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2">
                 <TabControl.Template>
                     <ControlTemplate TargetType="TabControl">

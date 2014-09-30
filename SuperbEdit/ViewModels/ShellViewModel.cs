@@ -12,6 +12,19 @@ namespace SuperbEdit.ViewModels
     [Export(typeof (IShell))]
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
+        private CommandWindowViewModel _commandWindow;
+        public CommandWindowViewModel CommandWindow
+        {
+            get { return _commandWindow; }
+            set
+            {
+                if (_commandWindow != value)
+                {
+                    _commandWindow = value;
+                    NotifyOfPropertyChange(() => CommandWindow);
+                }
+            }
+        }
 
         private bool isFullScreen = false;
 
@@ -45,7 +58,7 @@ namespace SuperbEdit.ViewModels
             IsSecondaryWindow = secondaryWindow;
             DisplayName = "SuperbEdit";
             _parentViewModel = parent;
-
+            CommandWindow = new CommandWindowViewModel();
 
             //HACK: to initialize view.
             //Items.Add(new FileTabViewModel());
@@ -242,13 +255,10 @@ namespace SuperbEdit.ViewModels
             if (CommandWindowVisible)
             {
                 CommandWindowVisible = false;
-                var view = GetView() as ShellView;
             }
             else
             {
                 CommandWindowVisible = true;
-                var view = GetView() as ShellView;
-                view.CommandWindow.Focus();
             }
             
         }

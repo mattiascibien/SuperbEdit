@@ -1,0 +1,29 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             x:Class="SuperbEdit.Views.CommandWindowView" 
+             mc:Ignorable="d" 
+             d:DesignWidth="400" >
+    <Border Background="{DynamicResource MenuBackground}" Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}">
+        <StackPanel Margin="3" Orientation="Vertical">
+            <TextBox Margin="3" FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}"/>
+            <ListBox Margin="0,3,0,0" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" Text="{Binding CommandName}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding CommandDescription}" Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Border>
+</UserControl>

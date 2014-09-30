@@ -147,6 +147,11 @@ namespace SuperbEdit.TextEditor.ViewModels
             }
         }
 
+        public override void RegisterCommands()
+        {
+            
+        }
+
         public override void CanClose(Action<bool> callback)
         {
             if (HasChanges)
