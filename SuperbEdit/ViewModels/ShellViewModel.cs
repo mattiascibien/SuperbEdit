@@ -94,6 +94,7 @@ namespace SuperbEdit.ViewModels
         public void AttachBack()
         {
             _parentViewModel.Items.AddRange(Items);
+            Items.Clear();
             TryClose();
         }
 
