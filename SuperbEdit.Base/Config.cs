@@ -11,8 +11,8 @@ namespace SuperbEdit.Base
     [Export(typeof (IConfig))]
     public class Config : PropertyChangedBase, IConfig, IDisposable
     {
-        private FileSystemWatcher _defaultConfigWatcher;
-        private FileSystemWatcher _userConfigWatcher;
+        private readonly FileSystemWatcher _defaultConfigWatcher;
+        private readonly FileSystemWatcher _userConfigWatcher;
 
         private dynamic _userConfigExpandoObject;
         public dynamic UserConfig
@@ -45,39 +45,45 @@ namespace SuperbEdit.Base
         [ImportingConstructor]
         public Config()
         {
-            ReloadConfig(_userConfigExpandoObject, Path.Combine(Folders.UserFolder, "config.json"));
-            ReloadConfig(_defaultConfigExpandoObject,  Path.Combine(Folders.ProgramFolder, "config.json"));
+            ReloadConfig(false, Path.Combine(Folders.UserFolder, "config.json"));
+            ReloadConfig(true,  Path.Combine(Folders.ProgramFolder, "config.json"));
 
-            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder);
-            _defaultConfigWatcher.Filter = "config.json";
-            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder);
-            _userConfigWatcher.Filter = "config.json";
+            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) {Filter = "config.json"};
+            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) {Filter = "config.json"};
 
             _defaultConfigWatcher.EnableRaisingEvents = true;
             _userConfigWatcher.EnableRaisingEvents = true;
 
-            _defaultConfigWatcher.Changed += ConfigChanged;
-            _userConfigWatcher.Changed += ConfigChanged;
+            _defaultConfigWatcher.Changed += DefaultConfigChanged;
+            _userConfigWatcher.Changed += UserConfigChanged;
         }
 
-        private void ConfigChanged(object sender, FileSystemEventArgs fileSystemEventArgs)
+        private void DefaultConfigChanged(object sender, FileSystemEventArgs fileSystemEventArgs)
         {
-            ReloadConfig(_userConfigExpandoObject, fileSystemEventArgs.FullPath);
+            ReloadConfig(true, fileSystemEventArgs.FullPath);
         }
 
-        private void ReloadConfig(dynamic configObject, string fullPath)
+        private void UserConfigChanged(object sender, FileSystemEventArgs fileSystemEventArgs)
+        {
+            ReloadConfig(false, fileSystemEventArgs.FullPath);
+        }
+
+        private void ReloadConfig(bool defaultConfig, string fullPath)
         {
             string jsonString = File.ReadAllText(fullPath);
 
             var converter = new ExpandoObjectConverter();
-            configObject = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter);
+            if (defaultConfig)
+                DefaultConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter);
+            else
+                UserConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter); 
         }
 
 
         public void Dispose()
         {
-            _defaultConfigWatcher.Changed -= ConfigChanged;
-            _userConfigWatcher.Changed -= ConfigChanged;
+            _defaultConfigWatcher.Changed -= DefaultConfigChanged;
+            _userConfigWatcher.Changed -= UserConfigChanged;
         }
     }
 }

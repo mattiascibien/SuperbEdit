@@ -19,6 +19,8 @@ namespace SuperbEdit.ViewModels
 
         [Import] private ExportFactory<ITab> tabFactory;
 
+        [Import] private IConfig config;
+
         public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
         {
             _windowManager = windowManager;
