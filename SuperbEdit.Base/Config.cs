@@ -8,7 +8,7 @@ using Newtonsoft.Json.Converters;
 
 namespace SuperbEdit.Base
 {
-    [Export(typeof (IConfig))]
+    [Export(typeof(IConfig))]
     public class Config : PropertyChangedBase, IConfig, IDisposable
     {
         private readonly FileSystemWatcher _defaultConfigWatcher;
@@ -46,10 +46,10 @@ namespace SuperbEdit.Base
         public Config()
         {
             ReloadConfig(false, Path.Combine(Folders.UserFolder, "config.json"));
-            ReloadConfig(true,  Path.Combine(Folders.ProgramFolder, "config.json"));
+            ReloadConfig(true, Path.Combine(Folders.ProgramFolder, "config.json"));
 
-            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) {Filter = "config.json"};
-            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) {Filter = "config.json"};
+            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) { Filter = "config.json" };
+            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) { Filter = "config.json" };
 
             _defaultConfigWatcher.EnableRaisingEvents = true;
             _userConfigWatcher.EnableRaisingEvents = true;
@@ -70,13 +70,18 @@ namespace SuperbEdit.Base
 
         private void ReloadConfig(bool defaultConfig, string fullPath)
         {
-            string jsonString = File.ReadAllText(fullPath);
+            if (File.Exists(fullPath))
+            {
 
-            var converter = new ExpandoObjectConverter();
-            if (defaultConfig)
-                DefaultConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter);
-            else
-                UserConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter); 
+                string jsonString = File.ReadAllText(fullPath);
+
+                var converter = new ExpandoObjectConverter();
+                if (defaultConfig)
+                    DefaultConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter);
+                else
+                    UserConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter);
+            }
+
         }
 
 
