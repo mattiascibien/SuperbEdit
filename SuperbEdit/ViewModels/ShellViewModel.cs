@@ -13,6 +13,8 @@ namespace SuperbEdit.ViewModels
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
         private CommandWindowViewModel _commandWindow;
+
+        [Import]
         public CommandWindowViewModel CommandWindow
         {
             get { return _commandWindow; }
@@ -88,7 +90,6 @@ namespace SuperbEdit.ViewModels
             IsSecondaryWindow = secondaryWindow;
             DisplayName = "SuperbEdit";
             _parentViewModel = parent;
-            CommandWindow = new CommandWindowViewModel();
 
             //HACK: to initialize view.
             //Items.Add(new FileTabViewModel());

@@ -43,17 +43,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandManager.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Folders.cs" />
-    <Compile Include="ICommandManager.cs" />
+    <Compile Include="IActionItem.cs" />
     <Compile Include="IConfig.cs" />
     <Compile Include="IPane.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ITab.cs" />
     <Compile Include="ITabMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SuperbCommand.cs" />
+    <Compile Include="ActionItem.cs" />
     <Compile Include="Tab.cs" />
     <Compile Include="TabService.cs" />
   </ItemGroup>

@@ -9,7 +9,7 @@
     <Border Background="{DynamicResource MenuBackground}" Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}">
         <StackPanel Margin="3" Orientation="Vertical">
             <TextBox Margin="3" FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}"/>
-            <ListBox Margin="0,3,0,0" >
+            <ListBox Margin="0,3,0,0" ItemsSource="{Binding Actions}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -18,8 +18,8 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" Text="{Binding CommandName}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding CommandDescription}" Grid.Column="1"/>
+                            <TextBlock FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" Text="{Binding Name}" Grid.Column="0"/>
+                            <TextBlock Margin="3,0,0,0" Text="{Binding Description}" Foreground="{DynamicResource TextBoxDisabledForeground}" VerticalAlignment="Bottom" Grid.Column="1"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
