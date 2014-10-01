@@ -48,6 +48,7 @@
     <Compile Include="Folders.cs" />
     <Compile Include="ICommandManager.cs" />
     <Compile Include="IConfig.cs" />
+    <Compile Include="IPane.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ITab.cs" />
     <Compile Include="ITabMetadata.cs" />

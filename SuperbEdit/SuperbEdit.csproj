@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="AssemblyListComposer.cs" />
+    <Compile Include="Controls\DockPanelSplitter.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="SampleData\SampleCommands\SampleCommands.xaml.cs">
       <DependentUpon>SampleCommands.xaml</DependentUpon>
@@ -128,6 +129,10 @@
     <Page Include="SampleData\SampleCommands\SampleCommands.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\AdditionalStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>

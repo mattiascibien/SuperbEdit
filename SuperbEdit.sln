@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit", "SuperbEdit\SuperbEdit.csproj", "{D639B85B-13BA-4A1D-89FA-939938CE071B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{171B9C34-0D04-4371-A129-EB3E7AAF245C} = {171B9C34-0D04-4371-A129-EB3E7AAF245C}
+		{2BA3BCF7-F571-4165-B840-42D374B32738} = {2BA3BCF7-F571-4165-B840-42D374B32738}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit.Base", "SuperbEdit.Base\SuperbEdit.Base.csproj", "{072112B6-0D71-4A38-B920-7C7105829B7C}"

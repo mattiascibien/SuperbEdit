@@ -38,6 +38,22 @@ namespace SuperbEdit.ViewModels
 
         [Import] private TabService tabService;
 
+        private ILeftPane _leftPanel;
+
+        [Import]
+        public ILeftPane LeftPanel
+        {
+            get { return _leftPanel; }
+            set
+            {
+                if (_leftPanel != value)
+                {
+                    _leftPanel = value;
+                    NotifyOfPropertyChange(() => LeftPanel);
+                }
+            }
+        }
+
         public bool _commandWindowVisible;
         public bool CommandWindowVisible
         {
@@ -48,6 +64,20 @@ namespace SuperbEdit.ViewModels
                 {
                     _commandWindowVisible = value;
                     NotifyOfPropertyChange(() => CommandWindowVisible);
+                }
+            }
+        }
+
+        public bool _leftPanelVisible;
+        public bool LeftPanelVisible
+        {
+            get { return _leftPanelVisible; }
+            set
+            {
+                if (_leftPanelVisible != value)
+                {
+                    _leftPanelVisible = value;
+                    NotifyOfPropertyChange(() => LeftPanelVisible);
                 }
             }
         }
@@ -261,6 +291,19 @@ namespace SuperbEdit.ViewModels
                 CommandWindowVisible = true;
             }
             
+        }
+
+        public void ToggleLeftPanel()
+        {
+            if (LeftPanelVisible)
+            {
+                LeftPanelVisible = false;
+            }
+            else
+            {
+                LeftPanelVisible = true;
+            }
+
         }
     }
 }
