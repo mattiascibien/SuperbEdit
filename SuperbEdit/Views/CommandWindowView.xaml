@@ -8,8 +8,8 @@
              d:DesignWidth="400" >
     <Border Background="{DynamicResource MenuBackground}" Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}">
         <StackPanel Margin="3" Orientation="Vertical">
-            <TextBox Margin="3" FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}"/>
-            <ListBox Margin="0,3,0,0" ItemsSource="{Binding Actions}">
+            <TextBox Margin="3" FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <ListBox Margin="0,3,0,0" ItemsSource="{Binding FilteredActions}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>

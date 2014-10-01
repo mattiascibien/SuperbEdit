@@ -13,9 +13,9 @@ namespace SuperbEdit.ViewModels
     [Export]
     public class CommandWindowViewModel : Screen
     {
-        private ObservableCollection<IActionItem> _actions;
+        private List<IActionItem> _actions;
 
-        public ObservableCollection<IActionItem> Actions
+        public List<IActionItem> Actions
         {
             get { return _actions; }
             set
@@ -28,10 +28,33 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-        [ImportingConstructor]
+
+        private string _filter = "";
+        public string Filter
+        {
+            get { return _filter; }
+            set
+            {
+                if (_filter != value)
+                {
+                    _filter = value;
+                    NotifyOfPropertyChange(() => Filter);
+                    NotifyOfPropertyChange(() => FilteredActions);
+                }
+            }
+        }
+
+        public IEnumerable<IActionItem> FilteredActions
+        {
+            //TODO: should split inserted words and check for some of them in the name and description?
+            get { return Actions.Where(a => a.Name.ToUpper().Contains(Filter.ToUpper())
+                || a.Description.ToUpper().Contains(Filter.ToUpper())); }
+        }
+            
+         [ImportingConstructor]
         public CommandWindowViewModel([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions)
         {
-            Actions = new ObservableCollection<IActionItem>();
+            Actions = new List<IActionItem>();
 
             foreach (var action in actions)
             {
