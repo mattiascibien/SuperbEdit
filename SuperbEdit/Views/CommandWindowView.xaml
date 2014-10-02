@@ -19,7 +19,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" Text="{Binding Name}" Grid.Column="0"/>
-                            <TextBlock Margin="3,0,0,0" Text="{Binding Description}" Foreground="{DynamicResource TextBoxDisabledForeground}" VerticalAlignment="Bottom" Grid.Column="1"/>
+                            <TextBlock Margin="3,0,0,2" Text="{Binding Description}" Foreground="{DynamicResource TextBoxDisabledForeground}" VerticalAlignment="Bottom" Grid.Column="1"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

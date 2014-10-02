@@ -6,20 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using SuperbEdit.Base;
 
-namespace DummyModule
+namespace SuperbEdit.Actions
 {
     [Export(typeof(IActionItem))]
-    [ExportActionMetadata(Menu = "", Order = 0, Owner = "Dummy", RegisterInCommandWindow = true)]
-    public class DummyAction : ActionItem
+    [ExportActionMetadata(Menu = "File", Order = 7, Owner = "Shell", RegisterInCommandWindow = true)]
+    public class ExitAction : ActionItem
     {
-        public DummyAction() : base("Dummy", "Just a developer helper.")
+        [Import] private Lazy<IShell> shell;
+
+        public ExitAction() : base("Exit", "Closes the application.")
         {
             
         }
-  
+
         public override void Execute()
         {
-            
+            shell.Value.Exit();
         }
     }
 }

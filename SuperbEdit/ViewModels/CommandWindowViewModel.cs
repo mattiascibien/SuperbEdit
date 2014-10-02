@@ -51,7 +51,7 @@ namespace SuperbEdit.ViewModels
                 || a.Description.ToUpper().Contains(Filter.ToUpper())); }
         }
             
-         [ImportingConstructor]
+        [ImportingConstructor]
         public CommandWindowViewModel([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions)
         {
             Actions = new List<IActionItem>();

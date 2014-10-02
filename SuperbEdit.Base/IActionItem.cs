@@ -9,6 +9,7 @@ namespace SuperbEdit.Base
     {
         string Name { get; }
         string Description { get; }
+        bool IsSeparator { get; }
 
         void Execute();
     }

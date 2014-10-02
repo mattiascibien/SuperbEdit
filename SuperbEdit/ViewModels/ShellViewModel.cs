@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
 using Microsoft.Win32;
@@ -12,6 +15,10 @@ namespace SuperbEdit.ViewModels
     [Export(typeof (IShell))]
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
+        public IEnumerable<IActionItem> FileMenuItems { get; set; }
+        public IEnumerable<IActionItem> EditMenuItems { get; set; }
+
+
         private CommandWindowViewModel _commandWindow;
 
         [Import]
@@ -96,8 +103,16 @@ namespace SuperbEdit.ViewModels
         }
 
         [ImportingConstructor]
-        public ShellViewModel(IWindowManager windowManager) : this(windowManager, null, false)
+        public ShellViewModel([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions, IWindowManager windowManager) : this(windowManager, null, false)
         {
+            var enumeratedActions = actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();
+            FileMenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "File")
+                .OrderBy(action => action.Metadata.Order)
+                .Select(action => action.Value);
+
+            EditMenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "Edit")
+                .OrderBy(action => action.Metadata.Order)
+                .Select(action => action.Value);
         }
 
         public bool IsSecondaryWindow

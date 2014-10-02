@@ -11,14 +11,19 @@ namespace SuperbEdit.Base
     public abstract class ActionItem : IActionItem
     {
 
-        public ActionItem()
+        protected ActionItem(string name, string description)
         {
-
+            Name = name;
+            Description = description;
+            IsSeparator = false;
         }
 
-        public abstract string Name { get; }
-        public abstract string Description { get; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
         public abstract void Execute();
+
+
+        public bool IsSeparator { get; protected set; }
     }
 
     public interface IActionItemMetadata
@@ -27,6 +32,19 @@ namespace SuperbEdit.Base
         string Owner { get; }
         int Order { get; }
         bool RegisterInCommandWindow { get; }
+    }
+
+    [Export(typeof (SeparatorItem)) ]
+    public class SeparatorItem : ActionItem
+    {
+        public SeparatorItem() : base("", "")
+        {
+            IsSeparator = true;
+        }
+        public override void Execute()
+        {
+            
+        }
     }
 
 

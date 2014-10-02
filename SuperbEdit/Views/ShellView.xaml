@@ -5,7 +5,26 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:controls="clr-namespace:SuperbEdit.Controls"
         Icon="/SuperbEdit;component/Assets/icon.ico">
-
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemStyle">
+                <Setter Property="Header" Value="{Binding Path=Name}" />
+                <Setter Property="ToolTip" Value="{Binding Path=Description}" />
+                <Setter Property="cal:Message.Attach" Value="[Event Click] = [Action Execute()]" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsSeparator}" Value="true">
+                        <Setter Property="MenuItem.Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type MenuItem}">
+                                    <Separator Style="{DynamicResource {x:Static MenuItem.SeparatorStyleKey}}"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <Menu.ItemsPanel>
@@ -13,29 +32,9 @@
                     <DockPanel HorizontalAlignment="Stretch" />
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="File">
-                <MenuItem Header="New" x:Name="NewFile" />
-                <MenuItem Header="New Window" x:Name="NewWindow" />
-                <MenuItem Header="Open" x:Name="OpenFile" />
-                <MenuItem Header="Open Folder" IsEnabled="False" />
-                <Separator />
-                <MenuItem Header="Save" x:Name="Save" />
-                <MenuItem Header="Save As..." x:Name="SaveAs" />
-                <MenuItem Header="Save All..." x:Name="SaveAll" />
-                <Separator />
-                <MenuItem Header="Close" x:Name="CloseActiveItem" />
-                <Separator
-                    Visibility="{Binding IsSecondaryWindow, Converter={StaticResource inverseBooleanToVisibility}}" />
-                <MenuItem Header="Exit" x:Name="Exit"
-                          Visibility="{Binding IsSecondaryWindow, Converter={StaticResource inverseBooleanToVisibility}}" />
+            <MenuItem Header="File" ItemsSource="{Binding FileMenuItems}" ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}">
             </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Undo" x:Name="Undo" />
-                <MenuItem Header="Redo" x:Name="Redo" />
-                <Separator />
-                <MenuItem Header="Cut" x:Name="Cut" />
-                <MenuItem Header="Copy" x:Name="Copy" />
-                <MenuItem Header="Paste" x:Name="Paste" />
+            <MenuItem Header="Edit" ItemsSource="{Binding EditMenuItems}" ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}">
             </MenuItem>
             <MenuItem Header="View">
                 <MenuItem Header="Highlighters" cal:Action.TargetWithoutContext="{Binding}"
@@ -64,7 +63,7 @@
             <StatusBarItem x:Name="Status">Ready</StatusBarItem>
         </StatusBar>
         <ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200" Visibility="{Binding LeftPanelVisible, Converter={StaticResource booleanToVisibility}}">
-            
+
         </ContentControl>
         <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4" Visibility="{Binding LeftPanelVisible, Converter={StaticResource booleanToVisibility}}" />
         <Grid>
@@ -155,7 +154,7 @@
                 </TabControl.ItemTemplate>
             </TabControl>
         </Grid>
-        
+
     </DockPanel>
 
 </Window>

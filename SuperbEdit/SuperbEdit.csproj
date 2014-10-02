@@ -68,6 +68,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actions\EditMenu\RedoAction.cs" />
+    <Compile Include="Actions\EditMenu\CutAction.cs" />
+    <Compile Include="Actions\EditMenu\CopyAction.cs" />
+    <Compile Include="Actions\EditMenu\PasteAction.cs" />
+    <Compile Include="Actions\EditMenu\UndoAction.cs" />
+    <Compile Include="Actions\FileMenu\CloseAction.cs" />
+    <Compile Include="Actions\FileMenu\ExitAction.cs" />
+    <Compile Include="Actions\FileMenu\NewFileAction.cs" />
+    <Compile Include="Actions\FileMenu\OpenFileAction.cs" />
+    <Compile Include="Actions\FileMenu\SaveAction.cs" />
+    <Compile Include="Actions\FileMenu\SaveAllAction.cs" />
+    <Compile Include="Actions\FileMenu\SaveAsAction.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -151,7 +163,10 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Actions\HelpMenu\" />
+    <Folder Include="Actions\ViewMenu\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\icon.ico" />
     <DesignTimeOnly Include="SampleData\SampleCommands\SampleCommands.xsd" />

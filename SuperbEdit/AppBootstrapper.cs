@@ -31,7 +31,8 @@ namespace SuperbEdit
         {
             container = new CompositionContainer(
                 new AggregateCatalog(
-                    AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>())
+                    AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>()),
+                    true
                 );
 
             var batch = new CompositionBatch();
