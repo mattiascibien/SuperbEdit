@@ -1,6 +1,6 @@
 # SuperbEdit
 
-[![Build status](https://ci.appveyor.com/api/projects/status/qtijlp8fk8o2vfdu)](https://ci.appveyor.com/project/mattiascibien/superbedit)
+[![Build status](http://img.shields.io/appveyor/ci/mattiascibien/superbedit.svg)](https://ci.appveyor.com/project/mattiascibien/superbedit)
 
 ## Synopsis
 
