@@ -23,14 +23,7 @@ namespace SuperbEdit.Base
         {
             string defaultTabName = "";
 
-            if (((IDictionary<string, Object>)config.UserConfig).Keys.Contains("default_tab"))
-            {
-                defaultTabName = config.UserConfig.default_tab;
-            }
-            else if (((IDictionary<string, Object>)config.DefaultConfig).Keys.Contains("default_tab"))
-            {
-                defaultTabName = config.DefaultConfig.default_tab;
-            }
+            defaultTabName = config.RetrieveConfigValue<string>("default_tab");
 
             if (!string.IsNullOrEmpty(defaultTabName))
             {

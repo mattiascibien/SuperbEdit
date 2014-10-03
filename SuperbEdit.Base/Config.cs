@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Dynamic;
 using System.IO;
+using System.Linq;
 using Caliburn.Micro;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -89,6 +91,47 @@ namespace SuperbEdit.Base
         {
             _defaultConfigWatcher.Changed -= DefaultConfigChanged;
             _userConfigWatcher.Changed -= UserConfigChanged;
+        }
+
+
+        public T RetrieveConfigValue<T>(string path)
+        {
+            List<string> properties = path.Split(new[] {'.'}).ToList();
+
+            T userConfigValue = TraverseConfig<T>(UserConfig, properties, 0);
+
+            if (userConfigValue == null || userConfigValue.Equals(default(T)))
+            {
+                return TraverseConfig<T>(DefaultConfig, properties, 0);
+            }
+
+            return userConfigValue;
+        }
+
+
+        /// <summary>
+        /// Method to traverse the config properties to the bottom
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="config"></param>
+        /// <param name="properties"></param>
+        /// <returns></returns>
+        private T TraverseConfig<T>(dynamic config, List<string> properties, int index)
+        {
+            if (index == properties.Count - 1)
+            {
+                if (((IDictionary<string, Object>)config).Keys.Contains(properties[index]))
+                {
+                    return (T)(((IDictionary<string, Object>)config)[properties[index]]);
+                }
+            }
+
+            if (((IDictionary<string, Object>) config).Keys.Contains(properties[index]))
+            {
+                return TraverseConfig<T>(((IDictionary<string, Object>)config)[properties[index]], properties, ++index);
+            }
+
+            return default(T);
         }
     }
 }

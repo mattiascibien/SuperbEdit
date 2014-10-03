@@ -30,6 +30,7 @@ namespace SuperbEdit
 
             GetAssembliesInFolder(loadedAssemblies, Folders.DefaultPackagesFolder);
 
+#if !PORTABLE_BUILD
             if (!pure)
             {
                 if (!Directory.Exists(Folders.UserFolder))
@@ -40,6 +41,7 @@ namespace SuperbEdit
 
                 GetAssembliesInFolder(loadedAssemblies, Folders.UserPackagesFolder);
             }
+#endif
 
             return loadedAssemblies;
         }

@@ -4,5 +4,7 @@
     {
         dynamic UserConfig { get; }
         dynamic DefaultConfig { get; }
+
+        T RetrieveConfigValue<T>(string path);
     }
 }
