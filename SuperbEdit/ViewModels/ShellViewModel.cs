@@ -64,20 +64,6 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-        public bool _commandWindowVisible;
-        public bool CommandWindowVisible
-        {
-            get { return _commandWindowVisible; }
-            set
-            {
-                if (_commandWindowVisible != value)
-                {
-                    _commandWindowVisible = value;
-                    NotifyOfPropertyChange(() => CommandWindowVisible);
-                }
-            }
-        }
-
         public bool _leftPanelVisible;
         public bool LeftPanelVisible
         {
@@ -303,13 +289,14 @@ namespace SuperbEdit.ViewModels
 
         public void ToggleCommandWindow()
         {
-            if (CommandWindowVisible)
+            var view = this.GetView() as ShellView;
+            if (view.CommandWindow.Visibility == Visibility.Collapsed)
             {
-                CommandWindowVisible = false;
+                view.CommandWindow.Visibility = Visibility.Visible;
             }
             else
             {
-                CommandWindowVisible = true;
+               view.CommandWindow.Visibility = Visibility.Collapsed;
             }
             
         }
