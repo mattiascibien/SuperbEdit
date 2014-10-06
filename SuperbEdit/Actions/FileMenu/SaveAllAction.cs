@@ -22,7 +22,10 @@ namespace SuperbEdit.Actions
 
         public override void Execute()
         {
-            shell.Value.SaveAll();
+            foreach (var item in shell.Value.Items)
+            {
+                item.Save();
+            }
         }
     }
 }

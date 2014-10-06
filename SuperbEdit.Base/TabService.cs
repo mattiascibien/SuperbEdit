@@ -25,15 +25,20 @@ namespace SuperbEdit.Base
 
             defaultTabName = config.RetrieveConfigValue<string>("default_tab");
 
-            if (!string.IsNullOrEmpty(defaultTabName))
-            {
-                var requestedTabFactory = tabFactories.FirstOrDefault(fact => fact.Metadata.Name == defaultTabName);
-                if(requestedTabFactory != null)
-                    return requestedTabFactory.CreateExport().Value;
-                return RequestFallbackTab();
-            }
+            var tab = RequestSpeficTab(defaultTabName);
+            return tab ?? RequestFallbackTab();
+        }
 
-            return RequestFallbackTab();
+
+        public ITab RequestSpeficTab(string friendlyName)
+        {
+            if (!string.IsNullOrEmpty(friendlyName))
+            {
+                var requestedTabFactory = tabFactories.FirstOrDefault(fact => fact.Metadata.Name == friendlyName);
+                if (requestedTabFactory != null)
+                    return requestedTabFactory.CreateExport().Value;
+            }
+            return null;
         }
     }
 }

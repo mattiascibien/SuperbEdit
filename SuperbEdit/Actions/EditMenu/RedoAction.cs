@@ -22,7 +22,7 @@ namespace SuperbEdit.Actions
 
         public override void Execute()
         {
-           shell.Value.Redo();
+           shell.Value.ActiveItem.Redo();
         }
     }
 }

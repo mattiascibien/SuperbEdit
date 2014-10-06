@@ -21,7 +21,7 @@ namespace SuperbEdit.Actions
 
         public override void Execute()
         {
-            shell.Value.CloseActiveItem();
+            shell.Value.ActiveItem.TryClose();
         }
     }
 }

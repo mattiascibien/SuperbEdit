@@ -14,6 +14,7 @@ namespace SuperbEdit.Actions
     {
 
         [Import] private Lazy<IShell> shell;
+        [Import] private TabService tabService; 
 
 
         public NewFileAction() : base("New File", "Creates a new file")
@@ -23,7 +24,8 @@ namespace SuperbEdit.Actions
 
         public override void Execute()
         {
-            shell.Value.NewFile();
+            ITab item = tabService.RequestDefaultTab();
+            shell.Value.OpenTab(item);
         }
     }
 }
