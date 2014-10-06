@@ -45,6 +45,6 @@ namespace SuperbEdit.ViewModels
 
         public IEnumerable<PackageItem> LoadedPackages { get; set; }
 
-        }
+        
     }
 }
