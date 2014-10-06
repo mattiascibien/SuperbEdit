@@ -8,14 +8,14 @@
             <TabItem Header="General">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Label Content="SuperbEdit" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0"
-                   FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
-                    <Label Content="Beta" x:Name="Version" HorizontalAlignment="Center" Grid.Row="1"/>
+                           FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
+                    <Label Content="Beta" x:Name="Version" HorizontalAlignment="Center" Grid.Row="1" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
                         <!-- Website and social icons -->
                     </StackPanel>
@@ -24,22 +24,21 @@
             <TabItem Header="Packages">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Content="Loaded Packages" Grid.Row="0"></Label>
+                    <Label Content="Loaded Packages" Grid.Row="0" />
                     <ListBox x:Name="LoadedPackages" Margin="3" Grid.Row="1">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="{Binding Name}"
-                                               FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}">
-                                    </TextBlock>
-                                    <TextBlock Grid.Row="1" Text="{Binding Version}"></TextBlock>
+                                               FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Version}" />
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

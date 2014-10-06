@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace SuperbEdit.Base
 {
@@ -19,17 +15,13 @@ namespace SuperbEdit.Base
     {
         public ExportTabMetadata() : base(typeof (ITab))
         {
-            
         }
+
         public string Name { get; set; }
 
         public bool IsFallback
         {
-            get
-            {
-                return false;
-
-            }
+            get { return false; }
         }
     }
 }

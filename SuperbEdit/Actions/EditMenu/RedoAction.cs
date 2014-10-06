@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SuperbEdit.Base;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof(IActionItem))]
+    [Export(typeof (IActionItem))]
     [ExportActionMetadata(Menu = "Edit", Order = 1, Owner = "Shell", RegisterInCommandWindow = true)]
     public class RedoAction : ActionItem
     {
@@ -17,12 +13,11 @@ namespace SuperbEdit.Actions
         public RedoAction()
             : base("Redo", "Redoes the last action in active editor")
         {
-            
         }
 
         public override void Execute()
         {
-           shell.Value.ActiveItem.Redo();
+            shell.Value.ActiveItem.Redo();
         }
     }
 }

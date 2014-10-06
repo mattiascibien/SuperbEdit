@@ -1,20 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 
 namespace SuperbEdit.Base
 {
     public interface IShell
     {
+        ITab ActiveItem { get; }
+        IObservableCollection<ITab> Items { get; }
         void DetachItem(ITab item);
 
         void Exit();
 
 
         void OpenTab(ITab tab);
-
-        ITab ActiveItem { get; }
-        IObservableCollection<ITab> Items { get; }
-
     }
 }

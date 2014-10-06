@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperbEdit.Base
+﻿namespace SuperbEdit.Base
 {
     public interface IPane
     {
@@ -13,6 +7,5 @@ namespace SuperbEdit.Base
 
     public interface ILeftPane : IPane
     {
-         
     }
 }

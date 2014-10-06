@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperbEdit.Base
 {
     [Export]
     public class TabService
     {
-        [ImportMany] private IEnumerable<ExportFactory<ITab, ITabMetadata>> tabFactories;
-
         [Import] private IConfig config;
+        [ImportMany] private IEnumerable<ExportFactory<ITab, ITabMetadata>> tabFactories;
 
         public ITab RequestFallbackTab()
         {
@@ -25,7 +21,7 @@ namespace SuperbEdit.Base
 
             defaultTabName = config.RetrieveConfigValue<string>("default_tab");
 
-            var tab = RequestSpeficTab(defaultTabName);
+            ITab tab = RequestSpeficTab(defaultTabName);
             return tab ?? RequestFallbackTab();
         }
 
@@ -34,7 +30,8 @@ namespace SuperbEdit.Base
         {
             if (!string.IsNullOrEmpty(friendlyName))
             {
-                var requestedTabFactory = tabFactories.FirstOrDefault(fact => fact.Metadata.Name == friendlyName);
+                ExportFactory<ITab, ITabMetadata> requestedTabFactory =
+                    tabFactories.FirstOrDefault(fact => fact.Metadata.Name == friendlyName);
                 if (requestedTabFactory != null)
                     return requestedTabFactory.CreateExport().Value;
             }

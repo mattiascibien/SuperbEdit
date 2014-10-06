@@ -4,9 +4,9 @@
       changes to this file can cause errors.
 -->
 <SampleData:SampleCommands xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SampleCommands">
-	<SampleData:SampleCommands.Collection>
-		<SampleData:Item CommandName="Nam maecenas sed" CommandDescription="Aliquam maecenas"/>
-		<SampleData:Item CommandName="Aenean class mauris dis" CommandDescription="Praesent accumsan bibendum"/>
-		<SampleData:Item CommandName="Praesent accumsan nullam" CommandDescription="Dictumst cras class"/>
-	</SampleData:SampleCommands.Collection>
+    <SampleData:SampleCommands.Collection>
+        <SampleData:Item CommandName="Nam maecenas sed" CommandDescription="Aliquam maecenas" />
+        <SampleData:Item CommandName="Aenean class mauris dis" CommandDescription="Praesent accumsan bibendum" />
+        <SampleData:Item CommandName="Praesent accumsan nullam" CommandDescription="Dictumst cras class" />
+    </SampleData:SampleCommands.Collection>
 </SampleData:SampleCommands>

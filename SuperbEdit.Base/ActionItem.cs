@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperbEdit.Base
 {
     public abstract class ActionItem : IActionItem
     {
-
         protected ActionItem(string name, string description)
         {
             Name = name;
@@ -34,16 +28,16 @@ namespace SuperbEdit.Base
         bool RegisterInCommandWindow { get; }
     }
 
-    [Export(typeof (SeparatorItem)) ]
+    [Export(typeof (SeparatorItem))]
     public class SeparatorItem : ActionItem
     {
         public SeparatorItem() : base("", "")
         {
             IsSeparator = true;
         }
+
         public override void Execute()
         {
-            
         }
     }
 
@@ -53,10 +47,9 @@ namespace SuperbEdit.Base
     public class ExportActionMetadata : ExportAttribute, IActionItemMetadata
     {
         public ExportActionMetadata()
-            : base(typeof(ActionItem))
+            : base(typeof (ActionItem))
         {
-
-        } 
+        }
 
         public string Menu { get; set; }
 

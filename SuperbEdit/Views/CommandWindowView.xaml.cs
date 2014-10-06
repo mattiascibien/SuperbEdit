@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -12,7 +7,7 @@ using SuperbEdit.Base;
 namespace SuperbEdit.Views
 {
     /// <summary>
-    /// Interaction logic for CommandWindowView.xaml
+    ///     Interaction logic for CommandWindowView.xaml
     /// </summary>
     public partial class CommandWindowView : UserControl
     {
@@ -28,7 +23,7 @@ namespace SuperbEdit.Views
                 HandleListBoxSelection(e.Key);
                 e.Handled = true;
             }
-            else if(e.Key == Key.Enter)
+            else if (e.Key == Key.Enter)
             {
                 ExecuteSelectedAction();
                 e.Handled = true;
@@ -74,5 +69,4 @@ namespace SuperbEdit.Views
             ExecuteAction(action);
         }
     }
-
 }

@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Documents;
 using Caliburn.Micro;
-using SuperbEdit.Base;
-using System.Collections.Generic;
 
 namespace SuperbEdit.ViewModels
 {
@@ -23,14 +20,13 @@ namespace SuperbEdit.ViewModels
         public AboutViewModel()
         {
             DisplayName = "About SuperbEdit";
-            LoadedPackages = 
+            LoadedPackages =
                 AssemblyListComposer.loadedAssemblies
-                .Select(ass => new PackageItem() 
-                { 
-                    Name = ass.GetName().Name, 
-                    Version = ass.GetName().Version.ToString() 
-                });
-
+                    .Select(ass => new PackageItem
+                    {
+                        Name = ass.GetName().Name,
+                        Version = ass.GetName().Version.ToString()
+                    });
         }
 
         public string Version
@@ -44,7 +40,5 @@ namespace SuperbEdit.ViewModels
         }
 
         public IEnumerable<PackageItem> LoadedPackages { get; set; }
-
-        
     }
 }

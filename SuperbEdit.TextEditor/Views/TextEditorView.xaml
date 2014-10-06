@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBox x:Name="FileContent" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" />
+        <TextBox x:Name="FileContent" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
+                 AcceptsReturn="True" AcceptsTab="True" />
     </Grid>
 </UserControl>

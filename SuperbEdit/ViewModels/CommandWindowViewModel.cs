@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Caliburn.Micro;
 using SuperbEdit.Base;
 
@@ -14,6 +11,23 @@ namespace SuperbEdit.ViewModels
     public class CommandWindowViewModel : Screen
     {
         private List<IActionItem> _actions;
+
+
+        private string _filter = "";
+
+        [ImportingConstructor]
+        public CommandWindowViewModel([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions)
+        {
+            Actions = new List<IActionItem>();
+
+            foreach (var action in actions)
+            {
+                if (action.Metadata.RegisterInCommandWindow)
+                {
+                    Actions.Add(action.Value);
+                }
+            }
+        }
 
         public List<IActionItem> Actions
         {
@@ -28,8 +42,6 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-
-        private string _filter = "";
         public string Filter
         {
             get { return _filter; }
@@ -47,21 +59,10 @@ namespace SuperbEdit.ViewModels
         public IEnumerable<IActionItem> FilteredActions
         {
             //TODO: should split inserted words and check for some of them in the name and description?
-            get { return Actions.Where(a => a.Name.ToUpper().Contains(Filter.ToUpper())
-                || a.Description.ToUpper().Contains(Filter.ToUpper())); }
-        }
-            
-        [ImportingConstructor]
-        public CommandWindowViewModel([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions)
-        {
-            Actions = new List<IActionItem>();
-
-            foreach (var action in actions)
+            get
             {
-                if (action.Metadata.RegisterInCommandWindow)
-                {
-                    Actions.Add(action.Value);
-                }
+                return Actions.Where(a => a.Name.ToUpper().Contains(Filter.ToUpper())
+                                          || a.Description.ToUpper().Contains(Filter.ToUpper()));
             }
         }
     }

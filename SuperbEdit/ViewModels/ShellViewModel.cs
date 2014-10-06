@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
-using Microsoft.Win32;
 using SuperbEdit.Base;
 using SuperbEdit.Views;
 
@@ -15,13 +12,49 @@ namespace SuperbEdit.ViewModels
     [Export(typeof (IShell))]
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
+        private readonly ShellViewModel _parentViewModel;
+
+        private readonly IWindowManager _windowManager;
+        private CommandWindowViewModel _commandWindow;
+
+        private bool _isSecondaryWindow;
+
+        private ILeftPane _leftPanel;
+
+        public bool _leftPanelVisible;
+        [Import] private IConfig config;
+        private bool isFullScreen;
+
+        public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
+        {
+            _windowManager = windowManager;
+            IsSecondaryWindow = secondaryWindow;
+            DisplayName = "SuperbEdit";
+            _parentViewModel = parent;
+
+            //HACK: to initialize view.
+            //Items.Add(new FileTabViewModel());
+        }
+
+        [ImportingConstructor]
+        public ShellViewModel([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions,
+            IWindowManager windowManager) : this(windowManager, null, false)
+        {
+            IList<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions =
+                actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();
+            FileMenuItems = PopulateMenu(enumeratedActions, "File");
+
+            EditMenuItems = PopulateMenu(enumeratedActions, "Edit");
+
+            PreferencesMenuItems = PopulateMenu(enumeratedActions, "Preferences");
+
+            AboutMenuItems = PopulateMenu(enumeratedActions, "About");
+        }
+
         public IEnumerable<IActionItem> FileMenuItems { get; set; }
         public IEnumerable<IActionItem> EditMenuItems { get; set; }
         public IEnumerable<IActionItem> PreferencesMenuItems { get; set; }
         public IEnumerable<IActionItem> AboutMenuItems { get; set; }
-
-
-        private CommandWindowViewModel _commandWindow;
 
         [Import]
         public CommandWindowViewModel CommandWindow
@@ -37,18 +70,6 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-        private bool isFullScreen = false;
-
-        private readonly ShellViewModel _parentViewModel;
-
-        private readonly IWindowManager _windowManager;
-
-        private bool _isSecondaryWindow;
-
-        [Import] private IConfig config;
-
-        private ILeftPane _leftPanel;
-
         [Import]
         public ILeftPane LeftPanel
         {
@@ -63,7 +84,6 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-        public bool _leftPanelVisible;
         public bool LeftPanelVisible
         {
             get { return _leftPanelVisible; }
@@ -75,38 +95,6 @@ namespace SuperbEdit.ViewModels
                     NotifyOfPropertyChange(() => LeftPanelVisible);
                 }
             }
-        }
-
-        public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
-        {
-            _windowManager = windowManager;
-            IsSecondaryWindow = secondaryWindow;
-            DisplayName = "SuperbEdit";
-            _parentViewModel = parent;
-
-            //HACK: to initialize view.
-            //Items.Add(new FileTabViewModel());
-        }
-
-        [ImportingConstructor]
-        public ShellViewModel([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions, IWindowManager windowManager) : this(windowManager, null, false)
-        {
-            var enumeratedActions = actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();
-            FileMenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "File")
-                .OrderBy(action => action.Metadata.Order)
-                .Select(action => action.Value);
-
-            EditMenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "Edit")
-                .OrderBy(action => action.Metadata.Order)
-                .Select(action => action.Value);
-
-            PreferencesMenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "Preferences")
-                .OrderBy(action => action.Metadata.Order)
-                .Select(action => action.Value);
-
-            AboutMenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "About")
-                .OrderBy(action => action.Metadata.Order)
-                .Select(action => action.Value);
         }
 
         public bool IsSecondaryWindow
@@ -131,6 +119,26 @@ namespace SuperbEdit.ViewModels
         }
 
 
+        public void OpenTab(ITab tab)
+        {
+            Items.Add(tab);
+            ActivateItem(tab);
+        }
+
+        public void Exit()
+        {
+            TryClose();
+        }
+
+        private static IEnumerable<IActionItem> PopulateMenu(
+            IEnumerable<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions, string menu)
+        {
+            //TODO: insert separator in missing places.
+            return enumeratedActions.Where(action => action.Metadata.Menu == menu)
+                .OrderBy(action => action.Metadata.Order)
+                .Select(action => action.Value);
+        }
+
         public ShellViewModel NewWindow()
         {
             var shellViewModel = new ShellViewModel(_windowManager, _parentViewModel ?? this, true);
@@ -138,21 +146,10 @@ namespace SuperbEdit.ViewModels
             return shellViewModel;
         }
 
-        public void OpenTab(ITab tab)
-        {
-            Items.Add(tab);
-            ActivateItem(tab);
-        }
-
         public void AttachBack()
         {
             _parentViewModel.Items.AddRange(Items);
             Items.Clear();
-            TryClose();
-        }
-
-        public void Exit()
-        {
             TryClose();
         }
 
@@ -175,21 +172,19 @@ namespace SuperbEdit.ViewModels
                 view.Topmost = true;
                 isFullScreen = true;
             }
-
         }
 
         public void ToggleCommandWindow()
         {
-            var view = this.GetView() as ShellView;
+            var view = GetView() as ShellView;
             if (view.CommandWindow.Visibility == Visibility.Collapsed)
             {
                 view.CommandWindow.Visibility = Visibility.Visible;
             }
             else
             {
-               view.CommandWindow.Visibility = Visibility.Collapsed;
+                view.CommandWindow.Visibility = Visibility.Collapsed;
             }
-            
         }
 
         public void ToggleLeftPanel()
@@ -202,7 +197,6 @@ namespace SuperbEdit.ViewModels
             {
                 LeftPanelVisible = true;
             }
-
         }
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 using SuperbEdit.Base;
 
 namespace SuperbEdit
@@ -16,7 +10,7 @@ namespace SuperbEdit
         public static List<Assembly> loadedAssemblies;
 
         /// <summary>
-        /// Loads the assemblies from Packages folders
+        ///     Loads the assemblies from Packages folders
         /// </summary>
         /// <param name="pure">If 'true' loads packages only from program folders</param>
         /// <returns></returns>
@@ -53,7 +47,7 @@ namespace SuperbEdit
                 assemblies.Add(Assembly.LoadFrom(assembly));
             }
 
-            foreach (var subDir in Directory.GetDirectories(folder))
+            foreach (string subDir in Directory.GetDirectories(folder))
             {
                 if (!subDir.EndsWith("x86") && !subDir.EndsWith("x64"))
                 {
@@ -62,7 +56,6 @@ namespace SuperbEdit
                 else
                 {
                     //Ignore the folder since it contains native DLLs
-                    continue;
                 }
             }
         }

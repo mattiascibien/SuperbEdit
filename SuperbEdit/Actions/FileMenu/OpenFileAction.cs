@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Win32;
 using SuperbEdit.Base;
 
@@ -14,11 +10,10 @@ namespace SuperbEdit.Actions
     public class OpenFileAction : ActionItem
     {
         [Import] private Lazy<IShell> shell;
-        [Import] private TabService tabService; 
+        [Import] private TabService tabService;
 
         public OpenFileAction() : base("Open", "Opens a file from the filesystem.")
         {
-            
         }
 
         public override void Execute()

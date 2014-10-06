@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SuperbEdit.Base;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof(IActionItem))]
+    [Export(typeof (IActionItem))]
     [ExportActionMetadata(Menu = "Preferences", Order = 1, Owner = "Shell", RegisterInCommandWindow = true)]
     public class DefaultSettingsAction : ActionItem
     {
-
         [Import] private Lazy<IShell> shell;
-        [Import] private TabService tabService; 
+        [Import] private TabService tabService;
 
 
         public DefaultSettingsAction()
             : base("Settings - Default", "Opens program settings.")
         {
-            
         }
 
         public override void Execute()
