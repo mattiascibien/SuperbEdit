@@ -47,8 +47,8 @@
             </MenuItem>
             <MenuItem Header="Preferences" ItemsSource="{Binding PreferencesMenuItems}" ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}">
             </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="About" x:Name="About" />
+            <MenuItem Header="Help"  ItemsSource="{Binding AboutMenuItems}" ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}">
+                
             </MenuItem>
             <MenuItem Header="Attach Back" x:Name="AttachBack" HorizontalAlignment="Right"
                       Visibility="{Binding IsSecondaryWindow, Converter={StaticResource booleanToVisibility}}" />

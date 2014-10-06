@@ -90,6 +90,7 @@
     <Compile Include="Actions\FileMenu\SaveAction.cs" />
     <Compile Include="Actions\FileMenu\SaveAllAction.cs" />
     <Compile Include="Actions\FileMenu\SaveAsAction.cs" />
+    <Compile Include="Actions\HelpMenu\AboutAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultPackagesAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultSettingsAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserPackagesAction.cs" />
@@ -182,7 +183,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Actions\HelpMenu\" />
     <Folder Include="Actions\ViewMenu\" />
     <Folder Include="Assets\Fonts\" />
     <Folder Include="Assets\UI\" />
