@@ -184,6 +184,8 @@
   <ItemGroup>
     <Folder Include="Actions\HelpMenu\" />
     <Folder Include="Actions\ViewMenu\" />
+    <Folder Include="Assets\Fonts\" />
+    <Folder Include="Assets\UI\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\icon.ico" />

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Documents;
 using Caliburn.Micro;
@@ -9,12 +10,27 @@ using System.Collections.Generic;
 
 namespace SuperbEdit.ViewModels
 {
+    public class PackageItem
+    {
+        public string Name { get; set; }
+        public string Version { get; set; }
+    }
+
+
     [Export]
     public sealed class AboutViewModel : Screen
     {
         public AboutViewModel()
         {
             DisplayName = "About SuperbEdit";
+            LoadedPackages = 
+                AssemblyListComposer.loadedAssemblies
+                .Select(ass => new PackageItem() 
+                { 
+                    Name = ass.GetName().Name, 
+                    Version = ass.GetName().Version.ToString() 
+                });
+
         }
 
         public string Version
@@ -27,14 +43,8 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-        public IEnumerable<Assembly> LoadedPackages
-        {
-            get { return AssemblyListComposer.loadedAssemblies; }
-        }
+        public IEnumerable<PackageItem> LoadedPackages { get; set; }
 
-        public string License
-        {
-            get { return File.ReadAllText(Path.Combine(Folders.DocumentationFolder, "LICENSE.md")); }
         }
     }
 }

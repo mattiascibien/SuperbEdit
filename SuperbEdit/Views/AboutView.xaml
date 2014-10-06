@@ -1,30 +1,52 @@
 ﻿<Window x:Class="SuperbEdit.Views.AboutView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="About" Width="509.78" Height="329.633" WindowStyle="ToolWindow" Style="{StaticResource {x:Type Window}}"
+        Title="About" Width="509.78" Height="419.633" WindowStyle="ToolWindow" Style="{StaticResource {x:Type Window}}"
         Topmost="True" WindowStartupLocation="CenterOwner">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Label Content="SuperbEdit" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0"
+        <TabControl>
+            <TabItem Header="General">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="SuperbEdit" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0"
                    FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
-        <Label Content="Beta" x:Name="Version" HorizontalAlignment="Center" Grid.Row="1"/>
-        <Label Content="Loaded Packages:" Grid.Row="2"/>
-        <ListBox x:Name="LoadedPackages" Margin="3" VerticalAlignment="Stretch" Grid.Row="3">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="{Binding FullName}"></TextBlock>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                    <Label Content="Beta" x:Name="Version" HorizontalAlignment="Center" Grid.Row="1"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
+                        <!-- Website and social icons -->
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Packages">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Loaded Packages" Grid.Row="0"></Label>
+                    <ListBox x:Name="LoadedPackages" Margin="3" Grid.Row="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="{Binding Name}"
+                                               FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}">
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="1" Text="{Binding Version}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
