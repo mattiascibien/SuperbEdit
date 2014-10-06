@@ -17,5 +17,9 @@
         void Cut();
         void Copy();
         void Paste();
+
+        void OpenUserConfig();
+
+        void OpenDefaultConfig(); 
     }
 }

@@ -17,6 +17,7 @@ namespace SuperbEdit.ViewModels
     {
         public IEnumerable<IActionItem> FileMenuItems { get; set; }
         public IEnumerable<IActionItem> EditMenuItems { get; set; }
+        public IEnumerable<IActionItem> PreferencesMenuItems { get; set; }
 
 
         private CommandWindowViewModel _commandWindow;
@@ -111,6 +112,10 @@ namespace SuperbEdit.ViewModels
                 .Select(action => action.Value);
 
             EditMenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "Edit")
+                .OrderBy(action => action.Metadata.Order)
+                .Select(action => action.Value);
+
+            PreferencesMenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "Preferences")
                 .OrderBy(action => action.Metadata.Order)
                 .Select(action => action.Value);
         }
