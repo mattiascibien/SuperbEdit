@@ -7,7 +7,7 @@
         Icon="/SuperbEdit;component/Assets/icon.ico">
     <Window.Resources>
         <ResourceDictionary>
-            <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemStyle">
+            <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}">
                 <Setter Property="Header" Value="{Binding Path=Name}" />
                 <Setter Property="ToolTip" Value="{Binding Path=Description}" />
                 <Setter Property="cal:Message.Attach" Value="[Event Click] = [Action Execute()]" />
