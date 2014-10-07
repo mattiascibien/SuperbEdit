@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyModule", "DummyModule\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit.FolderTab", "SuperbEdit.FolderTab\SuperbEdit.FolderTab.csproj", "{2BA3BCF7-F571-4165-B840-42D374B32738}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{594AFE82-3EAD-4706-9F6A-02F8671C7084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinLoader", "SkinLoaderAdapter\SkinLoader.csproj", "{1F530349-3F69-4ECA-9189-0255C30F2E6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,13 +60,21 @@ Global
 		{2BA3BCF7-F571-4165-B840-42D374B32738}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2BA3BCF7-F571-4165-B840-42D374B32738}.Release-Portable|Any CPU.ActiveCfg = Release|Any CPU
 		{2BA3BCF7-F571-4165-B840-42D374B32738}.Release-Portable|Any CPU.Build.0 = Release|Any CPU
+		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Release-Portable|Any CPU.ActiveCfg = Release|Any CPU
+		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Release-Portable|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{072112B6-0D71-4A38-B920-7C7105829B7C} = {594AFE82-3EAD-4706-9F6A-02F8671C7084}
 		{171B9C34-0D04-4371-A129-EB3E7AAF245C} = {B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}
 		{69CF859D-5406-473B-B2B2-C87E175CDFEF} = {B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}
 		{2BA3BCF7-F571-4165-B840-42D374B32738} = {B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}
+		{1F530349-3F69-4ECA-9189-0255C30F2E6E} = {594AFE82-3EAD-4706-9F6A-02F8671C7084}
 	EndGlobalSection
 EndGlobal
