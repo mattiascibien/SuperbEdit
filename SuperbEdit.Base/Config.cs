@@ -75,6 +75,18 @@ namespace SuperbEdit.Base
             return userConfigValue;
         }
 
+        public T RetrieveConfigValue<T>(string path, T defaultValue)
+        {
+            T configValue = RetrieveConfigValue<T>(path);
+
+            if (configValue == null || configValue.Equals(default(T)))
+            {
+                configValue = defaultValue;
+            }
+
+            return configValue;
+        }
+
         public void Dispose()
         {
             _defaultConfigWatcher.Changed -= DefaultConfigChanged;
@@ -130,5 +142,6 @@ namespace SuperbEdit.Base
 
             return default(T);
         }
+
     }
 }
