@@ -103,9 +103,6 @@
     <Compile Include="AssemblyListComposer.cs" />
     <Compile Include="Controls\DockPanelSplitter.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
-    <Compile Include="SampleData\SampleCommands\SampleCommands.xaml.cs">
-      <DependentUpon>SampleCommands.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
@@ -134,14 +131,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\LICENSE.md">
+      <Link>Docs\LICENSE.md</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\README.md">
+      <Link>Docs\README.md</Link>
+    </None>
     <None Include="app.manifest" />
     <None Include="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Docs\LICENSE.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Docs\README.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -156,10 +156,6 @@
     <Page Include="Resources\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SampleData\SampleCommands\SampleCommands.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\AdditionalStyles.xaml">
       <SubType>Designer</SubType>
@@ -189,23 +185,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\icon.ico" />
-    <DesignTimeOnly Include="SampleData\SampleCommands\SampleCommands.xsd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperbEdit.Base\SuperbEdit.Base.csproj">
       <Project>{072112b6-0d71-4a38-b920-7c7105829b7c}</Project>
       <Name>SuperbEdit.Base</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Highlighters\VHDL.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Highlighters\SQL.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
