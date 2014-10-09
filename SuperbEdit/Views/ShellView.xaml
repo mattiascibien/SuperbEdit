@@ -42,7 +42,6 @@
                 <Separator />
                 <MenuItem Header="Toggle FullScreen" x:Name="ToggleFullscreen" />
                 <Separator />
-                <MenuItem Header="Folder View" x:Name="ToggleLeftPanel" />
                 <MenuItem Header="Command Window" x:Name="ToggleCommandWindow" />
             </MenuItem>
             <MenuItem Header="Preferences" ItemsSource="{Binding PreferencesMenuItems}"
@@ -55,10 +54,11 @@
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem x:Name="Status">Ready</StatusBarItem>
         </StatusBar>
-        <ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200"
+        <!-- TODO (mattias): working on panel api so this is commented -->
+        <!--<ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200"
                         Visibility="{Binding LeftPanelVisible, Converter={StaticResource booleanToVisibility}}" />
         <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4"
-                                    Visibility="{Binding LeftPanelVisible, Converter={StaticResource booleanToVisibility}}" />
+                                    Visibility="{Binding LeftPanelVisible, Converter={StaticResource booleanToVisibility}}" />-->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />

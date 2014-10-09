@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
@@ -19,8 +20,6 @@ namespace SuperbEdit.ViewModels
 
         private bool _isSecondaryWindow;
 
-        private ILeftPane _leftPanel;
-
         public bool _leftPanelVisible;
         [Import] private IConfig config;
         private bool isFullScreen;
@@ -37,9 +36,12 @@ namespace SuperbEdit.ViewModels
         }
 
         [ImportingConstructor]
-        public ShellViewModel([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions,
+        public ShellViewModel(
+            [ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions,
             IWindowManager windowManager) : this(windowManager, null, false)
         {
+
+
             IList<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions =
                 actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();
             FileMenuItems = PopulateMenu(enumeratedActions, "File");
@@ -66,33 +68,6 @@ namespace SuperbEdit.ViewModels
                 {
                     _commandWindow = value;
                     NotifyOfPropertyChange(() => CommandWindow);
-                }
-            }
-        }
-
-        [Import]
-        public ILeftPane LeftPanel
-        {
-            get { return _leftPanel; }
-            set
-            {
-                if (_leftPanel != value)
-                {
-                    _leftPanel = value;
-                    NotifyOfPropertyChange(() => LeftPanel);
-                }
-            }
-        }
-
-        public bool LeftPanelVisible
-        {
-            get { return _leftPanelVisible; }
-            set
-            {
-                if (_leftPanelVisible != value)
-                {
-                    _leftPanelVisible = value;
-                    NotifyOfPropertyChange(() => LeftPanelVisible);
                 }
             }
         }
@@ -184,18 +159,6 @@ namespace SuperbEdit.ViewModels
             else
             {
                 view.CommandWindow.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        public void ToggleLeftPanel()
-        {
-            if (LeftPanelVisible)
-            {
-                LeftPanelVisible = false;
-            }
-            else
-            {
-                LeftPanelVisible = true;
             }
         }
     }
