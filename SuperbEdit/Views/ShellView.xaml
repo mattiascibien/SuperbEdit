@@ -66,12 +66,11 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <ContentControl Grid.Column="1" x:Name="CommandWindow" Visibility="Collapsed" Grid.Row="0"
                             Panel.ZIndex="1000" />
-            <TabControl x:Name="Items" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <TabControl x:Name="Items" Grid.Row="0" Grid.ColumnSpan="3" >
                 <TabControl.Template>
                     <ControlTemplate TargetType="TabControl">
                         <Grid>

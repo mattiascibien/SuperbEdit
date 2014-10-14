@@ -8,12 +8,16 @@
     d:DesignWidth="400">
     <Border Background="{DynamicResource MenuBackground}"
             Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}">
-        <StackPanel Margin="3" Orientation="Vertical">
-            <TextBox Margin="3" x:Name="TextBox"
+        <Grid Margin="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Margin="3" x:Name="TextBox" Grid.Row="0"
                      FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}"
                      Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PreviewKeyDown="TextBox_PreviewKeyDown" />
-            <ListBox Margin="0,3,0,0" x:Name="ListBox" ItemsSource="{Binding FilteredActions}">
+            <ListBox Margin="0,3,0,0" Grid.Row="1" x:Name="ListBox" ItemsSource="{Binding FilteredActions}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick" />
@@ -36,6 +40,6 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-        </StackPanel>
+        </Grid>
     </Border>
 </UserControl>
