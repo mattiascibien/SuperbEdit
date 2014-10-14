@@ -184,7 +184,7 @@ namespace SuperbEdit.TextEditor.ViewModels
 
         public void CloseItem(Tab item)
         {
-            ((IConductor) item.Parent).CloseItem(item);
+            item.TryClose();
         }
     }
 }
