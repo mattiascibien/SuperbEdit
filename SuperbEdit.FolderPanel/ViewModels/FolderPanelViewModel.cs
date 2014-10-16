@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.IO;
@@ -7,10 +8,15 @@ using SuperbEdit.FolderPanel.Model;
 
 namespace SuperbEdit.FolderPanel.ViewModels
 {
-    [Export(typeof (IPanel))]
+    [Export(typeof(IPanel))]
     [Export]
     public class FolderPanelViewModel : Panel
     {
+        [Import]
+        private Lazy<IShell> shell;
+        [Import]
+        private TabService tabService;
+
         private ObservableCollection<TreeItemModel> _rootItems;
         public ObservableCollection<TreeItemModel> RootItems
         {
@@ -45,22 +51,25 @@ namespace SuperbEdit.FolderPanel.ViewModels
         {
             RootItems = new ObservableCollection<TreeItemModel>();
             string[] subdirs = Directory.GetDirectories(CurrentFolder);
-            foreach (var dir  in subdirs)
+            foreach (var dir in subdirs)
             {
                 TreeItemModel rootItem = new TreeItemModel()
                 {
-                    Text =  Path.GetFileName(dir)
+                    Text = Path.GetFileName(dir),
+                    FullPath = dir
                 };
                 PopulateChildren(rootItem, dir);
                 RootItems.Add(rootItem);
             }
 
             string[] files = Directory.GetFiles(CurrentFolder);
-            foreach (var file  in files)
+            foreach (var file in files)
             {
                 TreeItemModel rootItem = new TreeItemModel()
                 {
-                    Text = Path.GetFileName(file)
+                    Text = Path.GetFileName(file),
+                    FullPath = file,
+                    IsFile = true
                 };
 
                 RootItems.Add(rootItem);
@@ -75,7 +84,8 @@ namespace SuperbEdit.FolderPanel.ViewModels
             {
                 TreeItemModel childItem = new TreeItemModel()
                 {
-                    Text = Path.GetFileName(subdir)
+                    Text = Path.GetFileName(subdir),
+                    FullPath = subdir
                 };
                 PopulateChildren(childItem, subdir);
                 item.Children.Add(childItem);
@@ -86,10 +96,22 @@ namespace SuperbEdit.FolderPanel.ViewModels
             {
                 TreeItemModel childItem = new TreeItemModel()
                 {
-                    Text = Path.GetFileName(file)
+                    Text = Path.GetFileName(file),
+                    FullPath = file,
+                    IsFile = true
                 };
 
                 item.Children.Add(childItem);
+            }
+        }
+
+        public void OpenItem(TreeItemModel item)
+        {
+            if (item.IsFile)
+            {
+                ITab fileTabViewModel = tabService.RequestDefaultTab();
+                fileTabViewModel.SetFile(item.FullPath);
+                shell.Value.OpenTab(fileTabViewModel);
             }
         }
     }

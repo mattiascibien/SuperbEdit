@@ -11,6 +11,7 @@ using SuperbEdit.Views;
 namespace SuperbEdit.ViewModels
 {
     [Export(typeof (IShell))]
+    [Export] // HACK: temporary hack to show and hide command window from actions
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
         public IPanel LeftPanel
@@ -52,13 +53,14 @@ namespace SuperbEdit.ViewModels
 
             EditMenuItems = PopulateMenu(enumeratedActions, "Edit");
 
-            PreferencesMenuItems = PopulateMenu(enumeratedActions, "Preferences");
+            ViewMenuItems = PopulateMenu(enumeratedActions, "View");
 
             AboutMenuItems = PopulateMenu(enumeratedActions, "About");
         }
 
         public IEnumerable<IActionItem> FileMenuItems { get; set; }
         public IEnumerable<IActionItem> EditMenuItems { get; set; }
+        public IEnumerable<IActionItem> ViewMenuItems { get; set; }
         public IEnumerable<IActionItem> PreferencesMenuItems { get; set; }
         public IEnumerable<IActionItem> AboutMenuItems { get; set; }
 
@@ -164,6 +166,22 @@ namespace SuperbEdit.ViewModels
             {
                 view.CommandWindow.Visibility = Visibility.Collapsed;
             }
+        }
+
+
+        public void ShowHidePanel(IPanel panel)
+        {
+            //TODO: actually should hide the correct panel
+            var view = GetView() as ShellView;
+
+            if (view.LeftPanel.Visibility == Visibility.Collapsed)
+            {
+                view.LeftPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                view.LeftPanel.Visibility = Visibility.Collapsed;
+            } 
         }
     }
 }

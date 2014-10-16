@@ -12,5 +12,7 @@ namespace SuperbEdit.Base
 
 
         void OpenTab(ITab tab);
+
+        void ShowHidePanel(IPanel panel);
     }
 }

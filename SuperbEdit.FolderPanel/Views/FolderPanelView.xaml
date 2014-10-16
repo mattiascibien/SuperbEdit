@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -13,8 +15,21 @@
         <TextBlock Grid.Row="0" Text="Current Folder: " />
         <TreeView Grid.Row="1" ItemsSource="{Binding RootItems}">
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                    <TextBlock Text="{Binding Text}" />
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}" >
+                    <Control>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <cal:ActionMessage MethodName="OpenItem">
+                                    <cal:Parameter Value="$dataContext" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Control.Template>
+                            <ControlTemplate>
+                                <TextBlock Text="{Binding Text}"/>
+                            </ControlTemplate>
+                        </Control.Template>
+                    </Control>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>

@@ -36,14 +36,8 @@
                       ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
             <MenuItem Header="Edit" ItemsSource="{Binding EditMenuItems}"
                       ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
-            <MenuItem Header="View">
-                <MenuItem Header="Highlighters" cal:Action.TargetWithoutContext="{Binding}"
-                          cal:Message.Attach="SetHighlighter($eventArgs)" x:Name="Highlighters" />
-                <Separator />
-                <MenuItem Header="Toggle FullScreen" x:Name="ToggleFullscreen" />
-                <Separator />
-                <MenuItem Header="Command Window" x:Name="ToggleCommandWindow" />
-            </MenuItem>
+            <MenuItem Header="View" ItemsSource="{Binding ViewMenuItems}"
+                      ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
             <MenuItem Header="Preferences" ItemsSource="{Binding PreferencesMenuItems}"
                       ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
             <MenuItem Header="Help" ItemsSource="{Binding AboutMenuItems}"
@@ -55,7 +49,7 @@
             <StatusBarItem x:Name="Status">Ready</StatusBarItem>
         </StatusBar>
         <ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200" />
-        <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4" />
+        <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4" Visibility="{Binding Visibility, ElementName=LeftPanel, Mode=OneWay}" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />

@@ -95,6 +95,7 @@
     <Compile Include="Actions\PreferencesMenu\DefaultSettingsAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserPackagesAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserSettingsAction.cs" />
+    <Compile Include="Actions\ViewMenu\CommandWindowAction.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -184,7 +185,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Actions\ViewMenu\" />
     <Folder Include="Assets\Fonts\" />
     <Folder Include="Assets\UI\" />
   </ItemGroup>
