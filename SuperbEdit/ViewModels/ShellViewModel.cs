@@ -55,6 +55,8 @@ namespace SuperbEdit.ViewModels
 
             ViewMenuItems = PopulateMenu(enumeratedActions, "View");
 
+            PreferencesMenuItems = PopulateMenu(enumeratedActions, "Preferences");
+
             AboutMenuItems = PopulateMenu(enumeratedActions, "About");
         }
 
