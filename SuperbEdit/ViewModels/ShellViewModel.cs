@@ -13,6 +13,11 @@ namespace SuperbEdit.ViewModels
     [Export(typeof (IShell))]
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
+        public IPanel LeftPanel
+        {
+            get; set;
+        }
+
         private readonly ShellViewModel _parentViewModel;
 
         private readonly IWindowManager _windowManager;
@@ -20,7 +25,6 @@ namespace SuperbEdit.ViewModels
 
         private bool _isSecondaryWindow;
 
-        public bool _leftPanelVisible;
         [Import] private IConfig config;
         private bool isFullScreen;
 
@@ -31,16 +35,16 @@ namespace SuperbEdit.ViewModels
             DisplayName = "SuperbEdit";
             _parentViewModel = parent;
 
-            //HACK: to initialize view.
-            //Items.Add(new FileTabViewModel());
         }
 
         [ImportingConstructor]
         public ShellViewModel(
+            //TODO: one panel at the moment
+            [Import] IPanel panel,
             [ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions,
             IWindowManager windowManager) : this(windowManager, null, false)
         {
-
+            LeftPanel = panel;
 
             IList<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions =
                 actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();

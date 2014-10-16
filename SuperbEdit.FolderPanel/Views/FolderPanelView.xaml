@@ -10,7 +10,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Folder: " />
-        <TreeView Grid.Row="1" />
+        <TextBlock Grid.Row="0" Text="Current Folder: " />
+        <TreeView Grid.Row="1" ItemsSource="{Binding RootItems}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Text}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
     </Grid>
 </UserControl>
