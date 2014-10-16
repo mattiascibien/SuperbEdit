@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Windows;
 using SuperbEdit.Base;
 using SuperbEdit.FolderPanel.Model;
 
@@ -79,29 +80,38 @@ namespace SuperbEdit.FolderPanel.ViewModels
 
         private void PopulateChildren(TreeItemModel item, string dir)
         {
-            string[] subdirs = Directory.GetDirectories(dir);
-            foreach (var subdir in subdirs)
+            try
             {
-                TreeItemModel childItem = new TreeItemModel()
+
+
+                string[] subdirs = Directory.GetDirectories(dir);
+                foreach (var subdir in subdirs)
                 {
-                    Text = Path.GetFileName(subdir),
-                    FullPath = subdir
-                };
-                PopulateChildren(childItem, subdir);
-                item.Children.Add(childItem);
+                    TreeItemModel childItem = new TreeItemModel()
+                    {
+                        Text = Path.GetFileName(subdir),
+                        FullPath = subdir
+                    };
+                    PopulateChildren(childItem, subdir);
+                    item.Children.Add(childItem);
+                }
+
+                string[] files = Directory.GetFiles(dir);
+                foreach (var file in files)
+                {
+                    TreeItemModel childItem = new TreeItemModel()
+                    {
+                        Text = Path.GetFileName(file),
+                        FullPath = file,
+                        IsFile = true
+                    };
+
+                    item.Children.Add(childItem);
+                }
             }
-
-            string[] files = Directory.GetFiles(dir);
-            foreach (var file in files)
+            catch (UnauthorizedAccessException ex)
             {
-                TreeItemModel childItem = new TreeItemModel()
-                {
-                    Text = Path.GetFileName(file),
-                    FullPath = file,
-                    IsFile = true
-                };
-
-                item.Children.Add(childItem);
+                MessageBox.Show(ex.Message, "SuperbEdit", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
