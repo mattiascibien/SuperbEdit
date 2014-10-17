@@ -10,7 +10,7 @@ using Newtonsoft.Json.Converters;
 
 namespace SuperbEdit.Base
 {
-    [Export(typeof (IConfig))]
+    [Export(typeof(IConfig))]
     public class Config : PropertyChangedBase, IConfig, IDisposable
     {
         private readonly FileSystemWatcher _defaultConfigWatcher;
@@ -25,8 +25,8 @@ namespace SuperbEdit.Base
             ReloadConfig(false, Path.Combine(Folders.UserFolder, "config.json"));
             ReloadConfig(true, Path.Combine(Folders.ProgramFolder, "config.json"));
 
-            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) {Filter = "config.json"};
-            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) {Filter = "config.json"};
+            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) { Filter = "config.json" };
+            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) { Filter = "config.json" };
 
             _defaultConfigWatcher.EnableRaisingEvents = true;
             _userConfigWatcher.EnableRaisingEvents = true;
@@ -34,6 +34,8 @@ namespace SuperbEdit.Base
             _defaultConfigWatcher.Changed += DefaultConfigChanged;
             _userConfigWatcher.Changed += UserConfigChanged;
         }
+
+        public event EventHandler ChangeConfig;
 
         public dynamic UserConfig
         {
@@ -43,6 +45,8 @@ namespace SuperbEdit.Base
                 if (_userConfigExpandoObject != value)
                 {
                     _userConfigExpandoObject = value;
+                    if (ChangeConfig != null)
+                        ChangeConfig(this, new EventArgs());
                     NotifyOfPropertyChange(() => UserConfig);
                 }
             }
@@ -56,6 +60,8 @@ namespace SuperbEdit.Base
                 if (_defaultConfigExpandoObject != value)
                 {
                     _defaultConfigExpandoObject = value;
+                    if (ChangeConfig != null)
+                        ChangeConfig(this, new EventArgs());
                     NotifyOfPropertyChange(() => DefaultConfig);
                 }
             }
@@ -63,7 +69,7 @@ namespace SuperbEdit.Base
 
         public T RetrieveConfigValue<T>(string path)
         {
-            List<string> properties = path.Split(new[] {'.'}).ToList();
+            List<string> properties = path.Split(new[] { '.' }).ToList();
 
             T userConfigValue = TraverseConfig<T>(UserConfig, properties, 0);
 
@@ -129,15 +135,15 @@ namespace SuperbEdit.Base
         {
             if (index == properties.Count - 1)
             {
-                if (((IDictionary<string, Object>) config).Keys.Contains(properties[index]))
+                if (((IDictionary<string, Object>)config).Keys.Contains(properties[index]))
                 {
-                    return (T) (((IDictionary<string, Object>) config)[properties[index]]);
+                    return (T)(((IDictionary<string, Object>)config)[properties[index]]);
                 }
             }
 
-            if (((IDictionary<string, Object>) config).Keys.Contains(properties[index]))
+            if (((IDictionary<string, Object>)config).Keys.Contains(properties[index]))
             {
-                return TraverseConfig<T>(((IDictionary<string, Object>) config)[properties[index]], properties, ++index);
+                return TraverseConfig<T>(((IDictionary<string, Object>)config)[properties[index]], properties, ++index);
             }
 
             return default(T);

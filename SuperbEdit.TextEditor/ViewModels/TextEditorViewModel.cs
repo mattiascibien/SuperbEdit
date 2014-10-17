@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Reflection;
 using System.Windows;
+using System.Windows.Media;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
@@ -9,24 +11,65 @@ using SuperbEdit.TextEditor.Views;
 
 namespace SuperbEdit.TextEditor.ViewModels
 {
-    [Export(typeof (ITab))]
+    [Export(typeof(ITab))]
     [ExportMetadata("IsFallback", true)]
     [ExportMetadata("Name", "TextEditor")]
     public sealed class TextEditorViewModel : Tab
     {
+        private IConfig _config;
+
         private string _fileContent;
         private string _filePath;
 
         private string _originalFileContent = "";
 
-
-        public TextEditorViewModel()
+        private FontFamily _fontFamilyConfig;
+        public FontFamily FontFamilyConfig
         {
+            get { return _fontFamilyConfig; }
+            set
+            {
+                if (_fontFamilyConfig != value)
+                {
+                    _fontFamilyConfig = value;
+                    NotifyOfPropertyChange(() => FontFamilyConfig);
+                }
+            }
+        }
+
+        private double _fontSize;
+        public double FontSizeConfig
+        {
+            get { return _fontSize; }
+            set
+            {
+                if (_fontSize != value)
+                {
+                    _fontSize = value;
+                    NotifyOfPropertyChange(() => FontSizeConfig);
+                }
+            }
+        }
+
+        [ImportingConstructor]
+        public TextEditorViewModel([Import] IConfig config)
+        {
+            _config = config;
             DisplayName = "New File";
 
             _originalFileContent = "";
             FileContent = _originalFileContent;
             FilePath = "";
+
+            FontFamilyConfig = new FontFamily(_config.RetrieveConfigValue<string>("text_editor.font_family", "Consolas"));
+            FontSizeConfig = _config.RetrieveConfigValue<double>("text_editor.font_size", 12.0);
+            _config.ChangeConfig += ConfigOnChangeConfig;
+        }
+
+        private void ConfigOnChangeConfig(object sender, EventArgs eventArgs)
+        {
+            FontFamilyConfig = new FontFamily(_config.RetrieveConfigValue<string>("text_editor.font_family", "Consolas"));
+            FontSizeConfig = _config.RetrieveConfigValue<double>("text_editor.font_size", 12.0);
         }
 
         public string FilePath

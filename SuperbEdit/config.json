@@ -1,3 +1,7 @@
 ﻿{
-    "default_tab": "TextEditor"
+    "default_tab": "TextEditor",
+    "text_editor": {
+        "font_family": "Consolas",
+        "font_size": 12.0
+    }
 }

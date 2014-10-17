@@ -1,7 +1,11 @@
-﻿namespace SuperbEdit.Base
+﻿using System;
+
+namespace SuperbEdit.Base
 {
     public interface IConfig
     {
+        event EventHandler ChangeConfig; 
+
         dynamic UserConfig { get; }
         dynamic DefaultConfig { get; }
 
