@@ -3,6 +3,9 @@ using System.ComponentModel.Composition;
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Abstract class providing base functionality for tabs
+    /// </summary>
     public abstract class ActionItem : IActionItem
     {
         protected ActionItem(string name, string description)
@@ -12,8 +15,19 @@ namespace SuperbEdit.Base
             IsSeparator = false;
         }
 
+        /// <summary>
+        /// Name (text) of the action
+        /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// Detaled desctiprion of the action
+        /// </summary>
         public string Description { get; private set; }
+
+        /// <summary>
+        /// Methods providing the logic for the action execution
+        /// </summary>
         public abstract void Execute();
 
 
@@ -25,9 +39,17 @@ namespace SuperbEdit.Base
         string Menu { get; }
         string Owner { get; }
         int Order { get; }
+
+        /// <summary>
+        /// Determines if the action should be available in the command window
+        /// </summary>
         bool RegisterInCommandWindow { get; }
     }
 
+
+    /// <summary>
+    /// Null action providing sepratators
+    /// </summary>
     [Export(typeof (SeparatorItem))]
     public class SeparatorItem : ActionItem
     {

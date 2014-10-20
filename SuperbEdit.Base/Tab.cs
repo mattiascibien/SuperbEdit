@@ -2,6 +2,10 @@
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Abstract class providing basic functionality
+    /// for Tabs
+    /// </summary>
     public abstract class Tab : Screen, ITab
     {
         private bool _hasChanges;
