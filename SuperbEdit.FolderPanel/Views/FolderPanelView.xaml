@@ -9,14 +9,18 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Current Folder: " />
-        <TreeView Grid.Row="1" ItemsSource="{Binding RootItems}">
+        <TreeView Grid.Row="0" ItemsSource="{Binding RootItems}">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}" >
                     <Control>
+                        <Control.ContextMenu>
+                            <ContextMenu ItemsSource="{Binding ContextMenuItems}">
+                            </ContextMenu>
+                        </Control.ContextMenu>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
                                 <cal:ActionMessage MethodName="OpenItem">
@@ -33,5 +37,7 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
+        <TextBlock Grid.Row="1" Text="Current Folder:"/>
+        <TextBlock Grid.Row="2" Margin="2" x:Name="CurrentFolder" TextWrapping="Wrap" />
     </Grid>
 </UserControl>

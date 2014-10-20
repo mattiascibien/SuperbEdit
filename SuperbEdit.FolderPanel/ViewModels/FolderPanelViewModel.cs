@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using SuperbEdit.Base;
 using SuperbEdit.FolderPanel.Model;
@@ -77,6 +78,10 @@ namespace SuperbEdit.FolderPanel.ViewModels
             }
         }
 
+        public List<IActionItem> ContextMenuItems
+        {
+            get; set;
+        }
 
         private void PopulateChildren(TreeItemModel item, string dir)
         {
@@ -124,5 +129,6 @@ namespace SuperbEdit.FolderPanel.ViewModels
                 shell.Value.OpenTab(fileTabViewModel);
             }
         }
+
     }
 }
