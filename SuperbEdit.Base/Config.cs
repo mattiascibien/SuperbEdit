@@ -11,7 +11,7 @@ using Newtonsoft.Json.Converters;
 namespace SuperbEdit.Base
 {
     [Export(typeof (IConfig))]
-    public class Config : PropertyChangedBase, IConfig, IDisposable
+    internal class Config : PropertyChangedBase, IConfig, IDisposable
     {
         private readonly FileSystemWatcher _defaultConfigWatcher;
         private readonly FileSystemWatcher _userConfigWatcher;

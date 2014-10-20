@@ -7,10 +7,21 @@ using Caliburn.Micro;
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Abstract class providing a basic implementation for IPanel
+    /// </summary>
     public abstract class Panel : Screen, IPanel
     {
+
+        /// <summary>
+        /// Default panel position
+        /// </summary>
         public PanelPosition DefaultPosition { get; private set; }
 
+
+        /// <summary>
+        /// Actual position of the panel
+        /// </summary>
         public PanelPosition Position
         {
             get; set;
