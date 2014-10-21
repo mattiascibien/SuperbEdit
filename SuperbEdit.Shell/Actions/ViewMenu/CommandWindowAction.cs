@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using SuperbEdit.Base;
-using SuperbEdit.ViewModels;
+using SuperbEdit.Shell.ViewModels;
 
-namespace SuperbEdit.Actions
+namespace SuperbEdit.Shell.Actions
 {
     [Export(typeof (IActionItem))]
     [ExportActionMetadata(Menu = "View", Order = 0, Owner = "Shell", RegisterInCommandWindow = false)]

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using SuperbEdit.Base;
 
-namespace SuperbEdit.ViewModels
+namespace SuperbEdit.Shell.ViewModels
 {
     [Export]
     internal class PanelsViewModel : Conductor<IPanel>.Collection.OneActive

@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using SuperbEdit.Base;
 
-namespace SuperbEdit.Actions
+namespace SuperbEdit.Shell.Actions
 {
     [Export(typeof (IActionItem))]
     [ExportActionMetadata(Menu = "File", Order = 7, Owner = "Shell", RegisterInCommandWindow = true)]

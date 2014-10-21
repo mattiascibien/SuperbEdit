@@ -4,7 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using SuperbEdit.Base;
 
-namespace SuperbEdit.Views
+namespace SuperbEdit.Shell.Views
 {
     /// <summary>
     ///     Interaction logic for CommandWindowView.xaml

@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 using System.Diagnostics;
 using SuperbEdit.Base;
 
-namespace SuperbEdit.Actions
+namespace SuperbEdit.Shell.Actions
 {
     [Export(typeof (IActionItem))]
     [ExportActionMetadata(Menu = "Preferences", Order = 4, Owner = "Shell", RegisterInCommandWindow = true)]

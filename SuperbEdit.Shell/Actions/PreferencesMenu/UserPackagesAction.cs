@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 using System.Diagnostics;
 using SuperbEdit.Base;
 
-namespace SuperbEdit.Actions
+namespace SuperbEdit.Shell.Actions
 {
 #if !PORTABLE_BUILD
     [Export(typeof (IActionItem))]

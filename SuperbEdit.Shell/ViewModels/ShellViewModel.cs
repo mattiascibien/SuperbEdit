@@ -6,9 +6,9 @@ using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
 using SuperbEdit.Base;
-using SuperbEdit.Views;
+using SuperbEdit.Shell.Views;
 
-namespace SuperbEdit.ViewModels
+namespace SuperbEdit.Shell.ViewModels
 {
     [Export(typeof (IShell))]
     [Export] // HACK: temporary hack to show and hide command window from actions

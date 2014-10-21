@@ -5,7 +5,7 @@ using System.Linq;
 using Caliburn.Micro;
 using SuperbEdit.Base;
 
-namespace SuperbEdit.ViewModels
+namespace SuperbEdit.Shell.ViewModels
 {
     [Export]
     internal class CommandWindowViewModel : Screen

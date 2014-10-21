@@ -1,9 +1,9 @@
-<Window x:Class="SuperbEdit.Views.ShellView"
+<Window x:Class="SuperbEdit.Shell.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Style="{StaticResource {x:Type Window}}"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:controls="clr-namespace:SuperbEdit.Controls">
+        xmlns:controls="clr-namespace:SuperbEdit.Shell.Controls">
     <Window.Resources>
         <ResourceDictionary>
             <Style TargetType="{x:Type controls:DockPanelSplitter}">

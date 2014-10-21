@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Caliburn.Micro;
 
-namespace SuperbEdit.ViewModels
+namespace SuperbEdit.Shell.ViewModels
 {
     public class PackageItem
     {
