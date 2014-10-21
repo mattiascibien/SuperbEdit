@@ -9,6 +9,7 @@ namespace SuperbEdit.Base
     {
         event EventHandler ChangeConfig; 
 
+        /// <summary>
         /// Dynamic object providing access to the user config
         /// </summary>
         dynamic UserConfig { get; }
