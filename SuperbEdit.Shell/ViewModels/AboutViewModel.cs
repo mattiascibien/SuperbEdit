@@ -15,7 +15,7 @@ namespace SuperbEdit.ViewModels
 
 
     [Export]
-    public sealed class AboutViewModel : Screen
+    internal sealed class AboutViewModel : Screen
     {
         public AboutViewModel()
         {

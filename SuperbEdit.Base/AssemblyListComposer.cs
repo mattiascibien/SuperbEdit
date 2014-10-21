@@ -18,7 +18,7 @@ namespace SuperbEdit
         {
             loadedAssemblies = new List<Assembly>
             {
-                Assembly.GetExecutingAssembly(),
+                Assembly.GetEntryAssembly(),
                 Assembly.LoadFrom("SuperbEdit.Base.dll")
             };
 

@@ -10,7 +10,7 @@ using SuperbEdit.Base;
 namespace SuperbEdit.ViewModels
 {
     [Export]
-    public class PanelsViewModel : Conductor<IPanel>.Collection.OneActive
+    internal class PanelsViewModel : Conductor<IPanel>.Collection.OneActive
     {
         [ImportingConstructor]
         public PanelsViewModel([ImportMany] IEnumerable<Lazy<IPanel, IPanelMetadata>> lazyPanels)

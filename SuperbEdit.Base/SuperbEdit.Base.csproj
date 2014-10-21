@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyListComposer.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Folders.cs" />
     <Compile Include="IActionItem.cs" />

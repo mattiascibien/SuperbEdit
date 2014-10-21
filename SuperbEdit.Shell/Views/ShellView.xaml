@@ -3,10 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Style="{StaticResource {x:Type Window}}"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:controls="clr-namespace:SuperbEdit.Controls"
-        Icon="/SuperbEdit;component/Assets/icon.ico">
+        xmlns:controls="clr-namespace:SuperbEdit.Controls">
     <Window.Resources>
         <ResourceDictionary>
+            <Style TargetType="{x:Type controls:DockPanelSplitter}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type controls:DockPanelSplitter}">
+                            <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}">
                 <Setter Property="Header" Value="{Binding Path=Name}" />
                 <Setter Property="ToolTip" Value="{Binding Path=Description}" />

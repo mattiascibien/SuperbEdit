@@ -12,7 +12,7 @@ namespace SuperbEdit.ViewModels
 {
     [Export(typeof (IShell))]
     [Export] // HACK: temporary hack to show and hide command window from actions
-    public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
+    internal sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
         public IPanel LeftPanel
         {

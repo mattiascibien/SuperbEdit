@@ -8,7 +8,7 @@ using SuperbEdit.Base;
 namespace SuperbEdit.ViewModels
 {
     [Export]
-    public class CommandWindowViewModel : Screen
+    internal class CommandWindowViewModel : Screen
     {
         private List<IActionItem> _actions;
 

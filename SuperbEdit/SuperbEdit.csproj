@@ -78,42 +78,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Actions\EditMenu\RedoAction.cs" />
-    <Compile Include="Actions\EditMenu\CutAction.cs" />
-    <Compile Include="Actions\EditMenu\CopyAction.cs" />
-    <Compile Include="Actions\EditMenu\PasteAction.cs" />
-    <Compile Include="Actions\EditMenu\UndoAction.cs" />
-    <Compile Include="Actions\FileMenu\CloseAction.cs" />
-    <Compile Include="Actions\FileMenu\ExitAction.cs" />
-    <Compile Include="Actions\FileMenu\NewFileAction.cs" />
-    <Compile Include="Actions\FileMenu\OpenFileAction.cs" />
-    <Compile Include="Actions\FileMenu\SaveAction.cs" />
-    <Compile Include="Actions\FileMenu\SaveAllAction.cs" />
-    <Compile Include="Actions\FileMenu\SaveAsAction.cs" />
-    <Compile Include="Actions\HelpMenu\AboutAction.cs" />
-    <Compile Include="Actions\PreferencesMenu\DefaultPackagesAction.cs" />
-    <Compile Include="Actions\PreferencesMenu\DefaultSettingsAction.cs" />
-    <Compile Include="Actions\PreferencesMenu\UserPackagesAction.cs" />
-    <Compile Include="Actions\PreferencesMenu\UserSettingsAction.cs" />
-    <Compile Include="Actions\ViewMenu\CommandWindowAction.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="AssemblyListComposer.cs" />
-    <Compile Include="Controls\DockPanelSplitter.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
-    <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\CommandWindowViewModel.cs" />
-    <Compile Include="ViewModels\PanelsViewModel.cs" />
-    <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\CommandWindowView.xaml.cs">
-      <DependentUpon>CommandWindowView.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -159,27 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\AdditionalStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\CommandWindowView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AboutView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PanelsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
