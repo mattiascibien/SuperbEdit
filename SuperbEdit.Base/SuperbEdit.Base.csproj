@@ -47,8 +47,6 @@
     <Compile Include="Folders.cs" />
     <Compile Include="IActionItem.cs" />
     <Compile Include="IConfig.cs" />
-    <Compile Include="ILeftPane.cs" />
-    <Compile Include="IPane.cs" />
     <Compile Include="IPanel.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ITab.cs" />
