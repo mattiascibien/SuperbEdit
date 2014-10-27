@@ -51,6 +51,21 @@ namespace SuperbEdit.TextEditor.ViewModels
             }
         }
 
+
+        private bool _wrapping;
+        public bool Wrapping
+        {
+            get { return _wrapping; }
+            set
+            {
+                if (_wrapping != value)
+                {
+                    _wrapping = value;
+                    NotifyOfPropertyChange(() => Wrapping);
+                }
+            }
+        }
+
         [ImportingConstructor]
         public TextEditorViewModel([Import] IConfig config)
         {
@@ -63,6 +78,7 @@ namespace SuperbEdit.TextEditor.ViewModels
 
             FontFamilyConfig = new FontFamily(_config.RetrieveConfigValue<string>("text_editor.font_family", "Consolas"));
             FontSizeConfig = _config.RetrieveConfigValue<double>("text_editor.font_size", 12.0);
+            Wrapping = _config.RetrieveConfigValue<bool>("text_editor.wrapping", false);
             _config.ChangeConfig += ConfigOnChangeConfig;
         }
 
@@ -70,6 +86,7 @@ namespace SuperbEdit.TextEditor.ViewModels
         {
             FontFamilyConfig = new FontFamily(_config.RetrieveConfigValue<string>("text_editor.font_family", "Consolas"));
             FontSizeConfig = _config.RetrieveConfigValue<double>("text_editor.font_size", 12.0);
+            Wrapping = _config.RetrieveConfigValue<bool>("text_editor.wrapping", false);
         }
 
         public string FilePath

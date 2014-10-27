@@ -1,13 +1,17 @@
-﻿<UserControl x:Class="SuperbEdit.TextEditor.Views.TextEditorView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CodeBoxControl"
+             xmlns:Converters="clr-namespace:SuperbEdit.TextEditor.Converters" x:Class="SuperbEdit.TextEditor.Views.TextEditorView"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Converters:BoolToWrapConverter x:Key="BoolToWrapConverter"/>
+    </UserControl.Resources>
     <Grid>
         <local:CodeBox x:Name="FileContent" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
-                 AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource {x:Type TextBox}}" FontFamily="{Binding FontFamilyConfig}" FontSize="{Binding FontSizeConfig}" BaseForeground="White" CodeBoxBackground="{DynamicResource TextBoxBackground}" Foreground="White" />
+			TextWrapping="{Binding Wrapping, Converter={StaticResource BoolToWrapConverter}}" AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource {x:Type TextBox}}" FontFamily="{Binding FontFamilyConfig}" FontSize="{Binding FontSizeConfig}" BaseForeground="White" CodeBoxBackground="{DynamicResource TextBoxBackground}" Foreground="White" />
     </Grid>
 </UserControl>

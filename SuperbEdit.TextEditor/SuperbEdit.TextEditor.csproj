@@ -71,6 +71,7 @@
     <Compile Include="CodeBox\Pair.cs" />
     <Compile Include="CodeBox\PointCollectionHelper.cs" />
     <Compile Include="CodeBox\StackedRectangleGeometryHelper.cs" />
+    <Compile Include="Converters\BoolToWrapConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
