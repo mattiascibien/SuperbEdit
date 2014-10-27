@@ -64,7 +64,7 @@ namespace SuperbEdit.Base
         public T RetrieveConfigValue<T>(string path)
         {
             List<string> properties = path.Split(new[] {'.'}).ToList();
-            if (!string.IsNullOrEmpty(UserConfig))
+            if (UserConfig != null)
             {
                 T userConfigValue = TraverseConfig<T>(UserConfig, properties, 0);
                 if (userConfigValue != null && !userConfigValue.Equals(default(T)))
