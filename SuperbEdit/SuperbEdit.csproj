@@ -104,6 +104,7 @@
     <Compile Include="AssemblyListComposer.cs" />
     <Compile Include="Controls\DockPanelSplitter.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\PanelPositionToTabStripPlacementConverter.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />

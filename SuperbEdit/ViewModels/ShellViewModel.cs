@@ -14,7 +14,7 @@ namespace SuperbEdit.ViewModels
     [Export] // HACK: temporary hack to show and hide command window from actions
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
-        public IPanel LeftPanel
+        public PanelsViewModel LeftPanel
         {
             get; set;
         }
@@ -40,12 +40,11 @@ namespace SuperbEdit.ViewModels
 
         [ImportingConstructor]
         public ShellViewModel(
-            //TODO: one panel at the moment
-            [Import] IPanel panel,
+            [ImportMany] IEnumerable<Lazy<IPanel, IPanelMetadata>> lazyPanels,
             [ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions,
             IWindowManager windowManager) : this(windowManager, null, false)
         {
-            LeftPanel = panel;
+            LeftPanel = new PanelsViewModel(lazyPanels, PanelPosition.Left);
 
             IList<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions =
                 actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();

@@ -9,10 +9,15 @@ using SuperbEdit.FolderPanel.Model;
 
 namespace SuperbEdit.FolderPanel.ViewModels
 {
-    [Export(typeof(IPanel))]
     [Export]
+    [ExportPanelMetadata(DefaultPosition=PanelPosition.Left)]
     public class FolderPanelViewModel : Panel
     {
+        public FolderPanelViewModel()
+        {
+            DisplayName = "Folder Panel";
+        }
+
         [Import]
         private Lazy<IShell> shell;
         [Import]
