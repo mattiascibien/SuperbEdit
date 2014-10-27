@@ -9,6 +9,15 @@
     <UserControl.Resources>
         <Converters:PanelPositionToTabStripPlacementConverter x:Key="PanelPositionToTabStripPlacementConverter"/>
     </UserControl.Resources>
-    <TabControl x:Name="Items" TabStripPlacement="{Binding PanelPosition, Converter={StaticResource PanelPositionToTabStripPlacementConverter}}">
+    <TabControl x:Name="Items"> <!--TabStripPlacement="{Binding PanelPosition, Converter={StaticResource PanelPositionToTabStripPlacementConverter}}"-->
+        <TabControl.ItemContainerStyle>
+            <Style TargetType="{x:Type TabItem}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}, Path=Items.Count}" Value="1">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </TabControl.ItemContainerStyle>
     </TabControl>
 </UserControl>
