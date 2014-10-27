@@ -9,5 +9,6 @@
     <UserControl.Resources>
         <Converters:PanelPositionToTabStripPlacementConverter x:Key="PanelPositionToTabStripPlacementConverter"/>
     </UserControl.Resources>
-    <TabControl x:Name="Items" TabStripPlacement="{Binding PanelPosition, Converter={StaticResource PanelPositionToTabStripPlacementConverter}}" />
+    <TabControl x:Name="Items" TabStripPlacement="{Binding PanelPosition, Converter={StaticResource PanelPositionToTabStripPlacementConverter}}">
+    </TabControl>
 </UserControl>

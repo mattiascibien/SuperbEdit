@@ -19,6 +19,18 @@ namespace SuperbEdit.ViewModels
             get; set;
         }
 
+        public PanelsViewModel BottomPanel
+        {
+            get;
+            set;
+        }
+
+        public PanelsViewModel RightPanel
+        {
+            get;
+            set;
+        }
+
         private readonly ShellViewModel _parentViewModel;
 
         private readonly IWindowManager _windowManager;
@@ -45,6 +57,8 @@ namespace SuperbEdit.ViewModels
             IWindowManager windowManager) : this(windowManager, null, false)
         {
             LeftPanel = new PanelsViewModel(lazyPanels, PanelPosition.Left);
+            BottomPanel = new PanelsViewModel(lazyPanels, PanelPosition.Bottom);
+            RightPanel = new PanelsViewModel(lazyPanels, PanelPosition.Right);
 
             IList<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions =
                 actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();

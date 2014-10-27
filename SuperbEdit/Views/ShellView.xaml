@@ -48,8 +48,12 @@
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem x:Name="Status">Ready</StatusBarItem>
         </StatusBar>
+        <ContentControl x:Name="BottomPanel" DockPanel.Dock="Bottom" Height="200" />
+        <controls:DockPanelSplitter DockPanel.Dock="Bottom" Height="4" Visibility="{Binding Visibility, ElementName=BottomPanel, Mode=OneWay}" />
         <ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200" />
         <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4" Visibility="{Binding Visibility, ElementName=LeftPanel, Mode=OneWay}" />
+        <ContentControl x:Name="RightPanel" MinWidth="150" DockPanel.Dock="Right" Width="200" />
+        <controls:DockPanelSplitter DockPanel.Dock="Right" Width="4" Visibility="{Binding Visibility, ElementName=RightPanel, Mode=OneWay}" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
