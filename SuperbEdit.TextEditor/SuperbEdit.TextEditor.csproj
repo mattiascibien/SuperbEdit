@@ -48,10 +48,29 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\SuperbRenderInfo.cs" />
-    <Compile Include="Controls\SuperbTextBox.xaml.cs">
-      <DependentUpon>SuperbTextBox.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="CodeBox\CodeBox.cs" />
+    <Compile Include="CodeBox\CodeBoxApplicationSettings.cs" />
+    <Compile Include="CodeBox\CodeBoxRenderInfo.cs" />
+    <Compile Include="CodeBox\CodeBoxSettings.cs" />
+    <Compile Include="CodeBox\Decorations\Decoration.cs" />
+    <Compile Include="CodeBox\Decorations\DecorationScheme.cs" />
+    <Compile Include="CodeBox\Decorations\DecorationSchemes.cs" />
+    <Compile Include="CodeBox\Decorations\DecorationSchemeTypeConverter.cs" />
+    <Compile Include="CodeBox\Decorations\DoubleQuotedDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\DoubleRegexDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\EDecorationType.cs" />
+    <Compile Include="CodeBox\Decorations\ExplicitDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\MultiExplicitDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\MultiRegexDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\MultiRegexWordDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\MultiStringDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\RegexDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\RegexMatchDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\RegexWordDecoration.cs" />
+    <Compile Include="CodeBox\Decorations\StringDecoration.cs" />
+    <Compile Include="CodeBox\Pair.cs" />
+    <Compile Include="CodeBox\PointCollectionHelper.cs" />
+    <Compile Include="CodeBox\StackedRectangleGeometryHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -78,9 +97,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\SuperbTextBox.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="CodeBox\CodeBox.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TextEditorView.xaml">
       <Generator>MSBuild:Compile</Generator>

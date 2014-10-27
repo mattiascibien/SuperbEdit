@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:SuperbEdit.TextEditor.Controls"
+             xmlns:local="clr-namespace:CodeBoxControl"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <local:SuperbTextBox x:Name="FileContent" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
-                 AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource {x:Type TextBox}}" FontFamily="{Binding FontFamilyConfig}" FontSize="{Binding FontSizeConfig}" />
+        <local:CodeBox x:Name="FileContent" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
+                 AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource {x:Type TextBox}}" FontFamily="{Binding FontFamilyConfig}" FontSize="{Binding FontSizeConfig}" BaseForeground="White" CodeBoxBackground="{DynamicResource TextBoxBackground}" Foreground="White" />
     </Grid>
 </UserControl>
