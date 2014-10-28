@@ -12,6 +12,6 @@
     </UserControl.Resources>
     <Grid>
         <local:CodeBox x:Name="FileContent" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
-			TextWrapping="{Binding Wrapping, Converter={StaticResource BoolToWrapConverter}}" AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource {x:Type TextBox}}" FontFamily="{Binding FontFamilyConfig}" FontSize="{Binding FontSizeConfig}" BaseForeground="White" CodeBoxBackground="{DynamicResource TextBoxBackground}" Foreground="White" />
+			TextWrapping="{Binding Wrapping, Converter={StaticResource BoolToWrapConverter}}" AcceptsReturn="True" AcceptsTab="True" Style="{StaticResource {x:Type TextBox}}" FontFamily="{Binding FontFamilyConfig}" FontSize="{Binding FontSizeConfig}" BaseForeground="{DynamicResource ForegroundBrush}" CaretBrush="{DynamicResource ForegroundBrush}" CodeBoxBackground="{DynamicResource TextBoxBackground}" Foreground="Transparent" />
     </Grid>
 </UserControl>

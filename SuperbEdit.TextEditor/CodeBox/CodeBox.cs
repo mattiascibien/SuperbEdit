@@ -328,6 +328,8 @@ namespace CodeBoxControl
         /// <param name="drawingContext"></param>
         protected void ReRenderLastRuntimeRender(DrawingContext drawingContext)
         {
+            //TODO: next line fixes a flashing problem with custom themes (should be investigated further)
+            drawingContext.DrawRectangle(CodeBoxBackground, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));//Draw Background
             drawingContext.DrawText(renderinfo.BoxText, renderinfo.RenderPoint);
             DisplayPreparedDecorations(drawingContext, renderinfo.PreparedDecorations, renderinfo.RenderPoint);
             DisplayPreparedDecorations(drawingContext, renderinfo.BasePreparedDecorations, renderinfo.RenderPoint);

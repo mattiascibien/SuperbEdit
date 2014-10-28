@@ -13,7 +13,7 @@
                     <ColumnDefinition Width="{Binding Path =  LineNumberMarginWidth, RelativeSource={RelativeSource Templatedparent}, Mode=OneWay}" />
                     <ColumnDefinition  Width ="*"/>  
                 </Grid.ColumnDefinitions>
-           <ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Grid.Column="1" />
+           <ScrollViewer Name="PART_ContentHost" Background="Transparent" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Grid.Column="1" />
             </Grid></Border >
             <ControlTemplate.Triggers>
             <Trigger Property="UIElement.IsEnabled">
