@@ -3,6 +3,9 @@ using System.ComponentModel.Composition;
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Position of a panel in the Shell
+    /// </summary>
     public enum PanelPosition
     {
         Left = 0,
@@ -33,6 +36,11 @@ namespace SuperbEdit.Base
         }
     }
 
+
+    /// <summary>
+    /// Interface for exporting Panels
+    /// Warning: there is only one instance of each panel type
+    /// </summary>
     public interface IPanel
     {
         PanelPosition DefaultPosition { get; }

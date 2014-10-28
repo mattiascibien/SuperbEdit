@@ -4,17 +4,29 @@ using System.Linq;
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Class used for requesting an instance of a Tab
+    /// </summary>
     [Export]
     public class TabService
     {
         [Import] private IConfig config;
         [ImportMany] private IEnumerable<ExportFactory<ITab, ITabMetadata>> tabFactories;
 
+        /// <summary>
+        /// Requests the default tab (the one that is always available)
+        /// </summary>
+        /// <returns></returns>
         public ITab RequestFallbackTab()
         {
             return tabFactories.First(fact => fact.Metadata.IsFallback).CreateExport().Value;
         }
 
+
+        /// <summary>
+        /// Request the default_tab specified in config
+        /// </summary>
+        /// <returns></returns>
         public ITab RequestDefaultTab()
         {
             string defaultTabName = "";
@@ -25,7 +37,11 @@ namespace SuperbEdit.Base
             return tab ?? RequestFallbackTab();
         }
 
-
+        /// <summary>
+        /// Reuqest a tab with a particoular name
+        /// </summary>
+        /// <param name="friendlyName">the name of the tab</param>
+        /// <returns></returns>
         public ITab RequestSpeficTab(string friendlyName)
         {
             if (!string.IsNullOrEmpty(friendlyName))

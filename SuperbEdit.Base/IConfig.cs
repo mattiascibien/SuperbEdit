@@ -1,8 +1,19 @@
 ﻿namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Interface for providing access to the program configuration in an easy way
+    /// </summary>
     public interface IConfig
     {
+
+        /// <summary>
+        /// Dynamic object providing access to the user config
+        /// </summary>
         dynamic UserConfig { get; }
+
+        /// <summary>
+        /// Dynamic object providing access to the default (program) config
+        /// </summary>
         dynamic DefaultConfig { get; }
 
         /// <summary>

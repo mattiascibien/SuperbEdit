@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Convenience action for hiding/showing a panel
+    /// </summary>
+    /// <typeparam name="T">type of the panel to be hidden</typeparam>
     public class ShowHidePanelActionItem<T> : ActionItem where T : IPanel
     {
         [Import] private T panel;
