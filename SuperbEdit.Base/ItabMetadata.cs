@@ -8,7 +8,6 @@ namespace SuperbEdit.Base
     /// </summary>
     public interface ITabMetadata
     {
-        bool IsFallback { get; }
         string Name { get; }
     }
 
@@ -18,17 +17,12 @@ namespace SuperbEdit.Base
     /// </summary>
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class ExportTabMetadata : ExportAttribute, ITabMetadata
+    public class ExportTab : ExportAttribute, ITabMetadata
     {
-        public ExportTabMetadata() : base(typeof (ITab))
+        public ExportTab() : base(typeof (ITab))
         {
         }
 
         public string Name { get; set; }
-
-        public bool IsFallback
-        {
-            get { return false; }
-        }
     }
 }

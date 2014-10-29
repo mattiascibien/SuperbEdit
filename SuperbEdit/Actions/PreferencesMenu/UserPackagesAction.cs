@@ -6,8 +6,7 @@ using SuperbEdit.Base;
 namespace SuperbEdit.Actions
 {
 #if !PORTABLE_BUILD
-    [Export(typeof (IActionItem))]
-    [ExportActionMetadata(Menu = "Preferences", Order = 3, Owner = "Shell", RegisterInCommandWindow = true)]
+    [ExportAction(Menu = "Preferences", Order = 3, Owner = "Shell", RegisterInCommandWindow = true)]
     public class UserPackagesAction : ActionItem
     {
         [Import] private Lazy<IShell> shell;

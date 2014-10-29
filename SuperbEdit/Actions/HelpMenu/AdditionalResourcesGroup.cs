@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof(IActionItem))]
-    [ExportActionMetadata(Menu = "Help", Order = 0, Owner = "Shell", RegisterInCommandWindow = false)]
+    [ExportAction(Menu = "Help", Order = 0, Owner = "Shell", RegisterInCommandWindow = false)]
     public class AdditionalResourcesGroup : GroupItem
     {
         [ImportingConstructor]

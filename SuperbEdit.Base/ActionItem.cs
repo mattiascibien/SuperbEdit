@@ -92,10 +92,10 @@ namespace SuperbEdit.Base
 
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class ExportActionMetadata : ExportAttribute, IActionItemMetadata
+    public class ExportAction : ExportAttribute, IActionItemMetadata
     {
-        public ExportActionMetadata()
-            : base(typeof (ActionItem))
+        public ExportAction()
+            : base(typeof (IActionItem))
         {
         }
 

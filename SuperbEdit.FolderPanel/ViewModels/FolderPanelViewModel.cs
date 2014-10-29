@@ -9,7 +9,7 @@ using SuperbEdit.FolderPanel.Model;
 
 namespace SuperbEdit.FolderPanel.ViewModels
 {
-    [Export(typeof(IPanel))]
+    [ExportPanel]
     [Export]
     public class FolderPanelViewModel : Panel
     {

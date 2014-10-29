@@ -10,6 +10,8 @@ namespace SuperbEdit.Base
     [Export]
     public class TabService
     {
+        const string FALLBACKNAME = "TextEditor";
+
         [Import] private IConfig config;
         [ImportMany] private IEnumerable<ExportFactory<ITab, ITabMetadata>> tabFactories;
 
@@ -19,7 +21,7 @@ namespace SuperbEdit.Base
         /// <returns></returns>
         public ITab RequestFallbackTab()
         {
-            return tabFactories.First(fact => fact.Metadata.IsFallback).CreateExport().Value;
+            return tabFactories.First(fact => fact.Metadata.Name == FALLBACKNAME).CreateExport().Value;
         }
 
 
