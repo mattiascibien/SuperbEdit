@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actions\HelpMenu\AdditionalResourcesGroup.cs" />
     <Compile Include="Actions\EditMenu\RedoAction.cs" />
     <Compile Include="Actions\EditMenu\CutAction.cs" />
     <Compile Include="Actions\EditMenu\CopyAction.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Actions\FileMenu\SaveAllAction.cs" />
     <Compile Include="Actions\FileMenu\SaveAsAction.cs" />
     <Compile Include="Actions\HelpMenu\AboutAction.cs" />
+    <Compile Include="Actions\HelpMenu\GitHubAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultPackagesAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultSettingsAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserPackagesAction.cs" />
@@ -153,7 +155,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\Converters.xaml">

@@ -10,6 +10,7 @@
             <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemStyle" BasedOn="{StaticResource {x:Type MenuItem}}">
                 <Setter Property="Header" Value="{Binding Path=Name}" />
                 <Setter Property="ToolTip" Value="{Binding Path=Description}" />
+                <Setter Property="ItemsSource" Value="{Binding Path=Items}" />
                 <Setter Property="cal:Message.Attach" Value="[Event Click] = [Action Execute()]" />
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding Path=IsSeparator}" Value="true">
@@ -40,7 +41,7 @@
                       ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
             <MenuItem Header="Preferences" ItemsSource="{Binding PreferencesMenuItems}"
                       ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
-            <MenuItem Header="Help" ItemsSource="{Binding AboutMenuItems}"
+            <MenuItem Header="Help" ItemsSource="{Binding HelpMenuItems}"
                       ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
             <MenuItem Header="Attach Back" x:Name="AttachBack" HorizontalAlignment="Right"
                       Visibility="{Binding IsSecondaryWindow, Converter={StaticResource booleanToVisibility}}" />

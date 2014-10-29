@@ -1,8 +1,25 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
 namespace SuperbEdit.Base
 {
+    public class GroupItem : ActionItem
+    {
+        public GroupItem(IEnumerable<Lazy<IActionItem, IActionItemMetadata>> possibilechildren, string name)
+            : base(name, "")
+        {
+            Items = possibilechildren.Where(x => x.Metadata.Menu == name).Select(x => x.Value).ToList();
+        }
+
+        public override void Execute()
+        {
+            
+        }
+    }
+
+
     /// <summary>
     /// Abstract class providing base functionality for tabs
     /// </summary>
@@ -13,7 +30,9 @@ namespace SuperbEdit.Base
             Name = name;
             Description = description;
             IsSeparator = false;
+            Items = null;
         }
+
 
         /// <summary>
         /// Name (text) of the action
@@ -32,6 +51,13 @@ namespace SuperbEdit.Base
 
 
         public bool IsSeparator { get; protected set; }
+
+
+        public IEnumerable<IActionItem> Items
+        {
+            get;
+            set;
+        }
     }
 
     public interface IActionItemMetadata

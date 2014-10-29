@@ -57,14 +57,14 @@ namespace SuperbEdit.ViewModels
 
             PreferencesMenuItems = PopulateMenu(enumeratedActions, "Preferences");
 
-            AboutMenuItems = PopulateMenu(enumeratedActions, "About");
+            HelpMenuItems = PopulateMenu(enumeratedActions, "Help");
         }
 
         public IEnumerable<IActionItem> FileMenuItems { get; set; }
         public IEnumerable<IActionItem> EditMenuItems { get; set; }
         public IEnumerable<IActionItem> ViewMenuItems { get; set; }
         public IEnumerable<IActionItem> PreferencesMenuItems { get; set; }
-        public IEnumerable<IActionItem> AboutMenuItems { get; set; }
+        public IEnumerable<IActionItem> HelpMenuItems { get; set; }
 
         [Import]
         public CommandWindowViewModel CommandWindow
