@@ -10,7 +10,7 @@ namespace SuperbEdit.Base
     [Export]
     public class TabService
     {
-        const string FALLBACKNAME = "TextEditor";
+        const string FALLBACKNAME = "FallbackTab";
 
         [Import] private IConfig config;
         [ImportMany] private IEnumerable<ExportFactory<ITab, ITabMetadata>> tabFactories;
