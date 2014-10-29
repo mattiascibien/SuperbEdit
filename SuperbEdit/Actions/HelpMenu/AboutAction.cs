@@ -5,8 +5,7 @@ using SuperbEdit.ViewModels;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof (IActionItem))]
-    [ExportActionMetadata(Menu = "Help", Order = 1, Owner = "Shell", RegisterInCommandWindow = true)]
+    [ExportAction(Menu = "Help", Order = 1, Owner = "Shell", RegisterInCommandWindow = true)]
     public class AboutAction : ActionItem
     {
         [Import] private IWindowManager _windowManager;

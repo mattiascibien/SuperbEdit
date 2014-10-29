@@ -4,8 +4,7 @@ using SuperbEdit.Base;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof (IActionItem))]
-    [ExportActionMetadata(Menu = "Edit", Order = 4, Owner = "Shell", RegisterInCommandWindow = true)]
+    [ExportAction(Menu = "Edit", Order = 4, Owner = "Shell", RegisterInCommandWindow = true)]
     public class CopyAction : ActionItem
     {
         [Import] private Lazy<IShell> shell;

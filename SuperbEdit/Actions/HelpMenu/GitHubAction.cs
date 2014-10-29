@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof(IActionItem))]
-    [ExportActionMetadata(Menu = "Additional Resources", Order = 0, Owner = "Shell", RegisterInCommandWindow = false)]
+    [ExportAction(Menu = "Additional Resources", Order = 0, Owner = "Shell", RegisterInCommandWindow = false)]
     public class GitHubAction : ActionItem
     {
         public GitHubAction()
