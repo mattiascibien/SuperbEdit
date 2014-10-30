@@ -45,6 +45,9 @@ namespace SuperbEdit.Base
     {
         PanelPosition DefaultPosition { get; }
         PanelPosition Position { get; }
+
+
+        bool Visible { get; set; }
     }
 
 }

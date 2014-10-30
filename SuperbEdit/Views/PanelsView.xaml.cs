@@ -1,13 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: m.cibien
- * Date: 30/10/2014
- * Time: 11:45
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
-using System.Windows;
+﻿using System;
 using System.Windows.Controls;
 
 namespace SuperbEdit.Views

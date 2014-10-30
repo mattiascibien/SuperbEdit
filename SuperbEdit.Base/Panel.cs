@@ -26,5 +26,18 @@ namespace SuperbEdit.Base
         {
             get; set;
         }
+
+
+        public bool Visible
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

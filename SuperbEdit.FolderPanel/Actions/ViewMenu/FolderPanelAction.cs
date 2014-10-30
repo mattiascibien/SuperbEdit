@@ -5,7 +5,7 @@ using SuperbEdit.FolderPanel.ViewModels;
 
 namespace SuperbEdit.FolderPanel.Actions
 {
-    [ExportAction(Menu = "View", Order = 1, Owner = "FolderPanel", RegisterInCommandWindow = false)]
+    [ExportAction(Menu = "Panels", Order = 0, Owner = "FolderPanel", RegisterInCommandWindow = false)]
     public class FolderPanelAction : ShowHidePanelActionItem<FolderPanelViewModel>
     {       
         public FolderPanelAction()
