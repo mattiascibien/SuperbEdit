@@ -1,0 +1,21 @@
+﻿using SuperbEdit.Base;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SuperbEdit.Actions
+{
+    [ExportAction(Menu = "Root", Order = 3, Owner = "Shell", RegisterInCommandWindow = false)]
+    public class PreferencesGroup : GroupItem
+    {
+        [ImportingConstructor]
+        public PreferencesGroup([ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> possibilechildren)
+            : base(possibilechildren, "Preferences")
+        {
+
+        }
+    }
+}

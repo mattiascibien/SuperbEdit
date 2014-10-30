@@ -49,22 +49,12 @@ namespace SuperbEdit.ViewModels
 
             IList<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions =
                 actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();
-            FileMenuItems = PopulateMenu(enumeratedActions, "File");
-
-            EditMenuItems = PopulateMenu(enumeratedActions, "Edit");
-
-            ViewMenuItems = PopulateMenu(enumeratedActions, "View");
-
-            PreferencesMenuItems = PopulateMenu(enumeratedActions, "Preferences");
-
-            HelpMenuItems = PopulateMenu(enumeratedActions, "Help");
+            MenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "Root")
+                .OrderBy(action => action.Metadata.Order)
+                .Select(action => action.Value);
         }
 
-        public IEnumerable<IActionItem> FileMenuItems { get; set; }
-        public IEnumerable<IActionItem> EditMenuItems { get; set; }
-        public IEnumerable<IActionItem> ViewMenuItems { get; set; }
-        public IEnumerable<IActionItem> PreferencesMenuItems { get; set; }
-        public IEnumerable<IActionItem> HelpMenuItems { get; set; }
+        public IEnumerable<IActionItem> MenuItems { get; set; }
 
         [Import]
         public CommandWindowViewModel CommandWindow

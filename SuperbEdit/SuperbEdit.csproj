@@ -79,6 +79,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actions\EditMenu\EditGroup.cs" />
+    <Compile Include="Actions\FileMenu\FileGroup.cs" />
     <Compile Include="Actions\HelpMenu\AdditionalResourcesGroup.cs" />
     <Compile Include="Actions\EditMenu\RedoAction.cs" />
     <Compile Include="Actions\EditMenu\CutAction.cs" />
@@ -93,12 +95,15 @@
     <Compile Include="Actions\FileMenu\SaveAllAction.cs" />
     <Compile Include="Actions\FileMenu\SaveAsAction.cs" />
     <Compile Include="Actions\HelpMenu\AboutAction.cs" />
+    <Compile Include="Actions\PreferencesMenu\PreferencesGroup.cs" />
+    <Compile Include="Actions\HelpMenu\HelpGroup.cs" />
     <Compile Include="Actions\HelpMenu\GitHubAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultPackagesAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultSettingsAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserPackagesAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserSettingsAction.cs" />
     <Compile Include="Actions\ViewMenu\CommandWindowAction.cs" />
+    <Compile Include="Actions\ViewMenu\ViewGroup.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -27,24 +27,14 @@
         </ResourceDictionary>
     </Window.Resources>
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <Menu.ItemsPanel>
+        <Menu DockPanel.Dock="Top" ItemContainerStyle="{StaticResource MenuItemStyle}" ItemsSource="{Binding MenuItems}">
+            <!--<Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel HorizontalAlignment="Stretch" />
                 </ItemsPanelTemplate>
-            </Menu.ItemsPanel>
-            <MenuItem Header="File" ItemsSource="{Binding FileMenuItems}"
-                      ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
-            <MenuItem Header="Edit" ItemsSource="{Binding EditMenuItems}"
-                      ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
-            <MenuItem Header="View" ItemsSource="{Binding ViewMenuItems}"
-                      ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
-            <MenuItem Header="Preferences" ItemsSource="{Binding PreferencesMenuItems}"
-                      ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
-            <MenuItem Header="Help" ItemsSource="{Binding HelpMenuItems}"
-                      ItemContainerStyle="{Binding Mode=OneWay, Source={StaticResource MenuItemStyle}}" />
-            <MenuItem Header="Attach Back" x:Name="AttachBack" HorizontalAlignment="Right"
-                      Visibility="{Binding IsSecondaryWindow, Converter={StaticResource booleanToVisibility}}" />
+            </Menu.ItemsPanel>-->
+            <!--<MenuItem Header="Attach Back" x:Name="AttachBack" HorizontalAlignment="Right"
+                      Visibility="{Binding IsSecondaryWindow, Converter={StaticResource booleanToVisibility}}" />-->
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem x:Name="Status">Ready</StatusBarItem>

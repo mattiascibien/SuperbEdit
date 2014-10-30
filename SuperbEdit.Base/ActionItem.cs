@@ -10,7 +10,7 @@ namespace SuperbEdit.Base
         public GroupItem(IEnumerable<Lazy<IActionItem, IActionItemMetadata>> possibilechildren, string name)
             : base(name, null)
         {
-            Items = possibilechildren.Where(x => x.Metadata.Menu == name).Select(x => x.Value).ToList();
+            Items = possibilechildren.Where(x => x.Metadata.Menu == name).OrderBy(x => x.Metadata.Order).Select(x => x.Value).ToList();
         }
 
         public override void Execute()
