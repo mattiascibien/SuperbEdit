@@ -119,6 +119,9 @@
       <DependentUpon>CommandWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\PanelsView.xaml.cs">
+      <DependentUpon>PanelsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
