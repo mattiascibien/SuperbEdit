@@ -82,12 +82,21 @@
                                           KeyboardNavigation.TabIndex="1"
                                           Margin="2,2,2,0"
                                           IsItemsHost="true" />
+                                <ScrollViewer.Style>
+                                    <Style TargetType="{x:Type ScrollViewer}"  BasedOn="{StaticResource {x:Type ScrollViewer}}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}, Path=Items.Count}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ScrollViewer.Style>
                             </ScrollViewer>
                             <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageLeftCommand" Grid.Row="0"
-                                          Grid.Column="1" CommandTarget="{Binding ElementName=scroll}"
+                                          Grid.Column="1" CommandTarget="{Binding ElementName=scroll}" Visibility="{Binding ElementName=scroll, Path=Visibility}"
                                           Style="{DynamicResource RepeatLeftButtonStyle}" />
                             <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageRightCommand"
-                                          CommandTarget="{Binding ElementName=scroll}" Grid.Row="0" Grid.Column="2"
+                                          CommandTarget="{Binding ElementName=scroll}" Visibility="{Binding ElementName=scroll, Path=Visibility}" Grid.Row="0" Grid.Column="2"
                                           Style="{DynamicResource RepeatRightButtonStyle}" />
                             <ContentPresenter x:Name="PART_SelectedContentHost"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
