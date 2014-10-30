@@ -6,6 +6,15 @@
              xmlns:Converters="clr-namespace:SuperbEdit.Converters" x:Class="SuperbEdit.Views.PanelsView" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Items.Count}" Value="0">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
     <UserControl.Resources>
         <Converters:PanelPositionToTabStripPlacementConverter x:Key="PanelPositionToTabStripPlacementConverter"/>
     </UserControl.Resources>
