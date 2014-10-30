@@ -5,8 +5,7 @@ using SuperbEdit.ViewModels;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof (IActionItem))]
-    [ExportActionMetadata(Menu = "View", Order = 0, Owner = "Shell", RegisterInCommandWindow = false)]
+    [ExportAction(Menu = "View", Order = 0, Owner = "Shell", RegisterInCommandWindow = false)]
     public class CommandWindowAction : ActionItem
     {
         [Import] private Lazy<ShellViewModel> shell;

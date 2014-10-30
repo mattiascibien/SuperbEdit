@@ -21,9 +21,9 @@ namespace SuperbEdit.Base
 
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class ExportPanelMetadata : ExportAttribute, IPanelMetadata
+    public class ExportPanel : ExportAttribute, IPanelMetadata
     {
-        public ExportPanelMetadata()
+        public ExportPanel()
             : base(typeof(IPanel))
         {
         }

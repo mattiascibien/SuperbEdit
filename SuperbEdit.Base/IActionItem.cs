@@ -1,4 +1,5 @@
-﻿namespace SuperbEdit.Base
+﻿using System.Collections.Generic;
+namespace SuperbEdit.Base
 {
     /// <summary>
     /// Interface for providing executable action including
@@ -9,6 +10,9 @@
         string Name { get; }
         string Description { get; }
         bool IsSeparator { get; }
+
+        IEnumerable<IActionItem> Items { get; }
+
 
         void Execute();
     }

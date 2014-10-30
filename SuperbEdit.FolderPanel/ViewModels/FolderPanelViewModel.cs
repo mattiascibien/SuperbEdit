@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
@@ -9,8 +9,8 @@ using SuperbEdit.FolderPanel.Model;
 
 namespace SuperbEdit.FolderPanel.ViewModels
 {
+    [ExportPanel]
     [Export]
-    [ExportPanelMetadata(DefaultPosition=PanelPosition.Left)]
     public class FolderPanelViewModel : Panel
     {
         public FolderPanelViewModel()

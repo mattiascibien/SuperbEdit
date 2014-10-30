@@ -9,12 +9,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuperbEdit</RootNamespace>
     <AssemblyName>SuperbEdit</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ExpressionBlendVersion>12.0.50716.0</ExpressionBlendVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -78,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actions\HelpMenu\AdditionalResourcesGroup.cs" />
     <Compile Include="Actions\EditMenu\RedoAction.cs" />
     <Compile Include="Actions\EditMenu\CutAction.cs" />
     <Compile Include="Actions\EditMenu\CopyAction.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Actions\FileMenu\SaveAllAction.cs" />
     <Compile Include="Actions\FileMenu\SaveAsAction.cs" />
     <Compile Include="Actions\HelpMenu\AboutAction.cs" />
+    <Compile Include="Actions\HelpMenu\GitHubAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultPackagesAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultSettingsAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserPackagesAction.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CommandWindowViewModel.cs" />
+    <Compile Include="ViewModels\FallbackTabViewModel.cs" />
     <Compile Include="ViewModels\PanelsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\CommandWindowView.xaml.cs">
@@ -153,7 +157,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\Converters.xaml">
@@ -165,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FallbackTabView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
