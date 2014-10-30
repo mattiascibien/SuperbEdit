@@ -8,7 +8,7 @@ namespace SuperbEdit.Base
     public class GroupItem : ActionItem
     {
         public GroupItem(IEnumerable<Lazy<IActionItem, IActionItemMetadata>> possibilechildren, string name)
-            : base(name, "")
+            : base(name, null)
         {
             Items = possibilechildren.Where(x => x.Metadata.Menu == name).Select(x => x.Value).ToList();
         }
