@@ -40,7 +40,7 @@ namespace SuperbEdit.Base
         }
 
         /// <summary>
-        /// Reuqest a tab with a particoular name
+        /// Request a tab with a particular name
         /// </summary>
         /// <param name="friendlyName">the name of the tab</param>
         /// <returns></returns>
