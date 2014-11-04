@@ -87,31 +87,31 @@ namespace SuperbEdit.TextEditor.ViewModels
         {
             var view = GetView() as TextEditorView;
 
-            view.FileContent.Undo();
+            view.ModernTextEditor.Undo();
         }
 
         public override void Redo()
         {
             var view = GetView() as TextEditorView;
-            view.FileContent.Redo();
+            view.ModernTextEditor.Redo();
         }
 
         public override void Cut()
         {
             var view = GetView() as TextEditorView;
-            view.FileContent.Cut();
+            view.ModernTextEditor.Cut();
         }
 
         public override void Copy()
         {
             var view = GetView() as TextEditorView;
-            view.FileContent.Copy();
+            view.ModernTextEditor.Copy();
         }
 
         public override void Paste()
         {
             var view = GetView() as TextEditorView;
-            view.FileContent.Paste();
+            view.ModernTextEditor.Paste();
         }
 
         public override void SetFile(string filePath)
