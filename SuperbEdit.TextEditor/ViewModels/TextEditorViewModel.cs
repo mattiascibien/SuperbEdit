@@ -2,7 +2,6 @@
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Windows;
-using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
 using SuperbEdit.TextEditor.Views;
@@ -12,19 +11,28 @@ namespace SuperbEdit.TextEditor.ViewModels
     [ExportTab(Name="TextEditor")]
     public sealed class TextEditorViewModel : Tab
     {
+        private IConfig _config;
         private string _fileContent;
         private string _filePath;
 
         private string _originalFileContent = "";
 
-
-        public TextEditorViewModel()
+        [ImportingConstructor]
+        public TextEditorViewModel(IConfig config)
         {
             DisplayName = "New File";
 
+            _config = config;
             _originalFileContent = "";
             FileContent = _originalFileContent;
             FilePath = "";
+            InitializeControl();
+        }
+
+        private void InitializeControl()
+        {
+            var view = GetView() as TextEditorView;
+            view.ModernTextEditor.ShowLineNumbers = _config.RetrieveConfigValue<bool>("show_line_numbers");
         }
 
         public string FilePath

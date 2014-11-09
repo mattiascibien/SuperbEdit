@@ -1,6 +1,5 @@
 ﻿﻿using System;
-using System.Windows;
-using ICSharpCode.AvalonEdit;
+﻿using System.Windows;
 
 namespace SuperbEdit.AvalonTextEditor.Controls
 {
