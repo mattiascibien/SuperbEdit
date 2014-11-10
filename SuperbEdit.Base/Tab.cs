@@ -18,6 +18,7 @@ namespace SuperbEdit.Base
             if(config != null)
             {
                 config.ConfigChanged += config_ConfigChanged;
+                ReloadConfig(config);
             }
         }
 

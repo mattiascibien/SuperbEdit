@@ -43,6 +43,8 @@ namespace SuperbEdit.Base
                 if (_userConfigExpandoObject != value)
                 {
                     _userConfigExpandoObject = value;
+                    if (ConfigChanged != null)
+                        ConfigChanged(this, new EventArgs());
                     NotifyOfPropertyChange(() => UserConfig);
                 }
             }
@@ -56,6 +58,8 @@ namespace SuperbEdit.Base
                 if (_defaultConfigExpandoObject != value)
                 {
                     _defaultConfigExpandoObject = value;
+                    if (ConfigChanged != null)
+                        ConfigChanged(this, new EventArgs());
                     NotifyOfPropertyChange(() => DefaultConfig);
                 }
             }
@@ -67,7 +71,7 @@ namespace SuperbEdit.Base
             if (UserConfig != null)
             {
                 T userConfigValue = TraverseConfig<T>(UserConfig, properties, 0);
-                if (userConfigValue != null && !userConfigValue.Equals(default(T)))
+                if (userConfigValue != null)
                 {
                     return userConfigValue;
                 }
@@ -116,9 +120,6 @@ namespace SuperbEdit.Base
                 else
                     UserConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter);
             }
-
-            if (ConfigChanged != null)
-                ConfigChanged(this, new EventArgs());
         }
 
 

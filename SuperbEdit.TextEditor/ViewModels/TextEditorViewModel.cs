@@ -5,6 +5,7 @@ using System.Windows;
 using Microsoft.Win32;
 using SuperbEdit.Base;
 using SuperbEdit.TextEditor.Views;
+using System.Windows.Media;
 
 namespace SuperbEdit.TextEditor.ViewModels
 {
@@ -29,6 +30,8 @@ namespace SuperbEdit.TextEditor.ViewModels
         protected override void ReloadConfig(IConfig config)
         {
             ShowLineNumbers = config.RetrieveConfigValue<bool>("text_editor.show_line_numbers");
+            FontFamily = new FontFamily(config.RetrieveConfigValue<string>("text_editor.font_family"));
+            FontSize = (double)new FontSizeConverter().ConvertFrom(config.RetrieveConfigValue<string>("text_editor.font_size"));
         }
        
 
@@ -45,6 +48,41 @@ namespace SuperbEdit.TextEditor.ViewModels
                 {
                     _showLineNumbers = value;
                     NotifyOfPropertyChange(() => ShowLineNumbers);
+                }
+            }
+        }
+
+
+        private FontFamily _fontFamily;
+        public FontFamily FontFamily
+        {
+            get
+            {
+                return _fontFamily;
+            }
+            set
+            {
+                if (_fontFamily != value)
+                {
+                    _fontFamily = value;
+                    NotifyOfPropertyChange(() => FontFamily);
+                }
+            }
+        }
+
+        private double _fontSize;
+        public double FontSize
+        {
+            get
+            {
+                return _fontSize;
+            }
+            set
+            {
+                if (_fontSize != value)
+                {
+                    _fontSize = value;
+                    NotifyOfPropertyChange(() => FontSize);
                 }
             }
         }
@@ -206,5 +244,7 @@ namespace SuperbEdit.TextEditor.ViewModels
         {
             item.TryClose();
         }
+
+       
     }
 }

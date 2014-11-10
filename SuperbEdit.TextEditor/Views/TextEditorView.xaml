@@ -9,8 +9,8 @@
     <Grid>
 		<controls:ModernTextEditor
             x:Name="ModernTextEditor"
-            FontFamily="Consolas"
+            FontFamily="{Binding FontFamily}"
             ShowLineNumbers="{Binding ShowLineNumbers}"
-            FontSize="10pt" Text="{Binding Path=FileContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            FontSize="{Binding FontSize}" Text="{Binding Path=FileContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>
