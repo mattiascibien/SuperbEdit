@@ -10,6 +10,7 @@
 		<controls:ModernTextEditor
             x:Name="ModernTextEditor"
             FontFamily="Consolas"
+            ShowLineNumbers="{Binding ShowLineNumbers}"
             FontSize="10pt" Text="{Binding Path=FileContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

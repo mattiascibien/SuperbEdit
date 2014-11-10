@@ -12,7 +12,7 @@ namespace SuperbEdit.Base.ViewModels
     [ExportTab(Name = "FallbackTab")]
     public class FallbackTabViewModel : Tab
     {
-        public FallbackTabViewModel()
+        public FallbackTabViewModel() : base(null)
         {
             DisplayName = "Error";
         }
@@ -62,6 +62,7 @@ namespace SuperbEdit.Base.ViewModels
         {
 
         }
+
 
         //TODO: should not be here.
         public void CloseItem(Tab item)

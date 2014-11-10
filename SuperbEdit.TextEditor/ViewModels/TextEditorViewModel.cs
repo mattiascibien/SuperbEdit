@@ -11,28 +11,42 @@ namespace SuperbEdit.TextEditor.ViewModels
     [ExportTab(Name="TextEditor")]
     public sealed class TextEditorViewModel : Tab
     {
-        private IConfig _config;
         private string _fileContent;
         private string _filePath;
 
         private string _originalFileContent = "";
 
         [ImportingConstructor]
-        public TextEditorViewModel(IConfig config)
+        public TextEditorViewModel(IConfig config) : base(config)
         {
             DisplayName = "New File";
-
-            _config = config;
             _originalFileContent = "";
             FileContent = _originalFileContent;
             FilePath = "";
-            InitializeControl();
         }
 
-        private void InitializeControl()
+
+        protected override void ReloadConfig(IConfig config)
         {
-            var view = GetView() as TextEditorView;
-            view.ModernTextEditor.ShowLineNumbers = _config.RetrieveConfigValue<bool>("show_line_numbers");
+            ShowLineNumbers = config.RetrieveConfigValue<bool>("text_editor.show_line_numbers");
+        }
+       
+
+        private bool _showLineNumbers = true;
+        public bool ShowLineNumbers
+        {
+            get
+            {
+                return _showLineNumbers;
+            }
+            set
+            {
+                if(_showLineNumbers != value)
+                {
+                    _showLineNumbers = value;
+                    NotifyOfPropertyChange(() => ShowLineNumbers);
+                }
+            }
         }
 
         public string FilePath

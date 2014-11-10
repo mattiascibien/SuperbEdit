@@ -116,6 +116,9 @@ namespace SuperbEdit.Base
                 else
                     UserConfig = JsonConvert.DeserializeObject<ExpandoObject>(jsonString, converter);
             }
+
+            if (ConfigChanged != null)
+                ConfigChanged(this, new EventArgs());
         }
 
 
@@ -144,5 +147,7 @@ namespace SuperbEdit.Base
             return default(T);
         }
 
+
+        public event EventHandler ConfigChanged;
     }
 }

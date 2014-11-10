@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using System;
 
 namespace SuperbEdit.Base
 {
@@ -10,9 +11,26 @@ namespace SuperbEdit.Base
     {
         private bool _hasChanges;
 
-        protected Tab()
+        protected Tab(IConfig config)
         {
             HasChanges = false;
+
+            if(config != null)
+            {
+                config.ConfigChanged += config_ConfigChanged;
+            }
+        }
+
+
+        void config_ConfigChanged(object sender, EventArgs e)
+        {
+            ReloadConfig(sender as IConfig);
+        }
+
+
+        protected virtual void ReloadConfig(IConfig config)
+        {
+
         }
 
         public bool HasChanges
