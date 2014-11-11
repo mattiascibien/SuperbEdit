@@ -63,5 +63,10 @@ namespace SuperbEdit.Base
 
 
         void RegisterCommands();
+
+
+        void CloseItem(Tab item);
+
+        void DetachItem(Tab item);
     }
 }

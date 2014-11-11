@@ -45,5 +45,16 @@ namespace SuperbEdit.Base
             get;
             set;
         }
+
+        public void CloseItem(Tab item)
+        {
+            item.TryClose();
+        }
+
+        public void DetachItem(Tab item)
+        {
+            var shell = item.Parent as IShell;
+            shell.DetachItem(item);
+        }
     }
 }

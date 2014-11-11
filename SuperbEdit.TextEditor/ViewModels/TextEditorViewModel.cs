@@ -173,16 +173,6 @@ namespace SuperbEdit.TextEditor.ViewModels
                 callback(true);
             }
         }
-
-        public void DetachItem(Tab item)
-        {
-            var shell = item.Parent as IShell;
-            shell.DetachItem(item);
-        }
-
-        public void CloseItem(Tab item)
-        {
-            item.TryClose();
-        }
+        
     }
 }

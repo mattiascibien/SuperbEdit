@@ -63,12 +63,6 @@ namespace SuperbEdit.Base.ViewModels
 
         }
 
-        //TODO: should not be here.
-        public void CloseItem(Tab item)
-        {
-            item.TryClose();
-        }
-
         public override string FileContent
         {
             get
