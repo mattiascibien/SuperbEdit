@@ -7,7 +7,7 @@ namespace SuperbEdit.Base
     /// </summary>
     public interface ITab : IScreen
     {
-
+        string FileContent { get; set; }
         /// <summary>
         /// True if the current file has differences from the one stored in the disc.
         /// Determines the visibility of the '*' in the tab heade

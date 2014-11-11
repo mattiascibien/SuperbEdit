@@ -8,6 +8,8 @@ namespace SuperbEdit.Base
     /// </summary>
     public abstract class Tab : Screen, ITab
     {
+
+
         private bool _hasChanges;
 
         protected Tab()
@@ -37,5 +39,11 @@ namespace SuperbEdit.Base
         public abstract void Paste();
         public abstract void SetFile(string filePath);
         public abstract void RegisterCommands();
+
+        public abstract string FileContent
+        {
+            get;
+            set;
+        }
     }
 }

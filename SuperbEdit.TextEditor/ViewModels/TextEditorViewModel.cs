@@ -40,7 +40,7 @@ namespace SuperbEdit.TextEditor.ViewModels
             }
         }
 
-        public string FileContent
+        public override string FileContent
         {
             get { return _fileContent; }
             set

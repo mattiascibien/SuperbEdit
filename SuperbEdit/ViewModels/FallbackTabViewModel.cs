@@ -68,5 +68,17 @@ namespace SuperbEdit.Base.ViewModels
         {
             item.TryClose();
         }
+
+        public override string FileContent
+        {
+            get
+            {
+                return "";
+            }
+            set
+            {
+                //Does nothing
+            }
+        }
     }
 }
