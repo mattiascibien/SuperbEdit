@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30915.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit", "SuperbEdit\SuperbEdit.csproj", "{D639B85B-13BA-4A1D-89FA-939938CE071B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -22,6 +22,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{594AFE82-3EAD-4706-9F6A-02F8671C7084}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinLoader", "SkinLoaderAdapter\SkinLoader.csproj", "{1F530349-3F69-4ECA-9189-0255C30F2E6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8F3AEEF8-3A60-40A3-B1F9-2B09217C4C81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperbEdit.Tests.Base", "SuperbEdit.Tests.Base\SuperbEdit.Tests.Base.csproj", "{7C56FC05-F497-48ED-9817-05C5BC29BE54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +70,12 @@ Global
 		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Release-Portable|Any CPU.ActiveCfg = Release|Any CPU
 		{1F530349-3F69-4ECA-9189-0255C30F2E6E}.Release-Portable|Any CPU.Build.0 = Release|Any CPU
+		{7C56FC05-F497-48ED-9817-05C5BC29BE54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C56FC05-F497-48ED-9817-05C5BC29BE54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C56FC05-F497-48ED-9817-05C5BC29BE54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C56FC05-F497-48ED-9817-05C5BC29BE54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C56FC05-F497-48ED-9817-05C5BC29BE54}.Release-Portable|Any CPU.ActiveCfg = Release|Any CPU
+		{7C56FC05-F497-48ED-9817-05C5BC29BE54}.Release-Portable|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +86,6 @@ Global
 		{69CF859D-5406-473B-B2B2-C87E175CDFEF} = {B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}
 		{2BA3BCF7-F571-4165-B840-42D374B32738} = {B5CB92F8-5D7E-4ACD-A182-0058F8E27F74}
 		{1F530349-3F69-4ECA-9189-0255C30F2E6E} = {594AFE82-3EAD-4706-9F6A-02F8671C7084}
+		{7C56FC05-F497-48ED-9817-05C5BC29BE54} = {8F3AEEF8-3A60-40A3-B1F9-2B09217C4C81}
 	EndGlobalSection
 EndGlobal

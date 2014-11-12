@@ -1,0 +1,11 @@
+﻿{
+    "test_string": "test_string_value",
+    "test_int": 1,
+    "test_double": 2.0,
+    "test_array_double": [ 4.0, 8.0, 15.0, 16.0, 23.0, 42.0 ],
+
+    "test_object": {
+        "integer": 1,
+        "string" :  "test_object_string_value"
+    }
+}
