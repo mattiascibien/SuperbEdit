@@ -25,8 +25,8 @@ namespace SuperbEdit.Base
             ReloadConfig(false, userConfig);
             ReloadConfig(true, defaultConfig);
 
-            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) {Filter = "config.json"};
-            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) {Filter = "config.json"};
+            _defaultConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(defaultConfig)) {Filter = "config.json"};
+            _userConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(userConfig)) {Filter = "config.json"};
 
             _defaultConfigWatcher.EnableRaisingEvents = true;
             _userConfigWatcher.EnableRaisingEvents = true;
