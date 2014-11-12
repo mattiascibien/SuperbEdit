@@ -1,0 +1,4 @@
+﻿{
+    "not_present_in_default":  "hello",
+    "test_override_string": "override"
+}

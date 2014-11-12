@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SuperbEdit.Base;
 using System.Collections.Generic;
 using System.Linq;
+using Moq;
+using System.IO;
 
 namespace SuperbEdit.Tests.Base
 {
@@ -15,7 +17,8 @@ namespace SuperbEdit.Tests.Base
         [TestInitialize]
         public void Initialize()
         {
-            config = new Config();
+            config = new Config(Path.Combine(Folders.ProgramFolder, "config.json"),
+                Path.Combine(Folders.ProgramFolder, "config_user.json"));
         }
 
 
@@ -55,6 +58,26 @@ namespace SuperbEdit.Tests.Base
         public void StringWithinObjectTest()
         {
             TestSimpleType<string>(config, "test_object.string", "test_object_string_value");
+        }
+
+        [TestMethod]
+        public void OverriddenStringTest()
+        {
+            TestSimpleType<string>(config, "test_override_string", "override");
+        }
+
+        [TestMethod]
+        public void NotPresentInDefaultStringTest()
+        {
+            TestSimpleType<string>(config, "not_present_in_default", "hello");
+        }
+
+        [TestMethod]
+        public void NotPresentInFileTest()
+        {
+            string actual = config.RetrieveConfigValue<string>("fakevalue");
+
+            Assert.IsNull(actual);
         }
 
         void TestList<T>(Config config, string path, List<T> expected)

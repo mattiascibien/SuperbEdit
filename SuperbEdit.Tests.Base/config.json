@@ -1,5 +1,6 @@
 ﻿{
     "test_string": "test_string_value",
+    "test_override_string": "basic",
     "test_int": 1,
     "test_double": 2.0,
     "test_array_double": [ 4.0, 8.0, 15.0, 16.0, 23.0, 42.0 ],
