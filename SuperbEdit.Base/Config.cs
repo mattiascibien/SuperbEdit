@@ -19,11 +19,11 @@ namespace SuperbEdit.Base
 
         private dynamic _userConfigExpandoObject;
 
-        [ImportingConstructor]
-        public Config()
+        //Used only for test
+        internal Config(string defaultConfig, string userConfig)
         {
-            ReloadConfig(false, Path.Combine(Folders.UserFolder, "config.json"));
-            ReloadConfig(true, Path.Combine(Folders.ProgramFolder, "config.json"));
+            ReloadConfig(false, userConfig);
+            ReloadConfig(true, defaultConfig);
 
             _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) {Filter = "config.json"};
             _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) {Filter = "config.json"};
@@ -33,6 +33,14 @@ namespace SuperbEdit.Base
 
             _defaultConfigWatcher.Changed += DefaultConfigChanged;
             _userConfigWatcher.Changed += UserConfigChanged;
+        }
+
+        [ImportingConstructor]
+        public Config()
+            : this(Path.Combine(Folders.ProgramFolder, "config.json"),
+                Path.Combine(Folders.UserFolder, "config.json"))
+        {
+            
         }
 
         public dynamic UserConfig
