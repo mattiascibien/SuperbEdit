@@ -144,5 +144,15 @@ namespace SuperbEdit.Base
             return default(T);
         }
 
+
+        /// <summary>
+        /// Helper method for getting a keybind in the file
+        /// Used by actions
+        /// </summary>
+        /// <returns>The specified keybind</returns>
+        public string RetrieveKeyBinding(string bindName)
+        {
+            return RetrieveConfigValue<string>(string.Format("key_bindings.{0}", bindName));
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace SuperbEdit.Actions
         [Import] private TabService tabService;
 
 
-        public NewFileAction() : base("New File", "Creates a new file")
+        public NewFileAction() : base("New File", "Creates a new file", "file_new")
         {
         }
 

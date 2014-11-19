@@ -10,6 +10,7 @@ namespace SuperbEdit.Base
         string Name { get; }
         string Description { get; }
         bool IsSeparator { get; }
+        string Shortcut { get; }
 
         IEnumerable<IActionItem> Items { get; }
 

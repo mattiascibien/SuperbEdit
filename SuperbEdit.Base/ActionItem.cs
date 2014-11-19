@@ -25,14 +25,23 @@ namespace SuperbEdit.Base
     /// </summary>
     public abstract class ActionItem : IActionItem
     {
+
+        protected ActionItem(string name, string description, string keyBind)
+            : this(name, description)
+        {
+            Shortcut = "Ctrl+0";
+        }
+
         protected ActionItem(string name, string description)
         {
             Name = name;
             Description = description;
             IsSeparator = false;
             Items = null;
+            Shortcut = "";
         }
 
+        public string Shortcut { get; private set; }
 
         /// <summary>
         /// Name (text) of the action

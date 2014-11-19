@@ -1,3 +1,9 @@
 ﻿{
-    "default_tab": "TextEditor"
+    "default_tab": "TextEditor",
+
+    //Default Keybindings
+    "key_bindings": {
+        "file_new": "Ctrl+N",
+        "file_open":  "Ctrl+O"
+    }
 }
