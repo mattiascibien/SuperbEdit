@@ -29,11 +29,12 @@ namespace SuperbEdit.TextEditor.ViewModels
 
         protected override void ReloadConfig(IConfig config)
         {
-            ShowLineNumbers = config.RetrieveConfigValue<bool>("text_editor.show_line_numbers");
-            FontFamily = new FontFamily(config.RetrieveConfigValue<string>("text_editor.font_family"));
-            FontSize = (double)new FontSizeConverter().ConvertFrom(config.RetrieveConfigValue<string>("text_editor.font_size"));
+            ShowLineNumbers = config.RetrieveConfigValue<bool>("text_editor.show_line_numbers", true);
+            WordWrap = config.RetrieveConfigValue<bool>("text_editor.wrapping", false);
+            FontFamily = new FontFamily(config.RetrieveConfigValue<string>("text_editor.font_family", "Consolas"));
+            FontSize = (double)new FontSizeConverter().ConvertFrom(config.RetrieveConfigValue<string>("text_editor.font_size", "10pt"));
         }
-       
+
 
         private bool _showLineNumbers = true;
         public bool ShowLineNumbers
@@ -52,6 +53,22 @@ namespace SuperbEdit.TextEditor.ViewModels
             }
         }
 
+        private bool _wordWrap = true;
+        public bool WordWrap
+        {
+            get
+            {
+                return _wordWrap;
+            }
+            set
+            {
+                if (_wordWrap != value)
+                {
+                    _wordWrap = value;
+                    NotifyOfPropertyChange(() => WordWrap);
+                }
+            }
+        }
 
         private FontFamily _fontFamily;
         public FontFamily FontFamily

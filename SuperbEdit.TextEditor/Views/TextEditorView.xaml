@@ -11,6 +11,7 @@
             x:Name="ModernTextEditor"
             FontFamily="{Binding FontFamily}"
             ShowLineNumbers="{Binding ShowLineNumbers}"
+            WordWrap="{Binding WordWrap}"
             FontSize="{Binding FontSize}" Text="{Binding Path=FileContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>
