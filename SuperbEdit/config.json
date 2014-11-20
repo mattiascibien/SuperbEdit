@@ -1,4 +1,3 @@
 ﻿{
-    "default_tab": "TextEditor",
-    "disabled_packages": [ "DummyModule" ]
+    "default_tab": "TextEditor"
 }

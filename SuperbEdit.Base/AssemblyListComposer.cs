@@ -44,7 +44,7 @@ namespace SuperbEdit.Base
         {
             foreach (string assembly in Directory.GetFiles(folder, "*.dll"))
             {
-                if(!DisabledPackaged.IsDisabled(Path.GetFileName(assembly)))
+                if(!DisabledPackaged.IsDisabled(Path.GetFileNameWithoutExtension(assembly)))
                     assemblies.Add(Assembly.LoadFrom(assembly));
             }
 
