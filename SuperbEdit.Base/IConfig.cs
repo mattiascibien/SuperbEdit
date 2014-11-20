@@ -34,5 +34,8 @@
         /// <param name="defaultValue">Value to be returned if config value cannot be found</param>
         /// <returns>Retrieved config value or defaultValue</returns>
         T RetrieveConfigValue<T>(string path, T defaultValue);
+
+
+        string RetrieveKeyBinding(string bindName);
     }
 }

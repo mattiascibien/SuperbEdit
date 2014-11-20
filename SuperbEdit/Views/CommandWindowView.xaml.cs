@@ -28,6 +28,18 @@ namespace SuperbEdit.Views
                 ExecuteSelectedAction();
                 e.Handled = true;
             }
+            else if (e.Key == Key.Escape)
+            {
+                HideMe();
+            }
+        }
+
+        private void HideMe()
+        {
+            var ancestor = VisualTreeHelper.GetParent(VisualTreeHelper.GetParent(this)) as UIElement;
+            ancestor.Visibility = Visibility.Collapsed;
+            TextBox.Text = "";
+            ListBox.SelectedIndex = -1;
         }
 
         private void ExecuteSelectedAction()
@@ -41,10 +53,7 @@ namespace SuperbEdit.Views
             if (action != null)
             {
                 action.Execute();
-                var ancestor = VisualTreeHelper.GetParent(VisualTreeHelper.GetParent(this)) as UIElement;
-                ancestor.Visibility = Visibility.Collapsed;
-                TextBox.Text = "";
-                ListBox.SelectedIndex = -1;
+                HideMe();
             }
         }
 

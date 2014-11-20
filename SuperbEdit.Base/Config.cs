@@ -19,20 +19,28 @@ namespace SuperbEdit.Base
 
         private dynamic _userConfigExpandoObject;
 
-        [ImportingConstructor]
-        public Config()
+        //Used only for test
+        internal Config(string defaultConfig, string userConfig)
         {
-            ReloadConfig(false, Path.Combine(Folders.UserFolder, "config.json"));
-            ReloadConfig(true, Path.Combine(Folders.ProgramFolder, "config.json"));
+            ReloadConfig(false, userConfig);
+            ReloadConfig(true, defaultConfig);
 
-            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) {Filter = "config.json"};
-            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) {Filter = "config.json"};
+            _defaultConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(defaultConfig)) {Filter = Path.GetFileName(defaultConfig)};
+            _userConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(userConfig)) { Filter = Path.GetFileName(userConfig) };
 
             _defaultConfigWatcher.EnableRaisingEvents = true;
             _userConfigWatcher.EnableRaisingEvents = true;
 
             _defaultConfigWatcher.Changed += DefaultConfigChanged;
             _userConfigWatcher.Changed += UserConfigChanged;
+        }
+
+        [ImportingConstructor]
+        public Config()
+            : this(Path.Combine(Folders.ProgramFolder, "config.json"),
+                Path.Combine(Folders.UserFolder, "config.json"))
+        {
+            
         }
 
         public dynamic UserConfig
@@ -144,5 +152,15 @@ namespace SuperbEdit.Base
             return default(T);
         }
 
+
+        /// <summary>
+        /// Helper method for getting a keybind in the file
+        /// Used by actions
+        /// </summary>
+        /// <returns>The specified keybind</returns>
+        public string RetrieveKeyBinding(string bindName)
+        {
+            return RetrieveConfigValue<string>(string.Format("key_bindings.{0}", bindName));
+        }
     }
 }

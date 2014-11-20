@@ -11,7 +11,7 @@ namespace SuperbEdit.Actions
         [Import] private Lazy<IShell> shell;
         [Import] private TabService tabService;
 
-        public OpenFileAction() : base("Open", "Opens a file from the filesystem.")
+        public OpenFileAction() : base("Open", "Opens a file from the filesystem.", "File.Open")
         {
         }
 

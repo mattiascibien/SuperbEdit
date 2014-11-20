@@ -10,7 +10,7 @@ namespace SuperbEdit.Actions
         [Import] private Lazy<IShell> shell;
 
         public CutAction()
-            : base("Cut", "Cuts selected text in active editor")
+            : base("Cut", "Cuts selected text in active editor", "Edit.Cut")
         {
         }
 

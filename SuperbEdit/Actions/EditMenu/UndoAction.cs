@@ -9,7 +9,7 @@ namespace SuperbEdit.Actions
     {
         [Import] private Lazy<IShell> shell;
 
-        public UndoAction() : base("Undo", "Undo last action in active editor")
+        public UndoAction() : base("Undo", "Undo last action in active editor", "Edit.Undo")
         {
         }
 

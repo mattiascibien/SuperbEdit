@@ -25,14 +25,23 @@ namespace SuperbEdit.Base
     /// </summary>
     public abstract class ActionItem : IActionItem
     {
+
+        protected ActionItem(string name, string description, string keyBind)
+            : this(name, description)
+        {
+            Shortcut = KeybindingConfig.RetrieveKeyBind(keyBind);
+        }
+
         protected ActionItem(string name, string description)
         {
             Name = name;
             Description = description;
             IsSeparator = false;
             Items = null;
+            Shortcut = "";
         }
 
+        public string Shortcut { get; private set; }
 
         /// <summary>
         /// Name (text) of the action
@@ -57,6 +66,21 @@ namespace SuperbEdit.Base
         {
             get;
             set;
+        }
+
+
+
+        //ICommand use
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public void Execute(object parameter)
+        {
+            this.Execute();
         }
     }
 

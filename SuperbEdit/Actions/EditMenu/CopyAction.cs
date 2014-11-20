@@ -10,7 +10,7 @@ namespace SuperbEdit.Actions
         [Import] private Lazy<IShell> shell;
 
         public CopyAction()
-            : base("Copy", "Cuts selected text in active editor")
+            : base("Copy", "Cuts selected text in active editor", "Edit.Copy")
         {
         }
 
