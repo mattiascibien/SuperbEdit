@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.Base
 {
-    public static class DisabledPackaged
+    internal static class DisabledPackaged
     {
         static List<object> disabledPackages;
 
         static DisabledPackaged()
         {
+            //We load config in this special way to check the disabled packages
             Config config = new Config();
 
             disabledPackages = config.RetrieveConfigValue<List<object>>("disabled_packages", new List<object>());

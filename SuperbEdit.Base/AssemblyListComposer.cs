@@ -52,7 +52,7 @@ namespace SuperbEdit.Base
             {
                 if (!subDir.EndsWith("x86") && !subDir.EndsWith("x64"))
                 {
-                    if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetDirectoryName(subDir))))
+                    if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
                         GetAssembliesInFolder(assemblies, subDir);
                 }
                 else
