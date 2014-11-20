@@ -109,7 +109,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="AssemblyListComposer.cs" />
     <Compile Include="CommandLineOptions\OpenFileCommand.cs" />
     <Compile Include="Controls\DockPanelSplitter.cs" />
     <Compile Include="Controls\SuperbWindow.cs" />
