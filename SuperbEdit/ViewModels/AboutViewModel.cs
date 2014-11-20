@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Caliburn.Micro;
+using SuperbEdit.Base;
 
 namespace SuperbEdit.ViewModels
 {
