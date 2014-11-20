@@ -8,13 +8,13 @@ namespace SuperbEdit.Base
 {
     public static class DisabledPackaged
     {
-        static List<string> disabledPackages;
+        static List<object> disabledPackages;
 
         static DisabledPackaged()
         {
             Config config = new Config();
 
-            disabledPackages = config.RetrieveConfigValue<List<string>>("disabled_packages", new List<string>());
+            disabledPackages = config.RetrieveConfigValue<List<object>>("disabled_packages", new List<object>());
 
             config.Dispose();
         }
