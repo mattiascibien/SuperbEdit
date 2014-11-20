@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Actions\FileMenu\OpenFolderAction.cs" />
     <Compile Include="Actions\ViewMenu\FolderPanelAction.cs" />
+    <Compile Include="CommandLineOptions\OpenFolderCommand.cs" />
     <Compile Include="Model\TreeItemModel.cs" />
     <Compile Include="ViewModels\FolderPanelViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
