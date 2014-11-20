@@ -10,7 +10,7 @@ namespace SuperbEdit.Actions
         [Import] private Lazy<IShell> shell;
 
         public RedoAction()
-            : base("Redo", "Redoes the last action in active editor")
+            : base("Redo", "Redoes the last action in active editor", "Edit.Redo")
         {
         }
 

@@ -29,7 +29,7 @@ namespace SuperbEdit.Base
         protected ActionItem(string name, string description, string keyBind)
             : this(name, description)
         {
-            Shortcut = "Ctrl+0";
+            Shortcut = KeybindingConfig.RetrieveKeyBind(keyBind);
         }
 
         protected ActionItem(string name, string description)

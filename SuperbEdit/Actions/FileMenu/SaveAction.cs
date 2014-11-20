@@ -9,7 +9,7 @@ namespace SuperbEdit.Actions
     {
         [Import] private Lazy<IShell> shell;
 
-        public SaveAction() : base("Save", "Saves the current file.")
+        public SaveAction() : base("Save", "Saves the current file.", "File.Save")
         {
         }
 

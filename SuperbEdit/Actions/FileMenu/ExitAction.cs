@@ -9,7 +9,7 @@ namespace SuperbEdit.Actions
     {
         [Import] private Lazy<IShell> shell;
 
-        public ExitAction() : base("Exit", "Closes the application.")
+        public ExitAction() : base("Exit", "Closes the application.", "File.Exit")
         {
         }
 
