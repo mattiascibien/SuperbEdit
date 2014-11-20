@@ -2,6 +2,7 @@
     "File": {
         "New": "Ctrl+N",
         "Open": "Ctrl+O",
+        "OpenFolder": "Ctrl+Shift+O",
         "Save": "Ctrl+S",
         "SaveAll": "Ctrl+Shift+S",
         "Exit": "Alt+F4"

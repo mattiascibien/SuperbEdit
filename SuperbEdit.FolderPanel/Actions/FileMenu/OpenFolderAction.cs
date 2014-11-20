@@ -19,7 +19,7 @@ namespace SuperbEdit.FolderPanel.Actions
         private FolderPanelViewModel _folderPanel;
 
         public OpenFolderAction()
-            : base("Open Folder...", "Opens a folder in the folder panel.")
+            : base("Open Folder...", "Opens a folder in the folder panel.", "File.OpenFolder")
         {
         }
 

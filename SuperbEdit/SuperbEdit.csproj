@@ -112,8 +112,11 @@
     <Compile Include="AssemblyListComposer.cs" />
     <Compile Include="Controls\DockPanelSplitter.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToKeyBinding.cs" />
+    <Compile Include="Triggers\InputBindingTrigger.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
+    <Compile Include="Triggers\InteractivityHelper.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CommandWindowViewModel.cs" />
     <Compile Include="ViewModels\FallbackTabViewModel.cs" />
