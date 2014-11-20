@@ -34,5 +34,11 @@ namespace SuperbEdit.FolderPanel.CommandLineOptions
                 });
             }
         }
+
+
+        public string HelpString
+        {
+            get { return "Opens the specified folder in the Folder Panel"; }
+        }
     }
 }

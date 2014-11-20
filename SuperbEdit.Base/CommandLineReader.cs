@@ -23,6 +23,7 @@ namespace SuperbEdit.Base
     {
         string ShortCommand { get; }
         string Command { get; }
+        string HelpString { get; }
         Action<string> Action { get; }
     }
 
@@ -37,7 +38,8 @@ namespace SuperbEdit.Base
             optionSet = new OptionSet();
             foreach (var option in cmdLineOptions)
             {
-                optionSet.Add(option.ShortCommand + "|" + option.Command + "", option.Action);
+
+                optionSet.Add(option.ShortCommand + "|" + option.Command + "", option.HelpString, option.Action);
             }
         }
 
@@ -108,6 +110,12 @@ namespace SuperbEdit.Base
                         WriteToConsole(optionsWriter.ToString());
                     });
                 }
+            }
+
+
+            public string HelpString
+            {
+                get { return "Shows the Command-Line Help"; }
             }
         }
     }

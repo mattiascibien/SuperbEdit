@@ -39,5 +39,11 @@ namespace SuperbEdit.CommandLineOptions
                 });
             }
         }
+
+
+        public string HelpString
+        {
+            get { return "Opens the specified file"; }
+        }
     }
 }
