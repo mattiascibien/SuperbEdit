@@ -111,6 +111,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="AssemblyListComposer.cs" />
     <Compile Include="Controls\DockPanelSplitter.cs" />
+    <Compile Include="Controls\SuperbWindow.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\StringToKeyBinding.cs" />
     <Compile Include="Triggers\InputBindingTrigger.cs" />

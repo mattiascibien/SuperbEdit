@@ -1,4 +1,4 @@
-﻿<Window
+﻿<controls:SuperbWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cal="http://www.caliburnproject.org"
@@ -7,7 +7,7 @@
         xmlns:triggers="clr-namespace:SuperbEdit.Triggers"
         xmlns:controls="clr-namespace:SuperbEdit.Controls"
         xmlns:Converters="clr-namespace:SuperbEdit.Converters" x:Class="SuperbEdit.Views.ShellView"
-        Icon="/SuperbEdit;component/Assets/icon.ico">
+        Icon="/SuperbEdit;component/Assets/icon.ico" GlobalInputBindings="{Binding GlobalInputBindings}">
     <Window.Resources>
         <ResourceDictionary>
             <Converters:StringToKeyBinding x:Key="StringToKeyBinding"/>
@@ -16,20 +16,7 @@
                 <Setter Property="ToolTip" Value="{Binding Description}" />
                 <Setter Property="InputGestureText" Value="{Binding Shortcut}" />
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
-                <Setter Property="cal:Message.Attach" Value="[Event Click] = [Action Execute()]" />
-                <Setter Property="int:InteractivityItems.Template">
-                    <Setter.Value>
-                        <int:InteractivityTemplate>
-                            <int:InteractivityItems>
-                                <int:InteractivityItems.Triggers>
-                                    <triggers:InputBindingTrigger InputBinding="{Binding Shortcut, Converter={StaticResource StringToKeyBinding}}">
-                                        <cal:ActionMessage MethodName="Execute"/>
-                                    </triggers:InputBindingTrigger>
-                                </int:InteractivityItems.Triggers>
-                            </int:InteractivityItems>
-                        </int:InteractivityTemplate>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="cal:Message.Attach" Value="[Event Click] = [Action Execute()]" /> 
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsSeparator}" Value="true">
                         <Setter Property="Template">
@@ -162,4 +149,4 @@
 
     </DockPanel>
 
-</Window>
+</controls:SuperbWindow>

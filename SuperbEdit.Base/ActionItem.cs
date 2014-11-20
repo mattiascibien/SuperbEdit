@@ -67,6 +67,21 @@ namespace SuperbEdit.Base
             get;
             set;
         }
+
+
+
+        //ICommand use
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public void Execute(object parameter)
+        {
+            this.Execute();
+        }
     }
 
     public interface IActionItemMetadata
