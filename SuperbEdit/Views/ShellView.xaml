@@ -15,7 +15,8 @@
                 <Setter Property="ToolTip" Value="{Binding Description}" />
                 <Setter Property="InputGestureText" Value="{Binding Shortcut}" />
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
-                <Setter Property="cal:Message.Attach" Value="[Event Click] = [Action Execute()]" /> 
+                <!-- Mattias: seems that actions are executed twice with the new implementation -->
+                <!--<Setter Property="cal:Message.Attach" Value="[Event Click] = [Action ExecuteAction()]" />--> 
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsSeparator}" Value="true">
                         <Setter Property="Template">
