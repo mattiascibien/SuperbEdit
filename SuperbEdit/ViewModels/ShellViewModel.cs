@@ -29,6 +29,10 @@ namespace SuperbEdit.ViewModels
         private bool _isSecondaryWindow;
 
         [Import] private IConfig config;
+
+
+        [Import]
+        private CommandLineReader cmdLineReader;
         private bool isFullScreen;
 
         public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
@@ -38,6 +42,12 @@ namespace SuperbEdit.ViewModels
             DisplayName = "SuperbEdit";
             _parentViewModel = parent;
 
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+            cmdLineReader.ExecuteCommandLine();
         }
 
         [ImportingConstructor]

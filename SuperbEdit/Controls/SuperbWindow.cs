@@ -29,7 +29,6 @@ namespace SuperbEdit.Controls
             set
             {
                 SetValue(GlobalInputBindingsProperty, value);
-
             }
         }
     }
