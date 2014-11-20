@@ -4,7 +4,6 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:int="clr-namespace:System.Windows.Interactivity"
-        xmlns:triggers="clr-namespace:SuperbEdit.Triggers"
         xmlns:controls="clr-namespace:SuperbEdit.Controls"
         xmlns:Converters="clr-namespace:SuperbEdit.Converters" x:Class="SuperbEdit.Views.ShellView"
         Icon="/SuperbEdit;component/Assets/icon.ico" GlobalInputBindings="{Binding GlobalInputBindings}">
