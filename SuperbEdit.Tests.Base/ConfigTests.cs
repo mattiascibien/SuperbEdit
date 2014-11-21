@@ -13,9 +13,7 @@ namespace SuperbEdit.Tests.Base
     {
         Config config;
 
-
-        [TestInitialize]
-        public void Initialize()
+        public ConfigTests()
         {
             config = new Config(Path.Combine(Folders.ProgramFolder, "config.json"),
                 Path.Combine(Folders.ProgramFolder, "config_user.json"));
