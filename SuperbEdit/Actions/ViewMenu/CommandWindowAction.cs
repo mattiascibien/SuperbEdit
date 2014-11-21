@@ -13,7 +13,7 @@ namespace SuperbEdit.Actions
 
 
         public CommandWindowAction()
-            : base("Command Window", "Shows or hides the command window")
+            : base("Command Window", "Shows or hides the command window", "View.CommandWindow")
         {
         }
 

@@ -1,0 +1,23 @@
+﻿{
+    "File": {
+        "New": "Ctrl+N",
+        "Open": "Ctrl+O",
+        "OpenFolder": "Ctrl+Shift+O",
+        "Save": "Ctrl+S",
+        "SaveAll": "Ctrl+Shift+S",
+        "Exit": "Alt+F4"
+    },
+
+    "Edit": {
+        "Undo": "Ctrl+Z",
+        "Redo": "Ctrl+Y",
+        "Cut": "Ctrl+X",
+        "Copy": "Ctrl+C",
+        "Paste": "Ctrl+V"
+    },
+
+
+    "View": { 
+        "CommandWindow":  "Ctrl+Shift+P"
+    }
+}

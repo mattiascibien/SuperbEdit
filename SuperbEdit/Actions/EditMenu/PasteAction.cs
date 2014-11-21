@@ -10,7 +10,7 @@ namespace SuperbEdit.Actions
         [Import] private Lazy<IShell> shell;
 
         public PasteAction()
-            : base("Paste", "Paste clipboard text in active editor")
+            : base("Paste", "Paste clipboard text in active editor", "Edit.Paste")
         {
         }
 

@@ -109,9 +109,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="AssemblyListComposer.cs" />
+    <Compile Include="CommandLineOptions\OpenFileCommand.cs" />
     <Compile Include="Controls\DockPanelSplitter.cs" />
+    <Compile Include="Controls\SuperbWindow.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToKeyBinding.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
@@ -151,6 +153,9 @@
     </None>
     <None Include="app.manifest" />
     <None Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="key_bindings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

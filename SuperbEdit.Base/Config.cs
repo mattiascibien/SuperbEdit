@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Dynamic;
@@ -25,8 +25,8 @@ namespace SuperbEdit.Base
             ReloadConfig(false, userConfig);
             ReloadConfig(true, defaultConfig);
 
-            _defaultConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(defaultConfig)) {Filter = "config.json"};
-            _userConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(userConfig)) {Filter = "config.json"};
+            _defaultConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(defaultConfig)) {Filter = Path.GetFileName(defaultConfig)};
+            _userConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(userConfig)) { Filter = Path.GetFileName(userConfig) };
 
             _defaultConfigWatcher.EnableRaisingEvents = true;
             _userConfigWatcher.EnableRaisingEvents = true;
