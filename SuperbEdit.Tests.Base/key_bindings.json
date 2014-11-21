@@ -1,0 +1,10 @@
+﻿{
+    "File": {
+        "New": "Ctrl+N",
+        "Open": "Ctrl+O"
+    },
+
+    "View": { 
+        "CommandWindow":  "Ctrl+Shift+P"
+    }
+}

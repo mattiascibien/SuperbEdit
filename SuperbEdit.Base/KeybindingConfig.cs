@@ -9,7 +9,7 @@ namespace SuperbEdit.Base
 {
     internal static class KeybindingConfig
     {
-        static Config config;
+        internal static Config config;
 
         static readonly string defaultKeyBindings = Path.Combine(Folders.ProgramFolder, "key_bindings.json");
         static readonly string userKeyBindings = Path.Combine(Folders.UserFolder, "key_bindings.json");
