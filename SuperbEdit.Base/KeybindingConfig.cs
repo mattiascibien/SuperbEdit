@@ -9,6 +9,7 @@ namespace SuperbEdit.Base
 {
     internal static class KeybindingConfig
     {
+        //Mattias: internal for running tests only.
         internal static Config config;
 
         static readonly string defaultKeyBindings = Path.Combine(Folders.ProgramFolder, "key_bindings.json");
