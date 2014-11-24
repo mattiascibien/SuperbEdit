@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Dynamic;
@@ -51,6 +51,8 @@ namespace SuperbEdit.Base
                 if (_userConfigExpandoObject != value)
                 {
                     _userConfigExpandoObject = value;
+                    if (ConfigChanged != null)
+                        ConfigChanged(this, new EventArgs());
                     NotifyOfPropertyChange(() => UserConfig);
                 }
             }
@@ -64,6 +66,8 @@ namespace SuperbEdit.Base
                 if (_defaultConfigExpandoObject != value)
                 {
                     _defaultConfigExpandoObject = value;
+                    if (ConfigChanged != null)
+                        ConfigChanged(this, new EventArgs());
                     NotifyOfPropertyChange(() => DefaultConfig);
                 }
             }
@@ -75,7 +79,7 @@ namespace SuperbEdit.Base
             if (UserConfig != null)
             {
                 T userConfigValue = TraverseConfig<T>(UserConfig, properties, 0);
-                if (userConfigValue != null && !userConfigValue.Equals(default(T)))
+                if (userConfigValue != null)
                 {
                     return userConfigValue;
                 }
@@ -88,7 +92,7 @@ namespace SuperbEdit.Base
         {
             T configValue = RetrieveConfigValue<T>(path);
 
-            if (configValue == null || configValue.Equals(default(T)))
+            if (configValue == null)
             {
                 configValue = defaultValue;
             }
@@ -152,15 +156,6 @@ namespace SuperbEdit.Base
             return default(T);
         }
 
-
-        /// <summary>
-        /// Helper method for getting a keybind in the file
-        /// Used by actions
-        /// </summary>
-        /// <returns>The specified keybind</returns>
-        public string RetrieveKeyBinding(string bindName)
-        {
-            return RetrieveConfigValue<string>(string.Format("key_bindings.{0}", bindName));
-        }
+        public event EventHandler ConfigChanged;
     }
 }

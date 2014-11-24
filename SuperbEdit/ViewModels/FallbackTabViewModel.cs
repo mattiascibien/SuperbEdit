@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace SuperbEdit.Base.ViewModels
     [ExportTab(Name = "FallbackTab")]
     public class FallbackTabViewModel : Tab
     {
-        public FallbackTabViewModel()
+        public FallbackTabViewModel() : base(null)
         {
             DisplayName = "Error";
         }

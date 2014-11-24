@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Windows;
@@ -6,6 +6,7 @@ using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
 using SuperbEdit.TextEditor.Views;
+using System.Windows.Media;
 
 namespace SuperbEdit.TextEditor.ViewModels
 {
@@ -17,14 +18,91 @@ namespace SuperbEdit.TextEditor.ViewModels
 
         private string _originalFileContent = "";
 
-
-        public TextEditorViewModel()
+        [ImportingConstructor]
+        public TextEditorViewModel(IConfig config) : base(config)
         {
             DisplayName = "New File";
-
             _originalFileContent = "";
             FileContent = _originalFileContent;
             FilePath = "";
+        }
+
+
+        protected override void ReloadConfig(IConfig config)
+        {
+            ShowLineNumbers = config.RetrieveConfigValue<bool>("text_editor.show_line_numbers", true);
+            WordWrap = config.RetrieveConfigValue<bool>("text_editor.wrapping", false);
+            FontFamily = new FontFamily(config.RetrieveConfigValue<string>("text_editor.font_family", "Consolas"));
+            FontSize = (double)new FontSizeConverter().ConvertFrom(config.RetrieveConfigValue<string>("text_editor.font_size", "10pt"));
+        }
+
+
+        private bool _showLineNumbers = true;
+        public bool ShowLineNumbers
+        {
+            get
+            {
+                return _showLineNumbers;
+            }
+            set
+            {
+                if(_showLineNumbers != value)
+                {
+                    _showLineNumbers = value;
+                    NotifyOfPropertyChange(() => ShowLineNumbers);
+                }
+            }
+        }
+
+        private bool _wordWrap = true;
+        public bool WordWrap
+        {
+            get
+            {
+                return _wordWrap;
+            }
+            set
+            {
+                if (_wordWrap != value)
+                {
+                    _wordWrap = value;
+                    NotifyOfPropertyChange(() => WordWrap);
+                }
+            }
+        }
+
+        private FontFamily _fontFamily;
+        public FontFamily FontFamily
+        {
+            get
+            {
+                return _fontFamily;
+            }
+            set
+            {
+                if (_fontFamily != value)
+                {
+                    _fontFamily = value;
+                    NotifyOfPropertyChange(() => FontFamily);
+                }
+            }
+        }
+
+        private double _fontSize;
+        public double FontSize
+        {
+            get
+            {
+                return _fontSize;
+            }
+            set
+            {
+                if (_fontSize != value)
+                {
+                    _fontSize = value;
+                    NotifyOfPropertyChange(() => FontSize);
+                }
+            }
         }
 
         public string FilePath
@@ -87,31 +165,31 @@ namespace SuperbEdit.TextEditor.ViewModels
         {
             var view = GetView() as TextEditorView;
 
-            view.FileContent.Undo();
+            view.ModernTextEditor.Undo();
         }
 
         public override void Redo()
         {
             var view = GetView() as TextEditorView;
-            view.FileContent.Redo();
+            view.ModernTextEditor.Redo();
         }
 
         public override void Cut()
         {
             var view = GetView() as TextEditorView;
-            view.FileContent.Cut();
+            view.ModernTextEditor.Cut();
         }
 
         public override void Copy()
         {
             var view = GetView() as TextEditorView;
-            view.FileContent.Copy();
+            view.ModernTextEditor.Copy();
         }
 
         public override void Paste()
         {
             var view = GetView() as TextEditorView;
-            view.FileContent.Paste();
+            view.ModernTextEditor.Paste();
         }
 
         public override void SetFile(string filePath)
@@ -173,6 +251,5 @@ namespace SuperbEdit.TextEditor.ViewModels
                 callback(true);
             }
         }
-        
     }
 }
