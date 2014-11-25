@@ -1,7 +1,7 @@
 ﻿﻿using System;
 ﻿using System.Windows;
 
-namespace SuperbEdit.AvalonTextEditor.Controls
+namespace SuperbEdit.TextEditor.Controls
 {
     public class ModernTextEditor: ICSharpCode.AvalonEdit.TextEditor
     {
