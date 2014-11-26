@@ -96,11 +96,14 @@
     <Compile Include="Actions\FileMenu\SaveAllAction.cs" />
     <Compile Include="Actions\FileMenu\SaveAsAction.cs" />
     <Compile Include="Actions\HelpMenu\AboutAction.cs" />
+    <Compile Include="Actions\HelpMenu\WebsiteAction.cs" />
     <Compile Include="Actions\PreferencesMenu\PreferencesGroup.cs" />
     <Compile Include="Actions\HelpMenu\HelpGroup.cs" />
     <Compile Include="Actions\HelpMenu\GitHubAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultPackagesAction.cs" />
     <Compile Include="Actions\PreferencesMenu\DefaultSettingsAction.cs" />
+    <Compile Include="Actions\PreferencesMenu\UserKeybindingsAction.cs" />
+    <Compile Include="Actions\PreferencesMenu\DefaultKeybindingsAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserPackagesAction.cs" />
     <Compile Include="Actions\PreferencesMenu\UserSettingsAction.cs" />
     <Compile Include="Actions\ViewMenu\CommandWindowAction.cs" />

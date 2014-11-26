@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.Actions
 {
-    [ExportAction(Menu = "Additional Resources", Order = 1, Owner = "Shell", RegisterInCommandWindow = false)]
-    public class GitHubAction : ActionItem
+    [ExportAction(Menu = "Additional Resources", Order = 0, Owner = "Shell", RegisterInCommandWindow = false)]
+    public class WebsiteAction : ActionItem
     {
-        public GitHubAction()
-            : base("GitHub", "Opens the official GitHub Repository")
+        public WebsiteAction()
+            : base("Official Website", "Opens the official website")
         {
         }
 
         public override void Execute()
         {
-            Process.Start("http://github.com/superbedit");
+            Process.Start("http://superbedit.github.io");
         }
     }
 }

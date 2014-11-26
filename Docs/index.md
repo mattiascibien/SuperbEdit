@@ -1,6 +1,19 @@
-The MIT License (MIT)
+## Synopsis
 
-Copyright (c) 2014 SuperbEdit Team
+SuperbEdit is an advanced programmers' text editor with a tabbed interface written in C# and WPF. It aims to be extremely customizable and extensible.
+
+## Contributors
+
+This project is run by the [Superbedit Team](http://superbedit.github.io/team)
+
+## Extending the progam
+
+A starter guide on how to extend the program is available on the [GitHub Wiki](https://github.com/SuperbEdit/SuperbEdit/wiki).
+In the future it will be merged with this documentation.
+
+## License
+
+The MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

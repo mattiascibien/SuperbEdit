@@ -10,18 +10,21 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.TextEditor.Actions
 {
-    //This varies from the highlighter action
-    public class HighlighterAction : ActionItem
+    /// <summary>
+    /// Internal action created by the class <see cref="HighlightGroup"/>.
+    /// Provides a way to set the current syntax highlight scheme
+    /// </summary>
+    internal class HighlighterAction : ActionItem
     {
         Lazy<IShell> _shell;
         IHighlightingDefinition _highLighter;
 
 
         public HighlighterAction(IHighlightingDefinition highlighter, Lazy<IShell> shell)
-            : base(highlighter.Name, "Set highlight to: " + highlighter.Name)
+            : base(highlighter.Name, "Set highlighter to: " + highlighter.Name)
         {
             _highLighter = highlighter;
-            //we passs a Lazy IShell so it will not be null at this time
+            //we passs a Lazy IShell so it will be initialized when we call Execute()
             _shell = shell;
         }
 
@@ -29,13 +32,16 @@ namespace SuperbEdit.TextEditor.Actions
 
         public override void Execute()
         {
-            //TODO: better handle this
             var vm = (_shell.Value.ActiveItem as TextEditorViewModel);
 
-            var view = vm.GetView() as TextEditorView;
+            if (vm != null)
+            {
+
+                var view = vm.GetView() as TextEditorView;
 
 
-            view.ModernTextEditor.SyntaxHighlighting = _highLighter;
+                view.ModernTextEditor.SyntaxHighlighting = _highLighter;
+            }
         }
     }
 }
