@@ -16,7 +16,8 @@ namespace SuperbEdit.Actions
 
         public override void Execute()
         {
-            shell.Value.ActiveItem.Paste();
+            if (shell.Value.ActiveItem != null)
+                shell.Value.ActiveItem.Paste();
         }
     }
 }

@@ -16,7 +16,8 @@ namespace SuperbEdit.Actions
 
         public override void Execute()
         {
-            shell.Value.ActiveItem.SaveAs();
+            if (shell.Value.ActiveItem != null)
+                shell.Value.ActiveItem.SaveAs();
         }
     }
 }
