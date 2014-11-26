@@ -5,6 +5,9 @@ using SuperbEdit.Base;
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Class used to load plugins
+    /// </summary>
     public static class AssemblyListComposer
     {
         public static List<Assembly> loadedAssemblies;

@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.TextEditor.Actions
 {
-    //This varies from the highlighter action
+    /// <summary>
+    /// Internal action created by the class <see cref="HighlightGroup"/>.
+    /// Provides a way to set the current syntax highlight scheme
+    /// </summary>
     internal class HighlighterAction : ActionItem
     {
         Lazy<IShell> _shell;

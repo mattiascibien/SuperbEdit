@@ -5,6 +5,9 @@ using System.ComponentModel.Composition;
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Action used to group items in the menus.
+    /// </summary>
     public class GroupItem : ActionItem
     {
         public GroupItem(IEnumerable<Lazy<IActionItem, IActionItemMetadata>> possibilechildren, string name)

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Exports a command line item
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ExportCommandLineOption : ExportAttribute
     {
@@ -19,6 +22,9 @@ namespace SuperbEdit.Base
         }
     }
 
+    /// <summary>
+    /// A command line switch or parameter
+    /// </summary>
     public interface ICommandLineOption
     {
         string ShortCommand { get; }

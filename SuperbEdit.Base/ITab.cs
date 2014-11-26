@@ -7,7 +7,12 @@ namespace SuperbEdit.Base
     /// </summary>
     public interface ITab : IScreen
     {
+        /// <summary>
+        /// The string representation of the file content
+        /// </summary>
+        /// 
         string FileContent { get; set; }
+
         /// <summary>
         /// True if the current file has differences from the one stored in the disc.
         /// Determines the visibility of the '*' in the tab heade
