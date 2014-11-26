@@ -9,9 +9,9 @@ using System.Windows;
 [assembly: AssemblyTitle("SuperbEdit")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("SuperbEdit Team")]
 [assembly: AssemblyProduct("SuperbEdit")]
-[assembly: AssemblyCopyright("Copyright © Mattias Cibien  2014")]
+[assembly: AssemblyCopyright("Copyright © SuperbEdit Team 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
