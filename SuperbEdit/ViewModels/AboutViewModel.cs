@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Caliburn.Micro;
+using SuperbEdit.Base;
 
 namespace SuperbEdit.ViewModels
 {
@@ -11,6 +12,7 @@ namespace SuperbEdit.ViewModels
     {
         public string Name { get; set; }
         public string Version { get; set; }
+        public string Author { get; set; }
     }
 
 
@@ -25,7 +27,8 @@ namespace SuperbEdit.ViewModels
                     .Select(ass => new PackageItem
                     {
                         Name = ass.GetName().Name,
-                        Version = ass.GetName().Version.ToString()
+                        Version = ass.GetName().Version.ToString(),
+                        Author = ass.GetCustomAttribute<AssemblyCompanyAttribute>().Company
                     });
         }
 
@@ -36,6 +39,16 @@ namespace SuperbEdit.ViewModels
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
                 return fvi.FileVersion;
+            }
+        }
+
+
+        public string Copyright
+        {
+            get
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                return assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright;
             }
         }
 

@@ -7,6 +7,8 @@ using System.Windows;
 using Caliburn.Micro;
 using SuperbEdit.Base;
 using SuperbEdit.Views;
+using System.Windows.Input;
+using SuperbEdit.Converters;
 
 namespace SuperbEdit.ViewModels
 {
@@ -27,6 +29,10 @@ namespace SuperbEdit.ViewModels
         private bool _isSecondaryWindow;
 
         [Import] private IConfig config;
+
+
+        [Import]
+        private CommandLineReader cmdLineReader;
         private bool isFullScreen;
 
         public ShellViewModel(IWindowManager windowManager, ShellViewModel parent, bool secondaryWindow)
@@ -36,6 +42,12 @@ namespace SuperbEdit.ViewModels
             DisplayName = "SuperbEdit";
             _parentViewModel = parent;
 
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+            cmdLineReader.ExecuteCommandLine();
         }
 
         [ImportingConstructor]
@@ -49,22 +61,36 @@ namespace SuperbEdit.ViewModels
 
             IList<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions =
                 actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();
-            FileMenuItems = PopulateMenu(enumeratedActions, "File");
+            MenuItems = enumeratedActions.Where(action => action.Metadata.Menu == "Root")
+                .OrderBy(action => action.Metadata.Order)
+                .Select(action => action.Value);
 
-            EditMenuItems = PopulateMenu(enumeratedActions, "Edit");
+            StringToKeyBinding converter = new StringToKeyBinding();
 
-            ViewMenuItems = PopulateMenu(enumeratedActions, "View");
+            InputBindingCollection inputBindings = new InputBindingCollection();
+            foreach (var action in enumeratedActions)
+            {
+                if(!string.IsNullOrEmpty(action.Value.Shortcut))
+                {
+                    KeyGestureConverter keyConv = new KeyGestureConverter();
+                    KeyGesture gesture = (KeyGesture)keyConv.ConvertFromString(action.Value.Shortcut);
+                    InputBinding binding = new InputBinding(action.Value, gesture);
 
-            PreferencesMenuItems = PopulateMenu(enumeratedActions, "Preferences");
+                    inputBindings.Add(binding);
+                }
+            }
 
-            AboutMenuItems = PopulateMenu(enumeratedActions, "About");
+            GlobalInputBindings = inputBindings;
         }
 
-        public IEnumerable<IActionItem> FileMenuItems { get; set; }
-        public IEnumerable<IActionItem> EditMenuItems { get; set; }
-        public IEnumerable<IActionItem> ViewMenuItems { get; set; }
-        public IEnumerable<IActionItem> PreferencesMenuItems { get; set; }
-        public IEnumerable<IActionItem> AboutMenuItems { get; set; }
+
+        public InputBindingCollection GlobalInputBindings
+        {
+            get;
+            set;
+        }
+
+        public IEnumerable<IActionItem> MenuItems { get; set; }
 
         [Import]
         public CommandWindowViewModel CommandWindow

@@ -5,14 +5,13 @@ using SuperbEdit.Base;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof (IActionItem))]
-    [ExportActionMetadata(Menu = "File", Order = 1, Owner = "Shell", RegisterInCommandWindow = true)]
+    [ExportAction(Menu = "File", Order = 1, Owner = "Shell", RegisterInCommandWindow = true)]
     public class OpenFileAction : ActionItem
     {
         [Import] private Lazy<IShell> shell;
         [Import] private TabService tabService;
 
-        public OpenFileAction() : base("Open", "Opens a file from the filesystem.")
+        public OpenFileAction() : base("Open", "Opens a file from the filesystem.", "File.Open")
         {
         }
 

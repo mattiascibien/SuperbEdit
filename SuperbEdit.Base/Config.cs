@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Dynamic;
@@ -11,7 +11,7 @@ using Newtonsoft.Json.Converters;
 namespace SuperbEdit.Base
 {
     [Export(typeof (IConfig))]
-    public class Config : PropertyChangedBase, IConfig, IDisposable
+    internal class Config : PropertyChangedBase, IConfig, IDisposable
     {
         private readonly FileSystemWatcher _defaultConfigWatcher;
         private readonly FileSystemWatcher _userConfigWatcher;
@@ -19,20 +19,28 @@ namespace SuperbEdit.Base
 
         private dynamic _userConfigExpandoObject;
 
-        [ImportingConstructor]
-        public Config()
+        //Used only for test
+        internal Config(string defaultConfig, string userConfig)
         {
-            ReloadConfig(false, Path.Combine(Folders.UserFolder, "config.json"));
-            ReloadConfig(true, Path.Combine(Folders.ProgramFolder, "config.json"));
+            ReloadConfig(false, userConfig);
+            ReloadConfig(true, defaultConfig);
 
-            _defaultConfigWatcher = new FileSystemWatcher(Folders.ProgramFolder) {Filter = "config.json"};
-            _userConfigWatcher = new FileSystemWatcher(Folders.UserFolder) {Filter = "config.json"};
+            _defaultConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(defaultConfig)) {Filter = Path.GetFileName(defaultConfig)};
+            _userConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(userConfig)) { Filter = Path.GetFileName(userConfig) };
 
             _defaultConfigWatcher.EnableRaisingEvents = true;
             _userConfigWatcher.EnableRaisingEvents = true;
 
             _defaultConfigWatcher.Changed += DefaultConfigChanged;
             _userConfigWatcher.Changed += UserConfigChanged;
+        }
+
+        [ImportingConstructor]
+        public Config()
+            : this(Path.Combine(Folders.ProgramFolder, "config.json"),
+                Path.Combine(Folders.UserFolder, "config.json"))
+        {
+            
         }
 
         public dynamic UserConfig
@@ -43,6 +51,8 @@ namespace SuperbEdit.Base
                 if (_userConfigExpandoObject != value)
                 {
                     _userConfigExpandoObject = value;
+                    if (ConfigChanged != null)
+                        ConfigChanged(this, new EventArgs());
                     NotifyOfPropertyChange(() => UserConfig);
                 }
             }
@@ -56,6 +66,8 @@ namespace SuperbEdit.Base
                 if (_defaultConfigExpandoObject != value)
                 {
                     _defaultConfigExpandoObject = value;
+                    if (ConfigChanged != null)
+                        ConfigChanged(this, new EventArgs());
                     NotifyOfPropertyChange(() => DefaultConfig);
                 }
             }
@@ -64,22 +76,23 @@ namespace SuperbEdit.Base
         public T RetrieveConfigValue<T>(string path)
         {
             List<string> properties = path.Split(new[] {'.'}).ToList();
-
-            T userConfigValue = TraverseConfig<T>(UserConfig, properties, 0);
-
-            if (userConfigValue == null || userConfigValue.Equals(default(T)))
+            if (UserConfig != null)
             {
-                return TraverseConfig<T>(DefaultConfig, properties, 0);
+                T userConfigValue = TraverseConfig<T>(UserConfig, properties, 0);
+                if (userConfigValue != null)
+                {
+                    return userConfigValue;
+                }
+                
             }
-
-            return userConfigValue;
+            return TraverseConfig<T>(DefaultConfig, properties, 0);
         }
 
         public T RetrieveConfigValue<T>(string path, T defaultValue)
         {
             T configValue = RetrieveConfigValue<T>(path);
 
-            if (configValue == null || configValue.Equals(default(T)))
+            if (configValue == null)
             {
                 configValue = defaultValue;
             }
@@ -143,5 +156,6 @@ namespace SuperbEdit.Base
             return default(T);
         }
 
+        public event EventHandler ConfigChanged;
     }
 }

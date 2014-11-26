@@ -4,13 +4,12 @@ using SuperbEdit.Base;
 
 namespace SuperbEdit.Actions
 {
-    [Export(typeof (IActionItem))]
-    [ExportActionMetadata(Menu = "File", Order = 7, Owner = "Shell", RegisterInCommandWindow = true)]
+    [ExportAction(Menu = "File", Order = 7, Owner = "Shell", RegisterInCommandWindow = true)]
     public class ExitAction : ActionItem
     {
         [Import] private Lazy<IShell> shell;
 
-        public ExitAction() : base("Exit", "Closes the application.")
+        public ExitAction() : base("Exit", "Closes the application.", "File.Exit")
         {
         }
 

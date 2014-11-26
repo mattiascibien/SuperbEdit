@@ -7,8 +7,7 @@ using SuperbEdit.FolderPanel.ViewModels;
 
 namespace SuperbEdit.FolderPanel.Actions
 {
-    [Export(typeof(IActionItem))]
-    [ExportActionMetadata(Menu = "File", Order = 2, Owner = "FolderPanel", RegisterInCommandWindow = true)]
+    [ExportAction(Menu = "File", Order = 2, Owner = "FolderPanel", RegisterInCommandWindow = true)]
     public class OpenFolderAction : ActionItem
     {
         [Import]
@@ -20,7 +19,7 @@ namespace SuperbEdit.FolderPanel.Actions
         private FolderPanelViewModel _folderPanel;
 
         public OpenFolderAction()
-            : base("Open Folder...", "Opens a folder in the folder panel.")
+            : base("Open Folder...", "Opens a folder in the folder panel.", "File.OpenFolder")
         {
         }
 

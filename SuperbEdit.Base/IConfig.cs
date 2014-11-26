@@ -1,8 +1,20 @@
-﻿namespace SuperbEdit.Base
+﻿using System;
+namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Interface for providing access to the program configuration in an easy way
+    /// </summary>
     public interface IConfig
     {
+        event EventHandler ConfigChanged;
+        /// <summary>
+        /// Dynamic object providing access to the user config
+        /// </summary>
         dynamic UserConfig { get; }
+
+        /// <summary>
+        /// Dynamic object providing access to the default (program) config
+        /// </summary>
         dynamic DefaultConfig { get; }
 
         /// <summary>
@@ -23,5 +35,6 @@
         /// <param name="defaultValue">Value to be returned if config value cannot be found</param>
         /// <returns>Retrieved config value or defaultValue</returns>
         T RetrieveConfigValue<T>(string path, T defaultValue);
+
     }
 }

@@ -3,8 +3,11 @@ using System.IO;
 using System.Reflection;
 using SuperbEdit.Base;
 
-namespace SuperbEdit
+namespace SuperbEdit.Base
 {
+    /// <summary>
+    /// Class used to load plugins
+    /// </summary>
     public static class AssemblyListComposer
     {
         public static List<Assembly> loadedAssemblies;
@@ -18,7 +21,7 @@ namespace SuperbEdit
         {
             loadedAssemblies = new List<Assembly>
             {
-                Assembly.GetExecutingAssembly(),
+                Assembly.GetEntryAssembly(),
                 Assembly.LoadFrom("SuperbEdit.Base.dll")
             };
 
@@ -44,14 +47,16 @@ namespace SuperbEdit
         {
             foreach (string assembly in Directory.GetFiles(folder, "*.dll"))
             {
-                assemblies.Add(Assembly.LoadFrom(assembly));
+                if(!DisabledPackaged.IsDisabled(Path.GetFileNameWithoutExtension(assembly)))
+                    assemblies.Add(Assembly.LoadFrom(assembly));
             }
 
             foreach (string subDir in Directory.GetDirectories(folder))
             {
                 if (!subDir.EndsWith("x86") && !subDir.EndsWith("x64"))
                 {
-                    GetAssembliesInFolder(assemblies, subDir);
+                    if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
+                        GetAssembliesInFolder(assemblies, subDir);
                 }
                 else
                 {

@@ -228,3 +228,6 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+# Doxygen Generated documentation
+Docs/API/html

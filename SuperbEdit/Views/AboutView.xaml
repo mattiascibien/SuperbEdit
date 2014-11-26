@@ -1,24 +1,31 @@
 ﻿<Window x:Class="SuperbEdit.Views.AboutView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="About" Width="509.78" Height="419.633" WindowStyle="ToolWindow" Style="{StaticResource {x:Type Window}}"
+        Title="About" Width="509.78" Height="197.245" WindowStyle="ToolWindow" Style="{StaticResource {x:Type Window}}"
         Topmost="True" WindowStartupLocation="CenterOwner">
     <Grid>
         <TabControl>
             <TabItem Header="General">
-                <Grid>
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Label Content="SuperbEdit" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0"
+                    <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Source="/SuperbEdit;component/Assets/icon.ico">
+                        
+                    </Image>
+                    <Label Content="SuperbEdit" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"
                            FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
-                    <Label Content="Beta" x:Name="Version" HorizontalAlignment="Center" Grid.Row="1" />
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
-                        <!-- Website and social icons -->
-                    </StackPanel>
+                    <Label Content="Superbe Text Editor"  HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+                    <Label Content="Beta" x:Name="Version" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                    <Label Content="Copyright" x:Name="Copyright" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" />
                 </Grid>
             </TabItem>
             <TabItem Header="Packages">
@@ -27,8 +34,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Content="Loaded Packages" Grid.Row="0" />
-                    <ListBox x:Name="LoadedPackages" Margin="3" Grid.Row="1">
+                    <Label Content="Loaded Packages" Grid.Row="0"/>
+                    <ListBox x:Name="LoadedPackages" Margin="3" Grid.Row="1" >
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -36,9 +43,12 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Text="{Binding Name}"
-                                               FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
-                                    <TextBlock Grid.Row="1" Text="{Binding Version}" />
+                                    <TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Version}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Author}" />
+                                    </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
