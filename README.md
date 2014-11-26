@@ -8,7 +8,7 @@ SuperbEdit is an advanced programmers' text editor with a tabbed interface writt
 
 ## Contributors
 
-This project is run by [Mattias Cibien](http://blog.mattiascibien.net)
+This project is run by the [Superbedit Team](http://superbedit.github.io/team)
 
 ## License
 
