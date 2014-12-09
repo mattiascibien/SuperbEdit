@@ -9,6 +9,8 @@ using SuperbEdit.Base;
 using SuperbEdit.Views;
 using System.Windows.Input;
 using SuperbEdit.Converters;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace SuperbEdit.ViewModels
 {
@@ -16,6 +18,17 @@ namespace SuperbEdit.ViewModels
     [Export] // HACK: temporary hack to show and hide command window from actions
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
+        private string _lastMessage;
+        public string LastMessage
+        {
+            get { return _lastMessage; }
+            private set
+            {
+                _lastMessage = value;
+                NotifyOfPropertyChange(() => LastMessage);
+            }
+        }
+
         public IPanel LeftPanel
         {
             get; set;
@@ -81,6 +94,8 @@ namespace SuperbEdit.ViewModels
             }
 
             GlobalInputBindings = inputBindings;
+
+            EchoMessage("SuperbEdit has been loaded...");
         }
 
 
@@ -146,6 +161,7 @@ namespace SuperbEdit.ViewModels
             return enumeratedActions.Where(action => action.Metadata.Menu == menu)
                 .OrderBy(action => action.Metadata.Order)
                 .Select(action => action.Value);
+
         }
 
         public ShellViewModel NewWindow()
@@ -210,6 +226,14 @@ namespace SuperbEdit.ViewModels
             {
                 view.LeftPanel.Visibility = Visibility.Collapsed;
             } 
+        }
+
+
+        public async void EchoMessage(string message)
+        {
+            LastMessage = message;
+            await Task.Run(() => { Thread.Sleep(5000); });
+            LastMessage = "Ready";
         }
     }
 }

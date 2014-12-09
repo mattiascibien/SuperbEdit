@@ -45,7 +45,7 @@
                       Visibility="{Binding IsSecondaryWindow, Converter={StaticResource booleanToVisibility}}" />-->
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem x:Name="Status" Content="Ready"/>
+            <StatusBarItem x:Name="Status" Content="{Binding LastMessage}"/>
         </StatusBar>
         <ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200" />
         <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4" Visibility="{Binding Visibility, ElementName=LeftPanel, Mode=OneWay}" />

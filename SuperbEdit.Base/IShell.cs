@@ -39,5 +39,12 @@ namespace SuperbEdit.Base
         /// </summary>
         /// <param name="panel">The Panel to show/hide</param>
         void ShowHidePanel(IPanel panel);
+
+
+        /// <summary>
+        /// Displayes a message in the status bar
+        /// </summary>
+        /// <param name="message">The Message</param>
+        void EchoMessage(string message);
     }
 }
