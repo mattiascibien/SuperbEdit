@@ -5,6 +5,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:int="clr-namespace:System.Windows.Interactivity"
         xmlns:controls="clr-namespace:SuperbEdit.Controls"
+        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:Converters="clr-namespace:SuperbEdit.Converters" x:Class="SuperbEdit.Views.ShellView"
         Icon="/SuperbEdit;component/Assets/icon.ico" GlobalInputBindings="{Binding GlobalInputBindings}">
     <Window.Resources>
@@ -16,7 +17,7 @@
                 <Setter Property="InputGestureText" Value="{Binding Shortcut}" />
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
                 <!-- Mattias: seems that actions are executed twice with the new implementation -->
-                <!--<Setter Property="cal:Message.Attach" Value="[Event Click] = [Action ExecuteAction()]" />--> 
+                <!--<Setter Property="cal:Message.Attach" Value="[Event Click] = [Action ExecuteAction()]" />-->
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsSeparator}" Value="true">
                         <Setter Property="Template">
@@ -47,8 +48,8 @@
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem x:Name="Status" Content="Ready"/>
         </StatusBar>
-        <ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200" />
-        <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4" Visibility="{Binding Visibility, ElementName=LeftPanel, Mode=OneWay}" />
+        <!--<ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200" />
+        <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4" Visibility="{Binding Visibility, ElementName=LeftPanel, Mode=OneWay}" />-->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -60,7 +61,31 @@
             </Grid.RowDefinitions>
             <ContentControl Grid.Column="1" x:Name="CommandWindow" Visibility="Collapsed" Grid.Row="0"
 				Panel.ZIndex="1000" />
-            <TabControl x:Name="Items" Grid.Row="0" Grid.ColumnSpan="3" >
+            <avalonDock:DockingManager DocumentsSource="{Binding Items}" x:Name="dockingManager" Grid.Row="0" Grid.ColumnSpan="3">
+                <avalonDock:DockingManager.LayoutItemContainerStyle>
+                    <Style TargetType="{x:Type avalonDock:LayoutItem}">
+                        <Setter Property="Title" Value="{Binding Model.DisplayName}" />
+                    </Style>
+                </avalonDock:DockingManager.LayoutItemContainerStyle>
+                <avalonDock:DockingManager.LayoutItemTemplate>
+                    <DataTemplate>
+                        <ContentControl cal:View.Model="{Binding}" IsTabStop="False" />
+                    </DataTemplate>
+                </avalonDock:DockingManager.LayoutItemTemplate>
+                <avalonDock:DockingManager.Theme>
+                    <avalonDock:ExpressionDarkTheme/>
+                </avalonDock:DockingManager.Theme>
+                <avalonDock:LayoutRoot>
+                    <avalonDock:LayoutPanel Orientation="Horizontal">
+                        <avalonDock:LayoutDocumentPaneGroup>
+                            <avalonDock:LayoutDocumentPane>
+                            </avalonDock:LayoutDocumentPane>
+                        </avalonDock:LayoutDocumentPaneGroup>
+                    </avalonDock:LayoutPanel>
+                </avalonDock:LayoutRoot>
+
+            </avalonDock:DockingManager>
+            <!--<TabControl x:Name="Items" Grid.Row="0" Grid.ColumnSpan="3" >
                 <TabControl.Template>
                     <ControlTemplate TargetType="{x:Type TabControl}">
                         <Grid>
@@ -144,7 +169,7 @@
                         </Grid>
                     </DataTemplate>
                 </TabControl.ItemTemplate>
-            </TabControl>
+            </TabControl>-->
         </Grid>
 
     </DockPanel>

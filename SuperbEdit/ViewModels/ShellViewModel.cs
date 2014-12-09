@@ -202,14 +202,14 @@ namespace SuperbEdit.ViewModels
             //TODO: actually should hide the correct panel
             var view = GetView() as ShellView;
 
-            if (view.LeftPanel.Visibility == Visibility.Collapsed)
-            {
-                view.LeftPanel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                view.LeftPanel.Visibility = Visibility.Collapsed;
-            } 
+            //if (view.LeftPanel.Visibility == Visibility.Collapsed)
+            //{
+            //    view.LeftPanel.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    view.LeftPanel.Visibility = Visibility.Collapsed;
+            //} 
         }
     }
 }
