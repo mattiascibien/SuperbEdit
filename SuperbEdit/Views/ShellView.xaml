@@ -77,6 +77,19 @@
                         <Setter Property="Visibility" Value="{Binding Model.Visible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}"/>
                     </Style>
                 </avalonDock:DockingManager.LayoutItemContainerStyle>
+                <avalonDock:DockingManager.DocumentHeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Content.DisplayName}" Grid.Column="0" />
+                            <TextBlock Text="*" Grid.Column="1"
+								Visibility="{Binding Content.HasChanges, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        </Grid>
+                    </DataTemplate>
+                </avalonDock:DockingManager.DocumentHeaderTemplate>
                 <avalonDock:DockingManager.LayoutItemTemplate>
                     <DataTemplate>
                         <ContentControl cal:View.Model="{Binding}" IsTabStop="False" />
