@@ -61,7 +61,7 @@
             </Grid.RowDefinitions>
             <ContentControl Grid.Column="1" x:Name="CommandWindow" Visibility="Collapsed" Grid.Row="0"
 				Panel.ZIndex="1000" />
-            <avalonDock:DockingManager DocumentsSource="{Binding Items}" x:Name="dockingManager" Grid.Row="0" Grid.ColumnSpan="3">
+            <avalonDock:DockingManager ActiveContent="{Binding ActiveItem, Mode=TwoWay}" AnchorablesSource="{Binding Panels}" DocumentsSource="{Binding Items}" x:Name="dockingManager" Grid.Row="0" Grid.ColumnSpan="3">
                 <avalonDock:DockingManager.LayoutItemContainerStyle>
                     <Style TargetType="{x:Type avalonDock:LayoutItem}">
                         <Setter Property="Title" Value="{Binding Model.DisplayName}" />
