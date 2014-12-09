@@ -18,6 +18,11 @@ namespace SuperbEdit.FolderPanel.ViewModels
         [Import]
         private TabService tabService;
 
+        public FolderPanelViewModel()
+        {
+            DisplayName = "Folder Panel";
+        }
+
         private ObservableCollection<TreeItemModel> _rootItems;
         public ObservableCollection<TreeItemModel> RootItems
         {

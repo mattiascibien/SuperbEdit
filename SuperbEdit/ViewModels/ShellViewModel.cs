@@ -9,16 +9,18 @@ using SuperbEdit.Base;
 using SuperbEdit.Views;
 using System.Windows.Input;
 using SuperbEdit.Converters;
+using Xceed.Wpf.AvalonDock;
 
 namespace SuperbEdit.ViewModels
 {
-    [Export(typeof (IShell))]
+    [Export(typeof(IShell))]
     [Export] // HACK: temporary hack to show and hide command window from actions
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
         public IEnumerable<IPanel> Panels
         {
-            get; set;
+            get;
+            set;
         }
 
         private readonly ShellViewModel _parentViewModel;
@@ -28,7 +30,8 @@ namespace SuperbEdit.ViewModels
 
         private bool _isSecondaryWindow;
 
-        [Import] private IConfig config;
+        [Import]
+        private IConfig config;
 
 
         [Import]
@@ -54,7 +57,8 @@ namespace SuperbEdit.ViewModels
         public ShellViewModel(
             [ImportMany] IEnumerable<IPanel> panels,
             [ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions,
-            IWindowManager windowManager) : this(windowManager, null, false)
+            IWindowManager windowManager)
+            : this(windowManager, null, false)
         {
             Panels = panels;
 
@@ -69,7 +73,7 @@ namespace SuperbEdit.ViewModels
             InputBindingCollection inputBindings = new InputBindingCollection();
             foreach (var action in enumeratedActions)
             {
-                if(!string.IsNullOrEmpty(action.Value.Shortcut))
+                if (!string.IsNullOrEmpty(action.Value.Shortcut))
                 {
                     KeyGestureConverter keyConv = new KeyGestureConverter();
                     KeyGesture gesture = (KeyGesture)keyConv.ConvertFromString(action.Value.Shortcut);
@@ -201,14 +205,15 @@ namespace SuperbEdit.ViewModels
             //TODO: actually should hide the correct panel
             var view = GetView() as ShellView;
 
-            //if (view.LeftPanel.Visibility == Visibility.Collapsed)
-            //{
-            //    view.LeftPanel.Visibility = Visibility.Visible;
-            //}
-            //else
-            //{
-            //    view.LeftPanel.Visibility = Visibility.Collapsed;
-            //} 
+
+        }
+
+        //Helper method for closing the active document
+        public void Close(ITab tab, DocumentClosingEventArgs e)
+        {
+            bool? result = false;
+            tab.TryClose(result);
+            e.Cancel = !result.Value;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace SuperbEdit.Base
     }
 
 
+
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ExportPanel : ExportAttribute, IPanelMetadata
@@ -45,6 +46,9 @@ namespace SuperbEdit.Base
     {
         PanelPosition DefaultPosition { get; }
         PanelPosition Position { get; }
+
+        bool Visible { get; }
+        void ShowHide();
     }
 
 }

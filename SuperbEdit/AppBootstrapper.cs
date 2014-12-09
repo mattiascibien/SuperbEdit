@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Windows;
 using Caliburn.Micro;
 using SuperbEdit.Base;
+using Xceed.Wpf.AvalonDock.Layout;
+using Xceed.Wpf.AvalonDock;
 
 namespace SuperbEdit
 {
@@ -27,6 +29,23 @@ namespace SuperbEdit
 
         protected override void Configure()
         {
+
+            MessageBinder.SpecialValues.Add("$documentcontext", context =>
+            {
+                LayoutDocument doc = null;
+                if (context.EventArgs is DocumentClosingEventArgs)
+                {
+                    var args = context.EventArgs as DocumentClosingEventArgs;
+                    doc = args.Document;
+                }
+                else if (context.EventArgs is DocumentClosedEventArgs)
+                {
+                    var args = context.EventArgs as DocumentClosedEventArgs;
+                    doc = args.Document;
+                }
+                return doc.Content;
+            });
+
             container = new CompositionContainer(
                 new AggregateCatalog(
                     AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>()),

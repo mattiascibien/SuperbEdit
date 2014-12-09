@@ -26,5 +26,21 @@ namespace SuperbEdit.Base
         {
             get; set;
         }
+
+        private bool _visible = true;
+        public bool Visible
+        {
+            get { return _visible; }
+            set
+            {
+                _visible = value;
+                NotifyOfPropertyChange(() => Visible);
+            }
+        }
+
+        public void ShowHide()
+        {
+            Visible = !Visible;
+        }
     }
 }
