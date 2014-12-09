@@ -76,11 +76,10 @@
                     <avalonDock:ExpressionDarkTheme/>
                 </avalonDock:DockingManager.Theme>
                 <avalonDock:LayoutRoot>
-                    <avalonDock:LayoutPanel Orientation="Horizontal">
-                        <avalonDock:LayoutDocumentPaneGroup>
-                            <avalonDock:LayoutDocumentPane>
-                            </avalonDock:LayoutDocumentPane>
-                        </avalonDock:LayoutDocumentPaneGroup>
+                    <avalonDock:LayoutPanel Orientation="Vertical">
+                        <avalonDock:LayoutPanel Orientation="Horizontal">
+                            <avalonDock:LayoutDocumentPane />
+                        </avalonDock:LayoutPanel>
                     </avalonDock:LayoutPanel>
                 </avalonDock:LayoutRoot>
 
