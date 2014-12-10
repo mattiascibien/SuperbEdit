@@ -1,12 +1,12 @@
 ﻿<Window x:Class="SuperbEdit.Views.AboutView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="About" Width="509.78" Height="197.245" WindowStyle="ToolWindow" Style="{StaticResource {x:Type Window}}"
+        Title="About" Width="510" Height="347" WindowStyle="ToolWindow" Style="{StaticResource {x:Type Window}}"
         Topmost="True" WindowStartupLocation="CenterOwner">
     <Grid>
         <TabControl>
             <TabItem Header="General">
-                <Grid VerticalAlignment="Center">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -17,6 +17,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Source="/SuperbEdit;component/Assets/icon.ico">
                         
@@ -26,6 +27,11 @@
                     <Label Content="Superbe Text Editor"  HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" />
                     <Label Content="Beta" x:Name="Version" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
                     <Label Content="Copyright" x:Name="Copyright" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" />
+                    <Label Content="Contributors" Grid.Row="4" Grid.Column="0" />
+                    <ListBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                        <ListBoxItem>Mattias Cibien &lt;mattias@mattiascibien.net&gt;</ListBoxItem>
+                        <ListBoxItem>Dan</ListBoxItem>
+                    </ListBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Packages">
