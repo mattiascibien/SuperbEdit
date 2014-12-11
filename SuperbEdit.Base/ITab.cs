@@ -19,6 +19,13 @@ namespace SuperbEdit.Base
         /// </summary>
         bool HasChanges { get; set; }
 
+
+        /// <summary>
+        /// Detects if a opened tab is readonly
+        /// Determines the visibility of the lock
+        /// </summary>
+        bool IsReadOnly { get; set; }
+
         /// <summary>
         /// Saves the file
         /// </summary>

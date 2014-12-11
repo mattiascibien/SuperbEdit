@@ -58,6 +58,13 @@ namespace SuperbEdit.Base
         public abstract void Paste();
         public abstract void SetFile(string filePath);
         public abstract void RegisterCommands();
+        
+        public abstract bool IsReadOnly
+        {
+            get;
+            set;
+        }
+        
 
         public abstract string FileContent
         {

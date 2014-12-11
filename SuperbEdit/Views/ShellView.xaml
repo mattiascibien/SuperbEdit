@@ -90,9 +90,12 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Content.DisplayName}" Grid.Column="0" />
-                            <TextBlock Text="*" Grid.Column="1"
+                            <TextBlock Text="&#x1F512;" Grid.Column="1"
+								Visibility="{Binding Content.IsReadOnly, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock Text="*" Grid.Column="2"
 								Visibility="{Binding Content.HasChanges, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Grid>
                     </DataTemplate>

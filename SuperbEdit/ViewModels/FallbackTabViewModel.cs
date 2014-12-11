@@ -63,6 +63,18 @@ namespace SuperbEdit.Base.ViewModels
 
         }
 
+        public override bool IsReadOnly
+        {
+            get
+            {
+                return true;
+            }
+            set
+            {
+                
+            }
+        }
+
         public override string FileContent
         {
             get
