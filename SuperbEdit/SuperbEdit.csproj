@@ -144,6 +144,7 @@
     <Compile Include="Converters\StringToKeyBinding.cs" />
     <Compile Include="Layout\JsonLayoutSerializer.cs" />
     <Compile Include="Layout\LayoutInitializer.cs" />
+    <Compile Include="Layout\LoadSaveLayoutBehaviour.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />

@@ -72,9 +72,12 @@
                         </cal:ActionMessage>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <!--<avalonDock:DockingManager.LayoutUpdateStrategy>
+                <i:Interaction.Behaviors>
+                    <layout:LoadSaveLayoutBehaviour />
+                </i:Interaction.Behaviors>
+                <avalonDock:DockingManager.LayoutUpdateStrategy>
                     <layout:LayoutInitializer />
-                </avalonDock:DockingManager.LayoutUpdateStrategy>-->
+                </avalonDock:DockingManager.LayoutUpdateStrategy>
                 <avalonDock:DockingManager.LayoutItemContainerStyle>
                     <Style TargetType="{x:Type avalonDock:LayoutItem}">
                         <Setter Property="Title" Value="{Binding Model.DisplayName}" />
@@ -103,11 +106,11 @@
                     <avalonDock:ExpressionDarkTheme/>
                 </avalonDock:DockingManager.Theme>
                 <avalonDock:LayoutRoot>
-                    <avalonDock:LayoutPanel Orientation="Vertical">
+                    <!--<avalonDock:LayoutPanel Orientation="Vertical">
                         <avalonDock:LayoutPanel Orientation="Horizontal">
                             <avalonDock:LayoutDocumentPane />
                         </avalonDock:LayoutPanel>
-                    </avalonDock:LayoutPanel>
+                    </avalonDock:LayoutPanel>-->
                 </avalonDock:LayoutRoot>
 
             </avalonDock:DockingManager>
