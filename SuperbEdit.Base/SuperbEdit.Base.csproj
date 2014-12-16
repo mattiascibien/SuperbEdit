@@ -70,7 +70,8 @@
     <Compile Include="Panel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionItem.cs" />
-    <Compile Include="Scripting\BooScriptCompiler.cs" />
+    <Compile Include="Scripting\Compilers\BooScriptCompiler.cs" />
+    <Compile Include="Scripting\Compilers\ScriptCompiler.cs" />
     <Compile Include="Scripting\ScriptCompilerException.cs" />
     <Compile Include="Scripting\ScriptListComposer.cs" />
     <Compile Include="ShowHidePanelActionItem.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperbEdit.Base.Scripting.Compilers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,10 +41,12 @@ namespace SuperbEdit.Base.Scripting
 
         private static void GetScriptsInFolder(List<Assembly> assemblies, string folder)
         {
+            var scriptCompiler = new BooScriptCompiler();
+
             foreach (string script in Directory.GetFiles(folder, "*.boo"))
             {
                 if (!DisabledPackaged.IsDisabled(Path.GetFileNameWithoutExtension(script)))
-                    assemblies.Add(BooScriptCompiler.Compile(script));
+                    assemblies.Add(scriptCompiler.Compile(script));
             }
 
             foreach (string subDir in Directory.GetDirectories(folder))
@@ -52,7 +55,7 @@ namespace SuperbEdit.Base.Scripting
                 {
                     if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
                         if(Directory.GetFiles(subDir, "*.boo", SearchOption.AllDirectories).Length > 0)
-                            assemblies.Add(BooScriptCompiler.CompileFolder(subDir));
+                            assemblies.Add(scriptCompiler.CompileFolder(subDir));
                 }
                 else
                 {

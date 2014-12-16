@@ -10,7 +10,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuperbEdit.Base.Scripting
+namespace SuperbEdit.Base.Scripting.Compilers
 {
     public class BooScriptCompiler
     {
@@ -29,7 +29,7 @@ namespace SuperbEdit.Base.Scripting
             compiler.Parameters.Ducky = true;
         }
 
-        public static Assembly Compile(string fileName)
+        public Assembly Compile(string fileName)
         {
             string output = Path.Combine(Folders.PackageCacheFolders, Path.GetFileName(fileName.Replace(".boo", ".cache")));
 
@@ -59,7 +59,7 @@ namespace SuperbEdit.Base.Scripting
         }
 
 
-        public static Assembly CompileFolder(string folderPath)
+        public Assembly CompileFolder(string folderPath)
         {
             string[] files = Directory.GetFiles(folderPath, "*.boo", SearchOption.AllDirectories);
 
@@ -95,7 +95,7 @@ namespace SuperbEdit.Base.Scripting
             return Assembly.LoadFile(output);
         }
 
-        private static bool CheckModifiedFiles(string[] files, FileInfo outputInfo)
+        private bool CheckModifiedFiles(string[] files, FileInfo outputInfo)
         {
             return files.Any(f => new FileInfo(f).LastWriteTime > outputInfo.LastWriteTime);
         }
