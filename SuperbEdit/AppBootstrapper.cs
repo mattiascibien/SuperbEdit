@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Windows;
 using Caliburn.Micro;
 using SuperbEdit.Base;
+using SuperbEdit.Base.Scripting;
 
 namespace SuperbEdit
 {
@@ -22,7 +23,10 @@ namespace SuperbEdit
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            return AssemblyListComposer.GetAssemblyList(Environment.GetCommandLineArgs().Contains("-pure"));
+            //TODO: implement pure
+            IEnumerable<Assembly> assemblies = AssemblyListComposer.GetAssemblyList(Environment.GetCommandLineArgs().Contains("-pure"));
+            assemblies = assemblies.Concat(ScriptListComposer.GetAssemblyList(false));
+            return assemblies;
         }
 
         protected override void Configure()

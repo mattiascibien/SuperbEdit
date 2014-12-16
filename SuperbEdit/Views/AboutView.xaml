@@ -3,6 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="About" Width="510" Height="347" WindowStyle="ToolWindow" Style="{StaticResource {x:Type Window}}"
         Topmost="True" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="General">
@@ -60,6 +63,11 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Script Errors" Visibility="{Binding ErrorsPresent, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ListBox ItemsSource="{Binding ScriptErrors}">
+                    
+                </ListBox>
             </TabItem>
         </TabControl>
 

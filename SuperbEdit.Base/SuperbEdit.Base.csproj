@@ -32,6 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Boo.Lang">
+      <HintPath>..\packages\Boo.0.9.4\lib\Boo.Lang.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang.Compiler">
+      <HintPath>..\packages\Boo-Compiler.0.9.4\lib\Boo.Lang.Compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang.Parser">
+      <HintPath>..\packages\Boo-Compiler.0.9.4\lib\Boo.Lang.Parser.dll</HintPath>
+    </Reference>
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.1\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
@@ -61,6 +70,10 @@
     <Compile Include="Panel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionItem.cs" />
+    <Compile Include="Scripting\Compilers\BooScriptCompiler.cs" />
+    <Compile Include="Scripting\Compilers\ScriptCompiler.cs" />
+    <Compile Include="Scripting\ScriptCompilerException.cs" />
+    <Compile Include="Scripting\ScriptListComposer.cs" />
     <Compile Include="ShowHidePanelActionItem.cs" />
     <Compile Include="Tab.cs" />
     <Compile Include="TabService.cs" />
