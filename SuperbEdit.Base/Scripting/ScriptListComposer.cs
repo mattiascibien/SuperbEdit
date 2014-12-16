@@ -51,7 +51,8 @@ namespace SuperbEdit.Base.Scripting
                 if (!subDir.EndsWith("x86") && !subDir.EndsWith("x64"))
                 {
                     if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
-                        GetScriptsInFolder(assemblies, subDir);
+                        if(Directory.GetFiles(subDir, "*.boo", SearchOption.AllDirectories).Length > 0)
+                            assemblies.Add(BooScriptCompiler.CompileFolder(subDir));
                 }
                 else
                 {

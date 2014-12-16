@@ -24,7 +24,8 @@ namespace SuperbEdit.Base.Scripting
                 compiler.Parameters.AddAssembly(assembly);
             }
             compiler.Parameters.Pipeline = new CompileToFile();
-
+            //TODO: does it make sense to make this customizable?
+            compiler.Parameters.Debug = false;
             compiler.Parameters.Ducky = true;
         }
 
@@ -55,6 +56,48 @@ namespace SuperbEdit.Base.Scripting
             }
             
             return Assembly.LoadFile(output);
+        }
+
+
+        public static Assembly CompileFolder(string folderPath)
+        {
+            string[] files = Directory.GetFiles(folderPath, "*.boo", SearchOption.AllDirectories);
+
+            string output = Path.Combine(Folders.PackageCacheFolders, Path.GetFileName(folderPath) + ".cache");
+
+            FileInfo outputInfo = null;
+
+            if (File.Exists(output))
+            {
+                outputInfo = new FileInfo(output);
+            }
+         
+
+            if (outputInfo == null || CheckModifiedFiles(files, outputInfo))
+            {
+                foreach (var file in files)
+                {
+                    compiler.Parameters.Input.Add(new FileInput(file));
+                }
+                compiler.Parameters.OutputAssembly = output;
+
+                var context = compiler.Run();
+
+                compiler.Parameters.Input.Clear();
+                if (context.GeneratedAssembly == null)
+                {
+                    throw new ScriptCompilerException();
+                }
+            }
+
+
+
+            return Assembly.LoadFile(output);
+        }
+
+        private static bool CheckModifiedFiles(string[] files, FileInfo outputInfo)
+        {
+            return files.Any(f => new FileInfo(f).LastWriteTime > outputInfo.LastWriteTime);
         }
     }
 }
