@@ -42,5 +42,10 @@ namespace SuperbEdit.Base
         {
             Visible = !Visible;
         }
+
+
+        public abstract double PreferredWidth { get; }
+
+        public abstract double PreferredHeight { get; }
     }
 }

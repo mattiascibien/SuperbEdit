@@ -49,6 +49,10 @@ namespace SuperbEdit.Base
 
         bool Visible { get; }
         void ShowHide();
+
+        double PreferredWidth { get; }
+
+        double PreferredHeight { get; }
     }
 
 }

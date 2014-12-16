@@ -129,5 +129,15 @@ namespace SuperbEdit.FolderPanel.ViewModels
                 shell.Value.OpenTab(fileTabViewModel);
             }
         }
+
+        public override double PreferredWidth
+        {
+            get { return 150.0; }
+        }
+
+        public override double PreferredHeight
+        {
+            get { return 150.0; }
+        }
     }
 }
