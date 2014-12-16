@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Caliburn.Micro;
 using SuperbEdit.Base;
+using SuperbEdit.Base.Scripting;
 
 namespace SuperbEdit.ViewModels
 {
@@ -30,6 +31,16 @@ namespace SuperbEdit.ViewModels
                         Version = ass.GetName().Version.ToString(),
                         Author = ass.GetCustomAttribute<AssemblyCompanyAttribute>().Company
                     });
+
+            LoadedPackages = LoadedPackages.Concat(
+                ScriptListComposer.loadedAssemblies
+                    .Select(ass => new PackageItem
+                    {
+                        Name = ass.GetName().Name,
+                        Version = ass.GetName().Version.ToString(),
+                        //TODO: implement a way to diplay authorship information for scripted plugins
+                        Author = "Compiled From Script"
+                    }));
         }
 
         public string Version
