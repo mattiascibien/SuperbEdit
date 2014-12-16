@@ -19,7 +19,7 @@ namespace SuperbEdit.Base.Scripting
         /// <returns></returns>
         public static IEnumerable<Assembly> GetAssemblyList(bool pure = false)
         {
-           
+            loadedAssemblies = new List<Assembly>();
             GetScriptsInFolder(loadedAssemblies, Folders.DefaultPackagesFolder);
 
 #if !PORTABLE_BUILD

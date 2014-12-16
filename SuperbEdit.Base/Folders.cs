@@ -45,6 +45,11 @@ namespace SuperbEdit.Base
             get { return Path.Combine(UserFolder, "Packages"); }
         }
 
+        public static string PackageCacheFolders
+        {
+            get { return Path.Combine(UserFolder, "Package_cache"); }
+        }
+
         public static string HighlighterFolder
         {
             get { return Path.Combine(ProgramFolder, "Highlighters"); }

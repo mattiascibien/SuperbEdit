@@ -3,8 +3,10 @@ using Boo.Lang.Compiler.IO;
 using Boo.Lang.Compiler.Pipelines;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,25 +23,38 @@ namespace SuperbEdit.Base.Scripting
             {
                 compiler.Parameters.AddAssembly(assembly);
             }
-            compiler.Parameters.Pipeline = new CompileToMemory();
+            compiler.Parameters.Pipeline = new CompileToFile();
+
             compiler.Parameters.Ducky = true;
         }
 
         public static Assembly Compile(string fileName)
         {
-            compiler.Parameters.Input.Add(new FileInput(fileName));
+            string output = Path.Combine(Folders.PackageCacheFolders, Path.GetFileName(fileName.Replace(".boo", ".cache")));
 
-            var context = compiler.Run();
+            FileInfo inputInfo = new FileInfo(fileName);
+            FileInfo outputInfo = null;
 
-            compiler.Parameters.Input.Clear();
-            if (context.GeneratedAssembly != null)
+            if (File.Exists(output))
             {
-                throw new ScriptCompilerException();
+                outputInfo = new FileInfo(output);
             }
-            else
+
+            if (outputInfo == null || inputInfo.LastWriteTime > outputInfo.LastWriteTime)
             {
-                return context.GeneratedAssembly;
+                compiler.Parameters.Input.Add(new FileInput(fileName));
+                compiler.Parameters.OutputAssembly = output;
+
+                var context = compiler.Run();
+
+                compiler.Parameters.Input.Clear();
+                if (context.GeneratedAssembly == null)
+                {
+                    throw new ScriptCompilerException();
+                }
             }
+            
+            return Assembly.LoadFile(output);
         }
     }
 }
