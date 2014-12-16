@@ -9,9 +9,16 @@ namespace SuperbEdit.Base.Scripting
     [Serializable]
     public class ScriptCompilerException : Exception
     {
-        public ScriptCompilerException() { }
-        public ScriptCompilerException(string message) : base(message) { }
-        public ScriptCompilerException(string message, Exception inner) : base(message, inner) { }
+        public List<string> Errors
+        {
+            get;
+            set;
+        }
+        public ScriptCompilerException(string fileName, List<string> errors)
+            : base(string.Format("Cannot compile package '{0}' due to {1} errors", fileName, errors.Count)) 
+        {
+            Errors = errors;
+        }
         protected ScriptCompilerException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)

@@ -51,7 +51,7 @@ namespace SuperbEdit.Base.Scripting.Compilers
                 compiler.Parameters.Input.Clear();
                 if (context.GeneratedAssembly == null)
                 {
-                    throw new ScriptCompilerException();
+                    throw new ScriptCompilerException(fileName, context.Errors.Select(e => e.ToString()).ToList());
                 }
             }
             
@@ -86,7 +86,7 @@ namespace SuperbEdit.Base.Scripting.Compilers
                 compiler.Parameters.Input.Clear();
                 if (context.GeneratedAssembly == null)
                 {
-                    throw new ScriptCompilerException();
+                    throw new ScriptCompilerException(folderPath, context.Errors.Select(e => e.ToString()).ToList());
                 }
             }
 

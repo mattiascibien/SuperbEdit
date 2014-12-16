@@ -11,6 +11,10 @@ namespace SuperbEdit.Base.Scripting
 {
     public static class ScriptListComposer
     {
+        public static bool HasErrors = false;
+
+        public static List<ScriptCompilerException> Exceptions = new List<ScriptCompilerException>();
+
         public static List<Assembly> loadedAssemblies;
 
         /// <summary>
@@ -45,17 +49,33 @@ namespace SuperbEdit.Base.Scripting
 
             foreach (string script in Directory.GetFiles(folder, "*.boo"))
             {
-                if (!DisabledPackaged.IsDisabled(Path.GetFileNameWithoutExtension(script)))
-                    assemblies.Add(scriptCompiler.Compile(script));
+                try
+                {
+                    if (!DisabledPackaged.IsDisabled(Path.GetFileNameWithoutExtension(script)))
+                        assemblies.Add(scriptCompiler.Compile(script));
+                }
+                catch(ScriptCompilerException ex)
+                {
+                    HasErrors = true;
+                    Exceptions.Add(ex);
+                }
             }
 
             foreach (string subDir in Directory.GetDirectories(folder))
             {
                 if (!subDir.EndsWith("x86") && !subDir.EndsWith("x64"))
                 {
-                    if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
-                        if(Directory.GetFiles(subDir, "*.boo", SearchOption.AllDirectories).Length > 0)
-                            assemblies.Add(scriptCompiler.CompileFolder(subDir));
+                    try
+                    {
+                        if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
+                            if (Directory.GetFiles(subDir, "*.boo", SearchOption.AllDirectories).Length > 0)
+                                assemblies.Add(scriptCompiler.CompileFolder(subDir));
+                    }
+                    catch(ScriptCompilerException ex)
+                    {
+                        HasErrors = true;
+                        Exceptions.Add(ex);
+                    }
                 }
                 else
                 {

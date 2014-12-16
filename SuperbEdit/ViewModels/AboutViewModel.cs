@@ -53,6 +53,26 @@ namespace SuperbEdit.ViewModels
             }
         }
 
+        public bool ErrorsPresent
+        {
+            get
+            {
+                return ScriptListComposer.HasErrors;
+            }
+        }
+
+        public List<string> ScriptErrors
+        {
+            get
+            {
+                var ret = new List<string>();
+                foreach (var ex in ScriptListComposer.Exceptions)
+                {
+                    ret.AddRange(ex.Errors);
+                }
+                return ret;
+            }
+        }
 
         public string Copyright
         {
