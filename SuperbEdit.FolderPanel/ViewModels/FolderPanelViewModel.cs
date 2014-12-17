@@ -21,6 +21,7 @@ namespace SuperbEdit.FolderPanel.ViewModels
         public FolderPanelViewModel()
         {
             DisplayName = "Folder Panel";
+            DefaultPosition = PanelPosition.Right;
         }
 
         private ObservableCollection<TreeItemModel> _rootItems;

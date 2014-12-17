@@ -16,7 +16,7 @@ namespace SuperbEdit.Base
         /// <summary>
         /// Default panel position
         /// </summary>
-        public PanelPosition DefaultPosition { get; private set; }
+        public PanelPosition DefaultPosition { get; protected set; }
 
 
         /// <summary>
