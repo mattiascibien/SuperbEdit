@@ -55,6 +55,7 @@ namespace SuperbEdit.Layout
             var panel = anchorableToShow.Content as IPanel;
             if (panel != null)
             {
+                anchorableToShow.ContentId = anchorableToShow.Content.GetType().ToString();
                 var preferredLocation = panel.DefaultPosition;
                 string paneName = GetPaneName(preferredLocation);
                 var toolsPane = layout.Descendents().OfType<LayoutAnchorablePane>().FirstOrDefault(d => d.Name == paneName);
