@@ -18,6 +18,12 @@ namespace SuperbEdit.FolderPanel.ViewModels
         [Import]
         private TabService tabService;
 
+        public FolderPanelViewModel()
+        {
+            DisplayName = "Folder Panel";
+            DefaultPosition = PanelPosition.Right;
+        }
+
         private ObservableCollection<TreeItemModel> _rootItems;
         public ObservableCollection<TreeItemModel> RootItems
         {
@@ -123,6 +129,16 @@ namespace SuperbEdit.FolderPanel.ViewModels
                 fileTabViewModel.SetFile(item.FullPath);
                 shell.Value.OpenTab(fileTabViewModel);
             }
+        }
+
+        public override double PreferredWidth
+        {
+            get { return 150.0; }
+        }
+
+        public override double PreferredHeight
+        {
+            get { return 150.0; }
         }
     }
 }

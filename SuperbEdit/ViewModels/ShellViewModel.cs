@@ -11,10 +11,11 @@ using System.Windows.Input;
 using SuperbEdit.Converters;
 using System.Threading.Tasks;
 using System.Threading;
+using Xceed.Wpf.AvalonDock;
 
 namespace SuperbEdit.ViewModels
 {
-    [Export(typeof (IShell))]
+    [Export(typeof(IShell))]
     [Export] // HACK: temporary hack to show and hide command window from actions
     public sealed class ShellViewModel : Conductor<ITab>.Collection.OneActive, IShell
     {
@@ -29,9 +30,10 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-        public IPanel LeftPanel
-        {
-            get; set;
+        public IEnumerable<IPanel> Panels
+		{
+            get;
+            set;
         }
 
         private readonly ShellViewModel _parentViewModel;
@@ -41,7 +43,8 @@ namespace SuperbEdit.ViewModels
 
         private bool _isSecondaryWindow;
 
-        [Import] private IConfig config;
+        [Import]
+        private IConfig config;
 
 
         [Import]
@@ -65,12 +68,12 @@ namespace SuperbEdit.ViewModels
 
         [ImportingConstructor]
         public ShellViewModel(
-            //TODO: one panel at the moment
-            [Import] IPanel panel,
+            [ImportMany] IEnumerable<IPanel> panels,
             [ImportMany] IEnumerable<Lazy<IActionItem, IActionItemMetadata>> actions,
-            IWindowManager windowManager) : this(windowManager, null, false)
+            IWindowManager windowManager)
+            : this(windowManager, null, false)
         {
-            LeftPanel = panel;
+            Panels = panels;
 
             IList<Lazy<IActionItem, IActionItemMetadata>> enumeratedActions =
                 actions as IList<Lazy<IActionItem, IActionItemMetadata>> ?? actions.ToList();
@@ -83,7 +86,7 @@ namespace SuperbEdit.ViewModels
             InputBindingCollection inputBindings = new InputBindingCollection();
             foreach (var action in enumeratedActions)
             {
-                if(!string.IsNullOrEmpty(action.Value.Shortcut))
+                if (!string.IsNullOrEmpty(action.Value.Shortcut))
                 {
                     KeyGestureConverter keyConv = new KeyGestureConverter();
                     KeyGesture gesture = (KeyGesture)keyConv.ConvertFromString(action.Value.Shortcut);
@@ -218,14 +221,7 @@ namespace SuperbEdit.ViewModels
             //TODO: actually should hide the correct panel
             var view = GetView() as ShellView;
 
-            if (view.LeftPanel.Visibility == Visibility.Collapsed)
-            {
-                view.LeftPanel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                view.LeftPanel.Visibility = Visibility.Collapsed;
-            } 
+
         }
 
 
@@ -234,6 +230,13 @@ namespace SuperbEdit.ViewModels
             LastMessage = message;
             await Task.Run(() => { Thread.Sleep(5000); });
             LastMessage = "Ready";
+        }
+        //Helper method for closing the active document
+        public void Close(ITab tab, DocumentClosingEventArgs e)
+        {
+            bool? result = false;
+            tab.TryClose(result);
+            e.Cancel = !result.Value;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace SuperbEdit.Base
 
         public override void Execute()
         {
-            shell.Value.ShowHidePanel(panel);
+            panel.ShowHide();
         }
     }
 }

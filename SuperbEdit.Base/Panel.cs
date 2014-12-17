@@ -16,7 +16,7 @@ namespace SuperbEdit.Base
         /// <summary>
         /// Default panel position
         /// </summary>
-        public PanelPosition DefaultPosition { get; private set; }
+        public PanelPosition DefaultPosition { get; protected set; }
 
 
         /// <summary>
@@ -26,5 +26,26 @@ namespace SuperbEdit.Base
         {
             get; set;
         }
+
+        private bool _visible = true;
+        public bool Visible
+        {
+            get { return _visible; }
+            set
+            {
+                _visible = value;
+                NotifyOfPropertyChange(() => Visible);
+            }
+        }
+
+        public void ShowHide()
+        {
+            Visible = !Visible;
+        }
+
+
+        public abstract double PreferredWidth { get; }
+
+        public abstract double PreferredHeight { get; }
     }
 }

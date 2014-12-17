@@ -220,6 +220,9 @@ namespace SuperbEdit.TextEditor.ViewModels
                 string fileContents = File.ReadAllText(FilePath);
                 _originalFileContent = fileContents;
                 FileContent = _originalFileContent;
+
+                FileInfo fileInfo = new FileInfo(FilePath);
+                IsReadOnly = fileInfo.IsReadOnly;
             }
         }
 
@@ -249,6 +252,20 @@ namespace SuperbEdit.TextEditor.ViewModels
             else
             {
                 callback(true);
+            }
+        }
+
+        private bool _isReadOnly = false;
+        public override bool IsReadOnly
+        {
+            get
+            {
+                return _isReadOnly;
+            }
+            set
+            {
+                _isReadOnly = value;
+                NotifyOfPropertyChange(() => IsReadOnly);
             }
         }
     }
