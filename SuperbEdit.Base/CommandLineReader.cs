@@ -36,6 +36,9 @@ namespace SuperbEdit.Base
     [Export]
     public class CommandLineReader
     {
+        [Import]
+        private JumpListManager _jumpListManager;
+
         OptionSet optionSet;
 
         [ImportingConstructor]

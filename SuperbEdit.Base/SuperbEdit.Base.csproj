@@ -49,8 +49,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyListComposer.cs" />
@@ -63,6 +66,8 @@
     <Compile Include="IShell.cs" />
     <Compile Include="ITab.cs" />
     <Compile Include="ITabMetadata.cs" />
+    <Compile Include="JumpListItem.cs" />
+    <Compile Include="JumpListManager.cs" />
     <Compile Include="KeybindingConfig.cs" />
     <Compile Include="CommandLineReader.cs" />
     <Compile Include="Mono.Options\Options.cs" />

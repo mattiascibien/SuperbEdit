@@ -26,6 +26,8 @@ namespace SuperbEdit
 
         private static void OnStartupNextInstance(object sender, StartupNextInstanceEventArgs e)
         {
+            MessageBox.Show(string.Format("Another application was launched with args:\n{0}", string.Join("\n", e.Args)));
+
             //Mattias: I know I should have used MEF but this seemed the only way to do this
             //If anybody knows how to improve this feel free tu submit a PR.
 

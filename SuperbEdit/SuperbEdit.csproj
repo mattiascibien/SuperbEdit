@@ -144,6 +144,7 @@
     <Compile Include="Controls\SuperbWindow.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\StringToKeyBinding.cs" />
+    <Compile Include="JumpLists\NewFileJumpList.cs" />
     <Compile Include="Layout\JsonLayoutSerializer.cs" />
     <Compile Include="Layout\LayoutInitializer.cs" />
     <Compile Include="Layout\LoadSaveLayoutBehaviour.cs" />
