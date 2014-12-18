@@ -9,6 +9,7 @@
     <Grid>
 		<controls:ModernTextEditor
             x:Name="ModernTextEditor"
+            SyntaxHighlighting="{Binding Highlighter}"
             FontFamily="{Binding FontFamily}"
             ShowLineNumbers="{Binding ShowLineNumbers}"
             WordWrap="{Binding WordWrap}"

@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using SuperbEdit.Base;
 using SuperbEdit.TextEditor.Views;
 using System.Windows.Media;
+using ICSharpCode.AvalonEdit.Highlighting;
 
 namespace SuperbEdit.TextEditor.ViewModels
 {
@@ -273,6 +274,20 @@ namespace SuperbEdit.TextEditor.ViewModels
             {
                 _isReadOnly = value;
                 NotifyOfPropertyChange(() => IsReadOnly);
+            }
+        }
+
+        private IHighlighter _highlighter;
+        public IHighlighter Highlighter
+        {
+            get
+            {
+                return _highlighter;
+            }
+            set
+            {
+                _highlighter = value;
+                NotifyOfPropertyChange(() => Highlighter);
             }
         }
     }
