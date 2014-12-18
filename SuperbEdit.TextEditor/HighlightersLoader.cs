@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace SuperbEdit.TextEditor
 {
@@ -21,9 +22,12 @@ namespace SuperbEdit.TextEditor
             set;
         }
 
+        private Dictionary<string, IHighlightingDefinition> ByExtension;
+
         [ImportingConstructor]
         public HighlightersLoader()
         {
+            ByExtension = new Dictionary<string, IHighlightingDefinition>();
             string[] defaultHighlighters = Directory.GetFiles(Folders.DefaultPackagesFolder, "*.xshd", SearchOption.AllDirectories);
             string[] userHighlighters = Directory.GetFiles(Folders.UserFolder, "*.xshd", SearchOption.AllDirectories);
 
@@ -34,13 +38,36 @@ namespace SuperbEdit.TextEditor
 
             foreach (var item in highlighters)
             {
-                using (XmlTextReader reader = new XmlTextReader(item))
+                IHighlightingDefinition highlighter = null;
+                XDocument doc = XDocument.Load(item);
+                string[] exts = doc.Root.Attribute("extensions").Value.Split(';');
+
+                using (XmlReader reader = doc.CreateReader())
                 {
-                    var highlighter = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                    highlighter = HighlightingLoader.Load(reader, HighlightingManager.Instance);
                     Highlighters.Add(highlighter);
+
+                }
+
+                foreach (var ext in exts)
+                {
+                    ByExtension.Add(ext, highlighter);
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Gets the highlighter associated with a particoular extension
+        /// </summary>
+        /// <param name="extension">the file extension (Ex: ".boo")</param>
+        /// <returns></returns>
+        public IHighlightingDefinition GetForExtension(string extension)
+        {
+            if (ByExtension.ContainsKey(extension))
+                return ByExtension[extension];
+            else
+                return null;
         }
     }
 }

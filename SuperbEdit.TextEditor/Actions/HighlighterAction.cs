@@ -37,10 +37,7 @@ namespace SuperbEdit.TextEditor.Actions
             if (vm != null)
             {
 
-                var view = vm.GetView() as TextEditorView;
-
-
-                view.ModernTextEditor.SyntaxHighlighting = _highLighter;
+                vm.Highlighter = _highLighter;
             }
         }
     }
