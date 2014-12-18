@@ -13,6 +13,13 @@ namespace SuperbEdit.TextEditor.ViewModels
     [ExportTab(Name="TextEditor")]
     public sealed class TextEditorViewModel : Tab
     {
+        static FontSizeConverter fontSizeConverter;
+
+        static TextEditorViewModel()
+        {
+            fontSizeConverter = new FontSizeConverter();
+        }
+
         private string _fileContent;
         private string _filePath;
 
@@ -33,7 +40,7 @@ namespace SuperbEdit.TextEditor.ViewModels
             ShowLineNumbers = config.RetrieveConfigValue<bool>("text_editor.show_line_numbers", true);
             WordWrap = config.RetrieveConfigValue<bool>("text_editor.wrapping", false);
             FontFamily = new FontFamily(config.RetrieveConfigValue<string>("text_editor.font_family", "Consolas"));
-            FontSize = (double)new FontSizeConverter().ConvertFrom(config.RetrieveConfigValue<string>("text_editor.font_size", "10pt"));
+            FontSize = (double)fontSizeConverter.ConvertFrom(config.RetrieveConfigValue<string>("text_editor.font_size", "10pt"));
         }
 
 
