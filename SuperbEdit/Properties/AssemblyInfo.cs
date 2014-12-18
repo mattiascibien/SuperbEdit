@@ -50,3 +50,4 @@ using System.Windows;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
+[assembly: GuidAttribute("369DBBE0-F87E-4810-B09F-F9CE0761862C")]

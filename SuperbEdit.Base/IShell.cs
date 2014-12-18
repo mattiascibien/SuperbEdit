@@ -46,5 +46,11 @@ namespace SuperbEdit.Base
         /// </summary>
         /// <param name="message">The Message</param>
         void EchoMessage(string message);
+
+        /// <summary>
+        /// Execute something with the command line parameters
+        /// </summary>
+        /// <param name="args">command line args</param>
+        void ExecuteCommandLine(string[] args);
     }
 }

@@ -50,13 +50,13 @@ namespace SuperbEdit.Base
         }
 
 
-        public void ExecuteCommandLine()
+        public void ExecuteCommandLine(string[] args)
         {
             List<string> extra;
             try
             {
                 //Parses and exectures command line
-                extra = optionSet.Parse(Environment.GetCommandLineArgs());
+                extra = optionSet.Parse(args);
             }
             catch (OptionException e)
             {

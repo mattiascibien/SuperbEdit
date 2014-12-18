@@ -63,7 +63,12 @@ namespace SuperbEdit.ViewModels
         protected override void OnActivate()
         {
             base.OnActivate();
-            cmdLineReader.ExecuteCommandLine();
+            ExecuteCommandLine(Environment.GetCommandLineArgs());
+        }
+
+        public void ExecuteCommandLine(string[] args)
+        {
+            cmdLineReader.ExecuteCommandLine(args);
         }
 
         [ImportingConstructor]

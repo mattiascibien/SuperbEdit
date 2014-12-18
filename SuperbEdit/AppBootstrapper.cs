@@ -11,6 +11,7 @@ using SuperbEdit.Base;
 using SuperbEdit.Base.Scripting;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock;
+using Custom.Windows;
 
 namespace SuperbEdit
 {
@@ -21,6 +22,15 @@ namespace SuperbEdit
         public AppBootstrapper()
         {
             Initialize();
+        }
+
+        private static void OnStartupNextInstance(object sender, StartupNextInstanceEventArgs e)
+        {
+            //Mattias: I know I should have used MEF but this seemed the only way to do this
+            //If anybody knows how to improve this feel free tu submit a PR.
+
+            IShell shell = IoC.Get<IShell>();
+            shell.ExecuteCommandLine(e.Args);
         }
 
         protected override IEnumerable<Assembly> SelectAssemblies()
@@ -87,7 +97,18 @@ namespace SuperbEdit
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<IShell>();
+            var app = Application as InstanceAwareApplication;
+            if (app == null || app.IsFirstInstance.GetValueOrDefault())
+                DisplayRootViewFor<IShell>();
+            else
+                app.Shutdown();
+        }
+
+        protected override void PrepareApplication()
+        {
+            base.PrepareApplication();
+            var application = (InstanceAwareApplication)Application;
+            application.StartupNextInstance += OnStartupNextInstance;
         }
     }
 }
