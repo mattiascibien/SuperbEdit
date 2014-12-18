@@ -115,6 +115,24 @@
     <None Include="Highlighters\PowerShell.xshd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Highlighters\Schemas\ModeV1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Highlighters\Schemas\ModeV2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Highlighters\Tex-Mode.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Highlighters\VB-Mode.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Highlighters\XML-Mode.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Highlighters\XmlDoc.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

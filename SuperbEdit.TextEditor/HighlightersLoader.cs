@@ -40,7 +40,13 @@ namespace SuperbEdit.TextEditor
             {
                 IHighlightingDefinition highlighter = null;
                 XDocument doc = XDocument.Load(item);
-                string[] exts = doc.Root.Attribute("extensions").Value.Split(';');
+
+                string[] exts = new string[0];
+
+                var extAttr = doc.Root.Attribute("extensions");
+
+                if(extAttr != null)
+                    exts = extAttr.Value.Split(';');
 
                 using (XmlReader reader = doc.CreateReader())
                 {
