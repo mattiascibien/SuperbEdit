@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
 using Microsoft.Win32;
@@ -14,6 +15,9 @@ namespace SuperbEdit.TextEditor.ViewModels
     [ExportTab(Name="TextEditor")]
     public sealed class TextEditorViewModel : Tab
     {
+        [Import]
+        HighlightersLoader _highlightersLoader;
+
         static FontSizeConverter fontSizeConverter;
 
         static TextEditorViewModel()
@@ -231,6 +235,7 @@ namespace SuperbEdit.TextEditor.ViewModels
 
                 FileInfo fileInfo = new FileInfo(FilePath);
                 IsReadOnly = fileInfo.IsReadOnly;
+                Highlighter = _highlightersLoader.GetForExtension(Path.GetExtension(filePath)); 
             }
         }
 
@@ -277,8 +282,8 @@ namespace SuperbEdit.TextEditor.ViewModels
             }
         }
 
-        private IHighlighter _highlighter;
-        public IHighlighter Highlighter
+        private IHighlightingDefinition _highlighter;
+        public IHighlightingDefinition Highlighter
         {
             get
             {
