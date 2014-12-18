@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SuperbEdit.Base
 {
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ExportJumpListItem  : ExportAttribute
     {
         public ExportJumpListItem() : base(typeof(IJumpListItem))
