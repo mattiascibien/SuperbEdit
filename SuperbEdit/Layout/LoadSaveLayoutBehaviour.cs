@@ -21,14 +21,26 @@ namespace SuperbEdit.Layout
 
         protected override void OnAttached()
         {
-            serializer = new XmlLayoutSerializer(AssociatedObject);
             Window theWindow = Window.GetWindow(AssociatedObject);
 
-            if (File.Exists(filePath))
-                serializer.Deserialize(filePath);
-
-            theWindow.Closed += (sender, e) =>
+           
+            theWindow.Loaded += (sender, e) =>
             {
+                serializer = new XmlLayoutSerializer(AssociatedObject);
+                serializer.LayoutSerializationCallback += (s, args) =>
+                {
+                    args.Content = args.Content;
+                };
+
+                if (File.Exists(filePath))
+                    serializer.Deserialize(filePath);
+
+
+            };
+
+            theWindow.Unloaded += (sender, e) =>
+            {
+                serializer = new XmlLayoutSerializer(AssociatedObject);
                 serializer.Serialize(filePath);
             };
 
