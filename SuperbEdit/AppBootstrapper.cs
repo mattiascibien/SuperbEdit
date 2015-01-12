@@ -11,6 +11,7 @@ using SuperbEdit.Base;
 using SuperbEdit.Base.Scripting;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock;
+using System.IO;
 
 namespace SuperbEdit
 {
@@ -32,7 +33,8 @@ namespace SuperbEdit
         }
 
         protected override void Configure()
-        {
+        { 
+
 
             MessageBinder.SpecialValues.Add("$documentcontext", context =>
             {
@@ -87,6 +89,23 @@ namespace SuperbEdit
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
+            IConfig config = IoC.Get<IConfig>();
+            string themeName = config.RetrieveConfigValue<string>("theme", "ExpressionDark.dll");
+
+            string themePath = "";
+            if (Directory.GetFiles(Folders.UserFolder).Contains(themeName))
+            {
+                themePath = Folders.UserFolder;
+            }
+            else
+            {
+                themePath = Folders.DefaultThemesFolder;
+            }
+
+            themePath = Path.Combine(themePath, themeName);
+
+            Tomers.WPF.Themes.Skins.DirectAssemblySkin skinLoad = new Tomers.WPF.Themes.Skins.DirectAssemblySkin(themeName, themePath);
+            skinLoad.Load();
             DisplayRootViewFor<IShell>();
         }
     }

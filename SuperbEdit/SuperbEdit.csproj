@@ -144,8 +144,6 @@
     <Compile Include="Layout\JsonLayoutSerializer.cs" />
     <Compile Include="Layout\LayoutInitializer.cs" />
     <Compile Include="Layout\LoadSaveLayoutBehaviour.cs" />
-    <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
-    <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CommandWindowViewModel.cs" />
     <Compile Include="ViewModels\FallbackTabViewModel.cs" />
@@ -205,10 +203,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\FallbackTabView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -238,6 +232,10 @@
     <Resource Include="Assets\icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SkinLoaderAdapter\SkinLoader.csproj">
+      <Project>{1f530349-3f69-4eca-9189-0255c30f2e6e}</Project>
+      <Name>SkinLoader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SuperbEdit.Base\SuperbEdit.Base.csproj">
       <Project>{072112b6-0d71-4a38-b920-7c7105829b7c}</Project>
       <Name>SuperbEdit.Base</Name>

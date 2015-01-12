@@ -60,5 +60,16 @@ namespace SuperbEdit.Base
         {
             get { return Path.Combine(ProgramFolder, "Docs"); }
         }
+
+
+        public static string DefaultThemesFolder
+        {
+            get { return Path.Combine(ProgramFolder, "Themes"); }
+        }
+
+        public static string UserThemesFolder
+        {
+            get { return Path.Combine(UserFolder, "Themes"); }
+        }
     }
 }
