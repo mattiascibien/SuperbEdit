@@ -116,6 +116,9 @@ namespace SuperbEdit
 				case ".xaml":
 					skinLoad = new LooseXamlSkin(themeName, new Uri(themePath));
 					break;
+				case ".setheme":
+					skinLoad = new SeThemeSkin(themeName, themePath);
+					break;
 				default:
 					//TODO: Exception
 					break;

@@ -62,6 +62,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase">
@@ -75,6 +76,7 @@
     <Compile Include="Skins\DirectAssemblySkin.cs" />
     <Compile Include="Skins\ReferencedAssemblySkin.cs" />
     <Compile Include="Skins\LooseXamlSkin.cs" />
+    <Compile Include="Skins\SeThemeSkin.cs" />
     <Compile Include="Skins\Skin.cs" />
     <Compile Include="SkinBamlResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
