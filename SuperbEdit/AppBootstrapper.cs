@@ -12,6 +12,7 @@ using SuperbEdit.Base.Scripting;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock;
 using System.IO;
+using Tomers.WPF.Themes.Skins;
 
 namespace SuperbEdit
 {
@@ -93,7 +94,7 @@ namespace SuperbEdit
             string themeName = config.RetrieveConfigValue<string>("theme", "ExpressionDark.dll");
 
             string themePath = "";
-            if (Directory.GetFiles(Folders.UserFolder).Contains(themeName))
+            if (Directory.GetFiles(Folders.UserFolder).Select(f => Path.GetFileName(f)).Contains(themeName))
             {
                 themePath = Folders.UserFolder;
             }
@@ -104,7 +105,24 @@ namespace SuperbEdit
 
             themePath = Path.Combine(themePath, themeName);
 
-            Tomers.WPF.Themes.Skins.DirectAssemblySkin skinLoad = new Tomers.WPF.Themes.Skins.DirectAssemblySkin(themeName, themePath);
+			Skin skinLoad = null;
+			string extension = Path.GetExtension(themeName);
+
+			switch (extension)
+			{
+				case ".dll":
+					skinLoad = new DirectAssemblySkin(themeName, themePath);
+					break;
+				case ".xaml":
+					skinLoad = new LooseXamlSkin(themeName, new Uri(themePath));
+					break;
+				default:
+					//TODO: Exception
+					break;
+			}
+
+
+
             skinLoad.Load();
             DisplayRootViewFor<IShell>();
         }
