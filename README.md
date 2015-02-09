@@ -1,5 +1,7 @@
 # SuperbEdit
 
+[![Join the chat at https://gitter.im/SuperbEdit/SuperbEdit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/SuperbEdit/SuperbEdit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build status](http://img.shields.io/appveyor/ci/mattiascibien/superbedit.svg)](https://ci.appveyor.com/project/mattiascibien/superbedit) [![Issues](http://img.shields.io/github/issues/superbedit/superbedit.svg)](https://github.com/superbedit/SuperbEdit/issues)
 [![Gitter](https://img.shields.io/badge/gitter-join_chat_%E2%86%92-brightgreen.svg)](https://gitter.im/SuperbEdit/SuperbEdit)
 
