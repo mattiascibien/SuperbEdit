@@ -1,7 +1,6 @@
 # SuperbEdit
 
 [![Build status](http://img.shields.io/appveyor/ci/mattiascibien/superbedit.svg)](https://ci.appveyor.com/project/mattiascibien/superbedit) [![Issues](http://img.shields.io/github/issues/superbedit/superbedit.svg)](https://github.com/superbedit/SuperbEdit/issues)
-[![Codacy Badge](https://img.shields.io/codacy/346d5d7cd01e4e3193bab9561aae55a0.svg)](https://www.codacy.com/public/cibienmattias/SuperbEdit)
 [![Gitter](https://img.shields.io/badge/gitter-join_chat_%E2%86%92-brightgreen.svg)](https://gitter.im/SuperbEdit/SuperbEdit)
 
 ## Synopsis
