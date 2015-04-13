@@ -66,16 +66,11 @@
             <ContentControl Grid.Column="1" x:Name="CommandWindow" Visibility="Collapsed" Grid.Row="0"
 				Panel.ZIndex="1000" />
             <dockablz:Layout Grid.Column="0" Grid.ColumnSpan="3">
-                <dockablz:Layout.BranchTemplate>
-                    <DataTemplate>
-                        <dragablz:TabablzControl />
-                    </DataTemplate>
-                </dockablz:Layout.BranchTemplate>
                 <dragablz:TabablzControl ClosingItemCallback="{Binding ClosingTabItemHandler}" ShowDefaultCloseButton="True"  ConsolidateOrphanedItems="True"  x:Name="Items" 
                                          SelectedItem="{Binding ActiveItem, Mode=TwoWay}">
-                    <dragablz:TabablzControl.InterTabController>
-                        <dragablz:InterTabController  />
-                    </dragablz:TabablzControl.InterTabController>
+                    <!--<dragablz:TabablzControl.InterTabController>
+                        <dragablz:InterTabController MoveWindowWithSolitaryTabs="False" />
+                    </dragablz:TabablzControl.InterTabController>-->
                     <dragablz:TabablzControl.CustomHeaderItemTemplate>
                         <DataTemplate>
                             <Grid>
