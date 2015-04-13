@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mahcontrols="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="About" Width="510" Height="347" WindowStyle="ToolWindow"
-        Topmost="True" WindowStartupLocation="CenterOwner" ShowMaxRestoreButton="False" ShowMinButton="False" ShowInTaskbar="False">
+        Topmost="True" WindowStartupLocation="CenterOwner" ShowMaxRestoreButton="False" ShowMinButton="False" ShowInTaskbar="False"
+        BorderBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1">
     <mahcontrols:MetroWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </mahcontrols:MetroWindow.Resources>

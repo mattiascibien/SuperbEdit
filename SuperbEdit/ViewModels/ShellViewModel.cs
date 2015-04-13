@@ -206,14 +206,14 @@ namespace SuperbEdit.ViewModels
         public void ToggleCommandWindow()
         {
             var view = GetView() as ShellView;
-            //if (view.CommandWindow.Visibility == Visibility.Collapsed)
-            //{
-            //    view.CommandWindow.Visibility = Visibility.Visible;
-            //}
-            //else
-            //{
-            //    view.CommandWindow.Visibility = Visibility.Collapsed;
-            //}
+            if (view.CommandWindow.Visibility == Visibility.Collapsed)
+            {
+                view.CommandWindow.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                view.CommandWindow.Visibility = Visibility.Collapsed;
+            }
         }
 
 

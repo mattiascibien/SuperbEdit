@@ -5,7 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     x:Class="SuperbEdit.Views.CommandWindowView"
     mc:Ignorable="d"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    Background="{DynamicResource WindowBackgroundBrush}"
+    BorderBrush="{DynamicResource AccentColorBrush}"
+    BorderThickness="1">
     <Border
             Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}">
         <Grid Margin="3">

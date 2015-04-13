@@ -10,7 +10,9 @@
         xmlns:Converters="clr-namespace:SuperbEdit.Converters"
         xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
         x:Class="SuperbEdit.Views.ShellView"
-        Icon="/SuperbEdit;component/Assets/icon.ico" GlobalInputBindings="{Binding GlobalInputBindings}">
+        Icon="/SuperbEdit;component/Assets/icon.ico" GlobalInputBindings="{Binding GlobalInputBindings}"
+        BorderBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1">
     <Window.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
