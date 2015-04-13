@@ -36,7 +36,7 @@
     </Window.Resources>
     <mahcontrols:MetroWindow.LeftWindowCommands>
         <mahcontrols:WindowCommands>
-            <Menu ItemContainerStyle="{StaticResource MenuItemStyle}" ItemsSource="{Binding MenuItems}">
+            <Menu Margin="5,2,0,0" ItemContainerStyle="{StaticResource MenuItemStyle}" ItemsSource="{Binding MenuItems}">
                 <!--<Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel HorizontalAlignment="Stretch" />
@@ -68,7 +68,7 @@
             </Grid.RowDefinitions>
             <ContentControl Grid.Column="1" x:Name="CommandWindow" Visibility="Collapsed" Grid.Row="0"
 				Panel.ZIndex="1000" />
-            <dragablz:TabablzControl Grid.Row="0" Grid.ColumnSpan="3" ItemsSource="{Binding Items}">
+            <dragablz:TabablzControl Grid.Column="0"  x:Name="Items" SelectedItem="{Binding ActiveItem, Mode=TwoWay}" Grid.Row="0" Grid.ColumnSpan="3">
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController  />
                 </dragablz:TabablzControl.InterTabController>
@@ -114,145 +114,6 @@
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </dragablz:TabablzControl>
-            <!--<avalonDock:DockingManager ActiveContent="{Binding ActiveItem, Mode=TwoWay}" AnchorablesSource="{Binding Panels}" DocumentsSource="{Binding Items}" x:Name="dockingManager">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="DocumentClosing">
-                        <cal:ActionMessage MethodName="Close">
-                            <cal:Parameter Value="$documentcontext" />
-                            <cal:Parameter Value="$eventArgs" />
-                        </cal:ActionMessage>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <i:Interaction.Behaviors>
-                    <layout:LoadSaveLayoutBehaviour />
-                </i:Interaction.Behaviors>
-                <avalonDock:DockingManager.LayoutUpdateStrategy>
-                    <layout:LayoutInitializer />
-                </avalonDock:DockingManager.LayoutUpdateStrategy>
-                <avalonDock:DockingManager.LayoutItemContainerStyle>
-                    <Style TargetType="{x:Type avalonDock:LayoutItem}">
-                        <Setter Property="Title" Value="{Binding Model.DisplayName}" />
-                        <Setter Property="Visibility" Value="{Binding Model.Visible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}"/>
-                    </Style>
-                </avalonDock:DockingManager.LayoutItemContainerStyle>
-                <avalonDock:DockingManager.DocumentHeaderTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Content.DisplayName}" Grid.Column="0" />
-                            <TextBlock Text="&#x1F512;" Grid.Column="1"
-								Visibility="{Binding Content.IsReadOnly, Converter={StaticResource BoolToVisibilityConverter}}" />
-                            <TextBlock Text="*" Grid.Column="2"
-								Visibility="{Binding Content.HasChanges, Converter={StaticResource BoolToVisibilityConverter}}" />
-                        </Grid>
-                    </DataTemplate>
-                </avalonDock:DockingManager.DocumentHeaderTemplate>
-                <avalonDock:DockingManager.LayoutItemTemplate>
-                    <DataTemplate>
-                        <ContentControl cal:View.Model="{Binding}" IsTabStop="False" />
-                    </DataTemplate>
-                </avalonDock:DockingManager.LayoutItemTemplate>
-                <avalonDock:DockingManager.Theme>
-                    <avalonDock:ExpressionDarkTheme/>
-                </avalonDock:DockingManager.Theme>
-                <avalonDock:LayoutRoot>
-                    <avalonDock:LayoutPanel Orientation="Vertical">
-                        <avalonDock:LayoutPanel Orientation="Horizontal">
-                            <avalonDock:LayoutDocumentPane />
-                        </avalonDock:LayoutPanel>
-                    </avalonDock:LayoutPanel>
-                </avalonDock:LayoutRoot>
-
-            </avalonDock:DockingManager>-->
-            <!--<TabControl x:Name="Items" Grid.Row="0" Grid.ColumnSpan="3" >
-                <TabControl.Template>
-                    <ControlTemplate TargetType="{x:Type TabControl}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <ScrollViewer HorizontalScrollBarVisibility="Hidden" x:Name="scroll" Grid.Row="0"
-								Grid.Column="0" VerticalScrollBarVisibility="Hidden">
-                                <ScrollViewer.Style>
-                                    <Style TargetType="{x:Type ScrollViewer}"  BasedOn="{StaticResource {x:Type ScrollViewer}}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource AncestorType={x:Type TabControl}, Mode=FindAncestor}}" Value="0">
-                                                <Setter Property="Visibility" Value="Collapsed"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ScrollViewer.Style>
-                                <TabPanel x:Name="HeaderPanel"
-									Panel.ZIndex="1"
-									KeyboardNavigation.TabIndex="1"
-									Margin="2,2,2,0"
-									IsItemsHost="true" />
-                            </ScrollViewer>
-                            <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageLeftCommand" Grid.Row="0"
-								Grid.Column="1" CommandTarget="{Binding ElementName=scroll}" Visibility="{Binding Visibility, ElementName=scroll}"
-								Style="{DynamicResource RepeatLeftButtonStyle}" />
-                            <RepeatButton VerticalAlignment="Bottom" Command="ScrollBar.PageRightCommand"
-								CommandTarget="{Binding ElementName=scroll}" Visibility="{Binding Visibility, ElementName=scroll}" Grid.Row="0" Grid.Column="2"
-								Style="{DynamicResource RepeatRightButtonStyle}" />
-                            <ContentPresenter x:Name="PART_SelectedContentHost"
-								SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-								Margin="{TemplateBinding Padding}"
-								ContentSource="SelectedContent" Grid.Column="0" Grid.ColumnSpan="3"
-								Grid.Row="1" />
-                        </Grid>
-                    </ControlTemplate>
-                </TabControl.Template>
-                <TabControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ContextMenu>
-                                <ContextMenu Style="{StaticResource {x:Type ContextMenu}}">
-                                    <MenuItem Header="Deatch" cal:Message.Attach="DetachItem($dataContext)" />
-                                    <MenuItem Header="Close" cal:Message.Attach="CloseItem($dataContext)" />
-                                </ContextMenu>
-                            </Grid.ContextMenu>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding DisplayName}" Grid.Column="0" />
-                            <TextBlock Text="*" Grid.Column="1"
-								Visibility="{Binding HasChanges, Converter={StaticResource booleanToVisibility}}" />
-                            <TextBlock Text="✖" Margin="5,0,0,0" Grid.Column="2">
-								<i:Interaction.Triggers>
-									<i:EventTrigger EventName="MouseLeftButtonDown">
-										<cal:ActionMessage MethodName="CloseItem">
-											<cal:Parameter Value="$dataContext" />
-										</cal:ActionMessage>
-									</i:EventTrigger>
-								</i:Interaction.Triggers>
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground"
-													Value="{StaticResource MouseOverForegroundBrush}" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>
-            </TabControl>-->
         </Grid>
 
     </DockPanel>
