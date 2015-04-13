@@ -1,11 +1,13 @@
-﻿<Window x:Class="SuperbEdit.Views.AboutView"
+﻿<mahcontrols:MetroWindow x:Class="SuperbEdit.Views.AboutView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="About" Width="510" Height="347" WindowStyle="ToolWindow" Style="{StaticResource {x:Type Window}}"
-        Topmost="True" WindowStartupLocation="CenterOwner">
-    <Window.Resources>
+        xmlns:mahcontrols="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="About" Width="510" Height="347" WindowStyle="ToolWindow"
+        Topmost="True" WindowStartupLocation="CenterOwner" ShowMaxRestoreButton="False" ShowMinButton="False" ShowInTaskbar="False"
+        GlowBrush="{DynamicResource AccentColorBrush}">
+    <mahcontrols:MetroWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-    </Window.Resources>
+    </mahcontrols:MetroWindow.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="General">
@@ -72,4 +74,4 @@
         </TabControl>
 
     </Grid>
-</Window>
+</mahcontrols:MetroWindow>
