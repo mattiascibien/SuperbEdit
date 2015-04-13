@@ -11,7 +11,6 @@ using System.Windows.Input;
 using SuperbEdit.Converters;
 using System.Threading.Tasks;
 using System.Threading;
-using Xceed.Wpf.AvalonDock;
 
 namespace SuperbEdit.ViewModels
 {
@@ -232,11 +231,10 @@ namespace SuperbEdit.ViewModels
             LastMessage = "Ready";
         }
         //Helper method for closing the active document
-        public void Close(ITab tab, DocumentClosingEventArgs e)
+        public void Close(ITab tab)
         {
             bool? result = false;
             tab.TryClose(result);
-            e.Cancel = !result.Value;
         }
     }
 }

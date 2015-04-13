@@ -5,8 +5,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:int="clr-namespace:System.Windows.Interactivity"
         xmlns:controls="clr-namespace:SuperbEdit.Controls"
-        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
-        xmlns:layout="clr-namespace:SuperbEdit.Layout"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:Converters="clr-namespace:SuperbEdit.Converters" x:Class="SuperbEdit.Views.ShellView"
         Icon="/SuperbEdit;component/Assets/icon.ico" GlobalInputBindings="{Binding GlobalInputBindings}">
     <Window.Resources>
@@ -63,7 +62,54 @@
             </Grid.RowDefinitions>
             <ContentControl Grid.Column="1" x:Name="CommandWindow" Visibility="Collapsed" Grid.Row="0"
 				Panel.ZIndex="1000" />
-            <avalonDock:DockingManager ActiveContent="{Binding ActiveItem, Mode=TwoWay}" AnchorablesSource="{Binding Panels}" DocumentsSource="{Binding Items}" x:Name="dockingManager" Grid.Row="0" Grid.ColumnSpan="3">
+            <dragablz:TabablzControl  Grid.Row="0" Grid.ColumnSpan="3" ItemsSource="{Binding Items}">
+                <dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController  />
+                </dragablz:TabablzControl.InterTabController>
+                <dragablz:TabablzControl.CustomHeaderItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding DisplayName}" Grid.Column="0" />
+                            <TextBlock Text="&#x1F512;" Grid.Column="1"
+								Visibility="{Binding IsReadOnly, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock Text="*" Grid.Column="2"
+								Visibility="{Binding HasChanges, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock Text="✖" Margin="5,0,0,0" Grid.Column="3">
+								<i:Interaction.Triggers>
+									<i:EventTrigger EventName="MouseLeftButtonDown">
+										<cal:ActionMessage MethodName="CloseItem">
+											<cal:Parameter Value="$dataContext" />
+										</cal:ActionMessage>
+									</i:EventTrigger>
+								</i:Interaction.Triggers>
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground"
+													Value="{StaticResource MouseOverForegroundBrush}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </dragablz:TabablzControl.CustomHeaderItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ContentControl cal:View.Model="{Binding}" IsTabStop="False" />
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </dragablz:TabablzControl>
+            <!--<avalonDock:DockingManager ActiveContent="{Binding ActiveItem, Mode=TwoWay}" AnchorablesSource="{Binding Panels}" DocumentsSource="{Binding Items}" x:Name="dockingManager">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="DocumentClosing">
                         <cal:ActionMessage MethodName="Close">
@@ -116,7 +162,7 @@
                     </avalonDock:LayoutPanel>
                 </avalonDock:LayoutRoot>
 
-            </avalonDock:DockingManager>
+            </avalonDock:DockingManager>-->
             <!--<TabControl x:Name="Items" Grid.Row="0" Grid.ColumnSpan="3" >
                 <TabControl.Template>
                     <ControlTemplate TargetType="{x:Type TabControl}">
