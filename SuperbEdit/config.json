@@ -3,6 +3,10 @@
     "text_editor": {
         "show_line_numbers": true,
         "font_family": "Consolas",
-        "font_size":  "10pt"
+        "font_size": "10pt"
+    },
+    "theme" : {
+    	"base": "BaseDark",
+    	"accent": "Red"
     }
 }
