@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using SuperbEdit.Converters;
 using System.Threading.Tasks;
 using System.Threading;
+using Dragablz;
 
 namespace SuperbEdit.ViewModels
 {
@@ -204,14 +206,14 @@ namespace SuperbEdit.ViewModels
         public void ToggleCommandWindow()
         {
             var view = GetView() as ShellView;
-            if (view.CommandWindow.Visibility == Visibility.Collapsed)
-            {
-                view.CommandWindow.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                view.CommandWindow.Visibility = Visibility.Collapsed;
-            }
+            //if (view.CommandWindow.Visibility == Visibility.Collapsed)
+            //{
+            //    view.CommandWindow.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    view.CommandWindow.Visibility = Visibility.Collapsed;
+            //}
         }
 
 
@@ -230,11 +232,37 @@ namespace SuperbEdit.ViewModels
             await Task.Run(() => { Thread.Sleep(5000); });
             LastMessage = "Ready";
         }
+
         //Helper method for closing the active document
-        public void Close(ITab tab)
+        //public void Close(ITab tab)
+        //{
+        //    bool? result = false;
+        //    tab.TryClose(result);
+        //}
+
+
+        //TODO: I want the custom button
+        public ItemActionCallback ClosingTabItemHandler
         {
-            bool? result = false;
-            tab.TryClose(result);
+            get { return ClosingTabItemHandlerImpl; }
+        }
+
+        /// <summary>
+        /// Callback to handle tab closing.
+        /// </summary>        
+        private static void ClosingTabItemHandlerImpl(ItemActionCallbackArgs<TabablzControl> args)
+        {
+            //in here you can dispose stuff or cancel the close
+
+            //here's your view model:
+            var viewModel = args.DragablzItem.DataContext as ITab;
+            Debug.Assert(viewModel != null);
+
+            bool? result = null;
+            viewModel.TryClose(result);
+
+            //here's how you can cancel stuff:
+            args.Cancel(); 
         }
     }
 }

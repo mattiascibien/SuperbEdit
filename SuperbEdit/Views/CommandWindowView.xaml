@@ -6,7 +6,7 @@
     x:Class="SuperbEdit.Views.CommandWindowView"
     mc:Ignorable="d"
     d:DesignWidth="400">
-    <Border Background="{DynamicResource MenuBackground}"
+    <Border
             Visibility="{Binding CommandWindowVisible, Converter={StaticResource booleanToVisibility}}">
         <Grid Margin="3">
             <Grid.RowDefinitions>

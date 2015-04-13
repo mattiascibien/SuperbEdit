@@ -7,7 +7,9 @@
         xmlns:controls="clr-namespace:SuperbEdit.Controls"
         xmlns:mahcontrols="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-        xmlns:Converters="clr-namespace:SuperbEdit.Converters" x:Class="SuperbEdit.Views.ShellView"
+        xmlns:Converters="clr-namespace:SuperbEdit.Converters"
+        xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
+        x:Class="SuperbEdit.Views.ShellView"
         Icon="/SuperbEdit;component/Assets/icon.ico" GlobalInputBindings="{Binding GlobalInputBindings}">
     <Window.Resources>
         <ResourceDictionary>
@@ -47,16 +49,11 @@
             </Menu>
         </mahcontrols:WindowCommands>
     </mahcontrols:MetroWindow.LeftWindowCommands>
-    <!--<Window.Style>
-        <StaticResource ResourceKey="{x:Type Window}"/>
-    </Window.Style>-->
     <DockPanel>
-        
+
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem x:Name="Status" Content="{Binding LastMessage}"/>
         </StatusBar>
-        <!--<ContentControl x:Name="LeftPanel" MinWidth="150" DockPanel.Dock="Left" Width="200" />
-        <controls:DockPanelSplitter DockPanel.Dock="Left" Width="4" Visibility="{Binding Visibility, ElementName=LeftPanel, Mode=OneWay}" />-->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -68,25 +65,32 @@
             </Grid.RowDefinitions>
             <ContentControl Grid.Column="1" x:Name="CommandWindow" Visibility="Collapsed" Grid.Row="0"
 				Panel.ZIndex="1000" />
-            <dragablz:TabablzControl Grid.Column="0"  x:Name="Items" SelectedItem="{Binding ActiveItem, Mode=TwoWay}" Grid.Row="0" Grid.ColumnSpan="3">
-                <dragablz:TabablzControl.InterTabController>
-                    <dragablz:InterTabController  />
-                </dragablz:TabablzControl.InterTabController>
-                <dragablz:TabablzControl.CustomHeaderItemTemplate>
+            <dockablz:Layout Grid.Column="0" Grid.ColumnSpan="3">
+                <dockablz:Layout.BranchTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding DisplayName}" Grid.Column="0" />
-                            <TextBlock Text="&#x1F512;" Grid.Column="1"
+                        <dragablz:TabablzControl />
+                    </DataTemplate>
+                </dockablz:Layout.BranchTemplate>
+                <dragablz:TabablzControl ClosingItemCallback="{Binding ClosingTabItemHandler}" ShowDefaultCloseButton="True"  ConsolidateOrphanedItems="True"  x:Name="Items" 
+                                         SelectedItem="{Binding ActiveItem, Mode=TwoWay}">
+                    <dragablz:TabablzControl.InterTabController>
+                        <dragablz:InterTabController  />
+                    </dragablz:TabablzControl.InterTabController>
+                    <dragablz:TabablzControl.CustomHeaderItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding DisplayName}" Grid.Column="0" />
+                                <TextBlock Text="&#x1F512;" Grid.Column="1"
 								Visibility="{Binding IsReadOnly, Converter={StaticResource BoolToVisibilityConverter}}" />
-                            <TextBlock Text="*" Grid.Column="2"
+                                <TextBlock Text="*" Grid.Column="2"
 								Visibility="{Binding HasChanges, Converter={StaticResource BoolToVisibilityConverter}}" />
-                            <TextBlock Text="✖" Margin="5,0,0,0" Grid.Column="3">
+                                <!--<TextBlock Text="✖" Margin="5,0,0,0" Grid.Column="3">
 								<i:Interaction.Triggers>
 									<i:EventTrigger EventName="MouseLeftButtonDown">
 										<cal:ActionMessage MethodName="CloseItem">
@@ -94,26 +98,27 @@
 										</cal:ActionMessage>
 									</i:EventTrigger>
 								</i:Interaction.Triggers>
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground"
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground"
 													Value="{StaticResource MouseOverForegroundBrush}" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
-                    </DataTemplate>
-                </dragablz:TabablzControl.CustomHeaderItemTemplate>
-                <TabControl.ContentTemplate>
-                    <DataTemplate>
-                        <ContentControl cal:View.Model="{Binding}" IsTabStop="False" />
-                    </DataTemplate>
-                </TabControl.ContentTemplate>
-            </dragablz:TabablzControl>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>-->
+                            </Grid>
+                        </DataTemplate>
+                    </dragablz:TabablzControl.CustomHeaderItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <ContentControl cal:View.Model="{Binding}" IsTabStop="False" />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </dragablz:TabablzControl>
+            </dockablz:Layout>
         </Grid>
 
     </DockPanel>
