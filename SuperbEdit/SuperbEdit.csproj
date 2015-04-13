@@ -65,6 +65,10 @@
       <HintPath>..\packages\Dragablz.0.0.1.108\lib\net45\Dragablz.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MahApps.Metro, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -72,7 +76,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.2.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -125,8 +130,6 @@
     <Compile Include="Controls\SuperbWindow.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\StringToKeyBinding.cs" />
-    <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
-    <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CommandWindowViewModel.cs" />
     <Compile Include="ViewModels\FallbackTabViewModel.cs" />
@@ -185,10 +188,6 @@
     <Page Include="Resources\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\FallbackTabView.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -5,6 +5,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:int="clr-namespace:System.Windows.Interactivity"
         xmlns:controls="clr-namespace:SuperbEdit.Controls"
+        xmlns:mahcontrols="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:Converters="clr-namespace:SuperbEdit.Converters" x:Class="SuperbEdit.Views.ShellView"
         Icon="/SuperbEdit;component/Assets/icon.ico" GlobalInputBindings="{Binding GlobalInputBindings}">
@@ -33,19 +34,24 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <Window.Style>
-        <StaticResource ResourceKey="{x:Type Window}"/>
-    </Window.Style>
-    <DockPanel>
-        <Menu DockPanel.Dock="Top" ItemContainerStyle="{StaticResource MenuItemStyle}" ItemsSource="{Binding MenuItems}">
-            <!--<Menu.ItemsPanel>
+    <mahcontrols:MetroWindow.LeftWindowCommands>
+        <mahcontrols:WindowCommands>
+            <Menu ItemContainerStyle="{StaticResource MenuItemStyle}" ItemsSource="{Binding MenuItems}">
+                <!--<Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel HorizontalAlignment="Stretch" />
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>-->
-            <!--<MenuItem Header="Attach Back" x:Name="AttachBack" HorizontalAlignment="Right"
+                <!--<MenuItem Header="Attach Back" x:Name="AttachBack" HorizontalAlignment="Right"
                       Visibility="{Binding IsSecondaryWindow, Converter={StaticResource booleanToVisibility}}" />-->
-        </Menu>
+            </Menu>
+        </mahcontrols:WindowCommands>
+    </mahcontrols:MetroWindow.LeftWindowCommands>
+    <!--<Window.Style>
+        <StaticResource ResourceKey="{x:Type Window}"/>
+    </Window.Style>-->
+    <DockPanel>
+        
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem x:Name="Status" Content="{Binding LastMessage}"/>
         </StatusBar>
@@ -62,7 +68,7 @@
             </Grid.RowDefinitions>
             <ContentControl Grid.Column="1" x:Name="CommandWindow" Visibility="Collapsed" Grid.Row="0"
 				Panel.ZIndex="1000" />
-            <dragablz:TabablzControl  Grid.Row="0" Grid.ColumnSpan="3" ItemsSource="{Binding Items}">
+            <dragablz:TabablzControl Grid.Row="0" Grid.ColumnSpan="3" ItemsSource="{Binding Items}">
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController  />
                 </dragablz:TabablzControl.InterTabController>
@@ -90,7 +96,6 @@
 								</i:Interaction.Triggers>
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
                                         <Style.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Foreground"
