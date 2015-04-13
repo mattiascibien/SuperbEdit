@@ -40,7 +40,7 @@
     </Window.Resources>
     <mahcontrols:MetroWindow.LeftWindowCommands>
         <mahcontrols:WindowCommands>
-            <Menu Margin="5,2,0,0" ItemContainerStyle="{StaticResource MenuItemStyle}" ItemsSource="{Binding MenuItems}">
+            <Menu Margin="2,1,0,0" ItemContainerStyle="{StaticResource MenuItemStyle}" ItemsSource="{Binding MenuItems}">
                 <!--<Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel HorizontalAlignment="Stretch" />
