@@ -6,7 +6,7 @@
         "font_size": "10pt"
     },
     "theme" : {
-    	"base": "BaseDark",
-    	"accent": "Red"
+    	"base": "BaseLight",
+    	"accent": "Blue"
     }
 }

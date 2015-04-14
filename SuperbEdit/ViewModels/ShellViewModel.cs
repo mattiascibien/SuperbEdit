@@ -63,8 +63,7 @@ namespace SuperbEdit.ViewModels
 
         private void OnConfigChanged(object sender, EventArgs eventArgs)
         {
-            ChangeTheme(_config.RetrieveConfigValue<string>("theme.base"));
-            ChangeAccent(_config.RetrieveConfigValue<string>("theme.accent"));
+            ChangeTheme(_config.RetrieveConfigValue<string>("theme.base"), _config.RetrieveConfigValue<string>("theme.accent"));
         }
 
         protected override void OnActivate()
@@ -72,8 +71,7 @@ namespace SuperbEdit.ViewModels
             base.OnActivate();
             cmdLineReader.ExecuteCommandLine();
             _config.ConfigChanged += OnConfigChanged;
-            ChangeTheme(_config.RetrieveConfigValue<string>("theme.base"));
-            ChangeAccent(_config.RetrieveConfigValue<string>("theme.accent"));
+            ChangeTheme(_config.RetrieveConfigValue<string>("theme.base"), _config.RetrieveConfigValue<string>("theme.accent"));
         }
 
         [ImportingConstructor]
@@ -274,21 +272,14 @@ namespace SuperbEdit.ViewModels
             args.Cancel(); 
         }
 
-        public void ChangeAccent(string themeName)
-        {
-            if (!string.IsNullOrEmpty(themeName))
-            {
-                var theme = ThemeManager.DetectAppStyle(Application.Current);
-                var accent = ThemeManager.GetAccent(themeName);
-                ThemeManager.ChangeAppStyle(Application.Current, accent, theme.Item1);
-            }
-        }
-
-        public void ChangeTheme(string themeName)
+        public void ChangeTheme(string themeName, string accentName)
         {
             var theme = ThemeManager.DetectAppStyle(Application.Current);
             var appTheme = ThemeManager.GetAppTheme(themeName);
-            ThemeManager.ChangeAppStyle(Application.Current, theme.Item2, appTheme);
+            var accent = ThemeManager.GetAccent(accentName);
+            Execute.OnUIThread(() =>
+                ThemeManager.ChangeAppStyle(Application.Current, accent, appTheme)
+            );
         }
     }
 }
