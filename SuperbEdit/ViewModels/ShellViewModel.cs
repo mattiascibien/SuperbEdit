@@ -13,6 +13,7 @@ using SuperbEdit.Converters;
 using System.Threading.Tasks;
 using System.Threading;
 using Dragablz;
+using MahApps.Metro;
 
 namespace SuperbEdit.ViewModels
 {
@@ -45,7 +46,7 @@ namespace SuperbEdit.ViewModels
         private bool _isSecondaryWindow;
 
         [Import]
-        private IConfig config;
+        private IConfig _config;
 
 
         [Import]
@@ -58,13 +59,19 @@ namespace SuperbEdit.ViewModels
             IsSecondaryWindow = secondaryWindow;
             DisplayName = "SuperbEdit";
             _parentViewModel = parent;
+        }
 
+        private void OnConfigChanged(object sender, EventArgs eventArgs)
+        {
+            ChangeTheme(_config.RetrieveConfigValue<string>("theme.base"), _config.RetrieveConfigValue<string>("theme.accent"));
         }
 
         protected override void OnActivate()
         {
             base.OnActivate();
             cmdLineReader.ExecuteCommandLine();
+            _config.ConfigChanged += OnConfigChanged;
+            ChangeTheme(_config.RetrieveConfigValue<string>("theme.base"), _config.RetrieveConfigValue<string>("theme.accent"));
         }
 
         [ImportingConstructor]
@@ -263,6 +270,16 @@ namespace SuperbEdit.ViewModels
 
             //here's how you can cancel stuff:
             args.Cancel(); 
+        }
+
+        public void ChangeTheme(string themeName, string accentName)
+        {
+            var theme = ThemeManager.DetectAppStyle(Application.Current);
+            var appTheme = ThemeManager.GetAppTheme(themeName);
+            var accent = ThemeManager.GetAccent(accentName);
+            Execute.OnUIThread(() =>
+                ThemeManager.ChangeAppStyle(Application.Current, accent, appTheme)
+            );
         }
     }
 }
