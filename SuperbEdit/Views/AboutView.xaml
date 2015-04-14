@@ -25,7 +25,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Source="/SuperbEdit;component/Assets/icon.ico">
-                        
+
                     </Image>
                     <Label Content="SuperbEdit" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"
                            FontSize="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
@@ -33,9 +33,26 @@
                     <Label Content="Beta" x:Name="Version" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
                     <Label Content="Copyright" x:Name="Copyright" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" />
                     <Label Content="Contributors" Grid.Row="4" Grid.Column="0" />
-                    <ListBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
-                        <ListBoxItem>Mattias Cibien &lt;mattias@mattiascibien.net&gt;</ListBoxItem>
-                        <ListBoxItem>Dan</ListBoxItem>
+                    <ListBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Contributors}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.RowSpan="2" Width="32" Height="32" Margin="2" Source="{Binding Photo}">
+                                        
+                                    </Image>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding GitHubUrl}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
             </TabItem>
@@ -68,7 +85,7 @@
             </TabItem>
             <TabItem Header="Script Errors" Visibility="{Binding ErrorsPresent, Converter={StaticResource BoolToVisibilityConverter}}">
                 <ListBox ItemsSource="{Binding ScriptErrors}">
-                    
+
                 </ListBox>
             </TabItem>
         </TabControl>
