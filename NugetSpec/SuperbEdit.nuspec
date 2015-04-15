@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>SuperbEdit</id>
+        <version>1.0.0</version>
+        <authors>SuperbEdit Team</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>SuperbEdit Text Editor</description>
+    </metadata>
+    <files>
+        <file src="..\bin\Debug\Docs\LICENSE.md" target="lib\net45\Docs\LICENSE.md" />
+        <file src="..\bin\Debug\Packages\Highlighters\ASPX.xshd" target="lib\net45\Packages\Highlighters\ASPX.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\Boo.xshd" target="lib\net45\Packages\Highlighters\Boo.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\Coco-Mode.xshd" target="lib\net45\Packages\Highlighters\Coco-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\CPP-Mode.xshd" target="lib\net45\Packages\Highlighters\CPP-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\CSharp-Mode.xshd" target="lib\net45\Packages\Highlighters\CSharp-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\CSS-Mode.xshd" target="lib\net45\Packages\Highlighters\CSS-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\HTML-Mode.xshd" target="lib\net45\Packages\Highlighters\HTML-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\Java-Mode.xshd" target="lib\net45\Packages\Highlighters\Java-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\JavaScript-Mode.xshd" target="lib\net45\Packages\Highlighters\JavaScript-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\MarkDown-Mode.xshd" target="lib\net45\Packages\Highlighters\MarkDown-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\Nemerle-Mode.xshd" target="lib\net45\Packages\Highlighters\Nemerle-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\Patch-Mode.xshd" target="lib\net45\Packages\Highlighters\Patch-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\PHP-Mode.xshd" target="lib\net45\Packages\Highlighters\PHP-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\PowerShell.xshd" target="lib\net45\Packages\Highlighters\PowerShell.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\Tex-Mode.xshd" target="lib\net45\Packages\Highlighters\Tex-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\VB-Mode.xshd" target="lib\net45\Packages\Highlighters\VB-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\XML-Mode.xshd" target="lib\net45\Packages\Highlighters\XML-Mode.xshd" />
+        <file src="..\bin\Debug\Packages\Highlighters\XmlDoc.xshd" target="lib\net45\Packages\Highlighters\XmlDoc.xshd" />
+        <file src="..\bin\Debug\Packages\DeltaCompressionDotNet.dll" target="lib\net45\Packages\DeltaCompressionDotNet.dll" />
+        <file src="..\bin\Debug\Packages\DeltaCompressionDotNet.MsDelta.dll" target="lib\net45\Packages\DeltaCompressionDotNet.MsDelta.dll" />
+        <file src="..\bin\Debug\Packages\DeltaCompressionDotNet.PatchApi.dll" target="lib\net45\Packages\DeltaCompressionDotNet.PatchApi.dll" />
+        <file src="..\bin\Debug\Packages\ICSharpCode.AvalonEdit.dll" target="lib\net45\Packages\ICSharpCode.AvalonEdit.dll" />
+        <file src="..\bin\Debug\Packages\ICSharpCode.AvalonEdit.xml" target="lib\net45\Packages\ICSharpCode.AvalonEdit.xml" />
+        <file src="..\bin\Debug\Packages\ICSharpCode.SharpZipLib.dll" target="lib\net45\Packages\ICSharpCode.SharpZipLib.dll" />
+        <file src="..\bin\Debug\Packages\ICSharpCode.SharpZipLib.xml" target="lib\net45\Packages\ICSharpCode.SharpZipLib.xml" />
+        <file src="..\bin\Debug\Packages\Microsoft.Web.XmlTransform.dll" target="lib\net45\Packages\Microsoft.Web.XmlTransform.dll" />
+        <file src="..\bin\Debug\Packages\Microsoft.WindowsAPICodePack.dll" target="lib\net45\Packages\Microsoft.WindowsAPICodePack.dll" />
+        <file src="..\bin\Debug\Packages\Microsoft.WindowsAPICodePack.Shell.dll" target="lib\net45\Packages\Microsoft.WindowsAPICodePack.Shell.dll" />
+        <file src="..\bin\Debug\Packages\Microsoft.WindowsAPICodePack.Shell.xml" target="lib\net45\Packages\Microsoft.WindowsAPICodePack.Shell.xml" />
+        <file src="..\bin\Debug\Packages\Microsoft.WindowsAPICodePack.xml" target="lib\net45\Packages\Microsoft.WindowsAPICodePack.xml" />
+        <file src="..\bin\Debug\Packages\Mono.Cecil.dll" target="lib\net45\Packages\Mono.Cecil.dll" />
+        <file src="..\bin\Debug\Packages\Mono.Cecil.Mdb.dll" target="lib\net45\Packages\Mono.Cecil.Mdb.dll" />
+        <file src="..\bin\Debug\Packages\Mono.Cecil.Pdb.dll" target="lib\net45\Packages\Mono.Cecil.Pdb.dll" />
+        <file src="..\bin\Debug\Packages\Mono.Cecil.Rocks.dll" target="lib\net45\Packages\Mono.Cecil.Rocks.dll" />
+        <file src="..\bin\Debug\Packages\NuGet.Core.dll" target="lib\net45\Packages\NuGet.Core.dll" />
+        <file src="..\bin\Debug\Packages\Splat.dll" target="lib\net45\Packages\Splat.dll" />
+        <file src="..\bin\Debug\Packages\Splat.pdb" target="lib\net45\Packages\Splat.pdb" />
+        <file src="..\bin\Debug\Packages\Squirrel.dll" target="lib\net45\Packages\Squirrel.dll" />
+        <file src="..\bin\Debug\Packages\Squirrel.pdb" target="lib\net45\Packages\Squirrel.pdb" />
+        <file src="..\bin\Debug\Packages\SuperbEdit.FolderPanel.dll" target="lib\net45\Packages\SuperbEdit.FolderPanel.dll" />
+        <file src="..\bin\Debug\Packages\SuperbEdit.FolderPanel.pdb" target="lib\net45\Packages\SuperbEdit.FolderPanel.pdb" />
+        <file src="..\bin\Debug\Packages\SuperbEdit.TextEditor.dll" target="lib\net45\Packages\SuperbEdit.TextEditor.dll" />
+        <file src="..\bin\Debug\Packages\SuperbEdit.TextEditor.pdb" target="lib\net45\Packages\SuperbEdit.TextEditor.pdb" />
+        <file src="..\bin\Debug\Packages\SuperbEdit.Update.dll" target="lib\net45\Packages\SuperbEdit.Update.dll" />
+        <file src="..\bin\Debug\Packages\SuperbEdit.Update.pdb" target="lib\net45\Packages\SuperbEdit.Update.pdb" />
+        <file src="..\bin\Debug\Boo.Lang.Compiler.dll" target="lib\net45\Boo.Lang.Compiler.dll" />
+        <file src="..\bin\Debug\Boo.Lang.dll" target="lib\net45\Boo.Lang.dll" />
+        <file src="..\bin\Debug\Boo.Lang.Parser.dll" target="lib\net45\Boo.Lang.Parser.dll" />
+        <file src="..\bin\Debug\Caliburn.Micro.dll" target="lib\net45\Caliburn.Micro.dll" />
+        <file src="..\bin\Debug\Caliburn.Micro.Platform.dll" target="lib\net45\Caliburn.Micro.Platform.dll" />
+        <file src="..\bin\Debug\Caliburn.Micro.Platform.xml" target="lib\net45\Caliburn.Micro.Platform.xml" />
+        <file src="..\bin\Debug\Caliburn.Micro.xml" target="lib\net45\Caliburn.Micro.xml" />
+        <file src="..\bin\Debug\config.json" target="lib\net45\config.json" />
+        <file src="..\bin\Debug\Dragablz.dll" target="lib\net45\Dragablz.dll" />
+        <file src="..\bin\Debug\Dragablz.pdb" target="lib\net45\Dragablz.pdb" />
+        <file src="..\bin\Debug\key_bindings.json" target="lib\net45\key_bindings.json" />
+        <file src="..\bin\Debug\MahApps.Metro.dll" target="lib\net45\MahApps.Metro.dll" />
+        <file src="..\bin\Debug\MahApps.Metro.xml" target="lib\net45\MahApps.Metro.xml" />
+        <file src="..\bin\Debug\Newtonsoft.Json.dll" target="lib\net45\Newtonsoft.Json.dll" />
+        <file src="..\bin\Debug\Newtonsoft.Json.xml" target="lib\net45\Newtonsoft.Json.xml" />
+        <file src="..\bin\Debug\Octokit.dll" target="lib\net45\Octokit.dll" />
+        <file src="..\bin\Debug\Octokit.pdb" target="lib\net45\Octokit.pdb" />
+        <file src="..\bin\Debug\Octokit.xml" target="lib\net45\Octokit.xml" />
+        <file src="..\bin\Debug\SuperbEdit.Base.dll" target="lib\net45\SuperbEdit.Base.dll" />
+        <file src="..\bin\Debug\SuperbEdit.Base.pdb" target="lib\net45\SuperbEdit.Base.pdb" />
+        <file src="..\bin\Debug\SuperbEdit.exe" target="lib\net45\SuperbEdit.exe" />
+        <file src="..\bin\Debug\SuperbEdit.exe.config" target="lib\net45\SuperbEdit.exe.config" />
+        <file src="..\bin\Debug\SuperbEdit.pdb" target="lib\net45\SuperbEdit.pdb" />
+        <file src="..\bin\Debug\SuperbEdit.vshost.exe" target="lib\net45\SuperbEdit.vshost.exe" />
+        <file src="..\bin\Debug\SuperbEdit.vshost.exe.config" target="lib\net45\SuperbEdit.vshost.exe.config" />
+        <file src="..\bin\Debug\SuperbEdit.vshost.exe.manifest" target="lib\net45\SuperbEdit.vshost.exe.manifest" />
+        <file src="..\bin\Debug\System.Windows.Interactivity.dll" target="lib\net45\System.Windows.Interactivity.dll" />
+    </files>
+</package>
