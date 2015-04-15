@@ -77,9 +77,6 @@
         <file src="..\bin\Debug\SuperbEdit.exe" target="lib\net45\SuperbEdit.exe" />
         <file src="..\bin\Debug\SuperbEdit.exe.config" target="lib\net45\SuperbEdit.exe.config" />
         <file src="..\bin\Debug\SuperbEdit.pdb" target="lib\net45\SuperbEdit.pdb" />
-        <file src="..\bin\Debug\SuperbEdit.vshost.exe" target="lib\net45\SuperbEdit.vshost.exe" />
-        <file src="..\bin\Debug\SuperbEdit.vshost.exe.config" target="lib\net45\SuperbEdit.vshost.exe.config" />
-        <file src="..\bin\Debug\SuperbEdit.vshost.exe.manifest" target="lib\net45\SuperbEdit.vshost.exe.manifest" />
         <file src="..\bin\Debug\System.Windows.Interactivity.dll" target="lib\net45\System.Windows.Interactivity.dll" />
     </files>
 </package>
