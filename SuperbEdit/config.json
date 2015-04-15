@@ -5,8 +5,11 @@
         "font_family": "Consolas",
         "font_size": "10pt"
     },
-    "theme" : {
-    	"base": "BaseLight",
-    	"accent": "Blue"
+    "theme": {
+        "base": "BaseLight",
+        "accent": "Blue"
+    },
+    "update": { 
+        "channel": "dev"
     }
 }
