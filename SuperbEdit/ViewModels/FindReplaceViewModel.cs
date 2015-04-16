@@ -14,16 +14,9 @@ namespace SuperbEdit.ViewModels
         [Import] 
         private Lazy<IShell> _shell;
 
-        public FindViewModel FindViewModel { get; set; }
-
-        public ReplaceViewModel ReplaceViewModel { get; set; }
-
         public FindReplaceViewModel()
         {
             DisplayName = "Find & Replace";
-
-            FindViewModel = new FindViewModel();
-            ReplaceViewModel = new ReplaceViewModel();
         }
     }
 }
