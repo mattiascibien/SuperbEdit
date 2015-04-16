@@ -140,7 +140,9 @@
     <Compile Include="ViewModels\CommandWindowViewModel.cs" />
     <Compile Include="ViewModels\FallbackTabViewModel.cs" />
     <Compile Include="ViewModels\FindReplaceViewModel.cs" />
+    <Compile Include="ViewModels\FindViewModel.cs" />
     <Compile Include="ViewModels\PanelsViewModel.cs" />
+    <Compile Include="ViewModels\ReplaceViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\CommandWindowView.xaml.cs">
       <DependentUpon>CommandWindowView.xaml</DependentUpon>
@@ -212,7 +214,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FindView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PanelsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReplaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -17,28 +17,10 @@
 
         <TabControl Name="tabMain" Height="Auto" Grid.ColumnSpan="2">
             <TabItem Header="Find">
-                <StackPanel>
-                    <TextBlock Margin="3">Text to Find:</TextBlock>
-                    <TextBox Margin="3" Name="FindText" />
-                    <Button Margin="5" HorizontalAlignment="Right" 
-                    Width="80" Content="Find Next" x:Name="FindNext" />
-                </StackPanel>
+                <ContentControl x:Name="FindViewModel"></ContentControl>
             </TabItem>
             <TabItem Header="Replace">
-                <StackPanel>
-                    <TextBlock Margin="3">Text to Find:</TextBlock>
-                    <TextBox Margin="3" Name="FindReplaceText" />
-                    <TextBlock Margin="3" Text="Replace with:" />
-                    <TextBox Margin="3" Name="ReplaceText" />
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Margin="5" HorizontalAlignment="Right" 
-                        Width="80" Content="Find Next" x:Name="FindNext2" />
-                        <Button Margin="5" HorizontalAlignment="Right" 
-                        Width="80" Content="Replace" />
-                        <Button Margin="5" HorizontalAlignment="Right" 
-                        Width="80" Content="Replace All" />
-                    </StackPanel>
-                </StackPanel>
+                <ContentControl x:Name="ReplaceViewModel"></ContentControl>
             </TabItem>
         </TabControl>
 
