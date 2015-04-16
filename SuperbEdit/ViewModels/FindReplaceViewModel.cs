@@ -13,7 +13,7 @@ namespace SuperbEdit.ViewModels
     {
         #region Options
 
-        private bool _caseSensitive;
+        private bool _caseSensitive = true;
         public bool CaseSensitive
         {
             get
@@ -30,7 +30,7 @@ namespace SuperbEdit.ViewModels
             }
         }
 
-        private bool _wholeWord;
+        private bool _wholeWord = true;
         public bool WholeWord
         {
             get
@@ -129,7 +129,27 @@ namespace SuperbEdit.ViewModels
                 }
             }
         }
+
         #endregion
+
+
+        //bool to determaine if we should use search options
+        private bool _useOptions = false;
+        public bool UseOptions
+        {
+            get
+            {
+                return _useOptions;
+            }
+            set
+            {
+                if (_useOptions != value)
+                {
+                    _useOptions = value;
+                    NotifyOfPropertyChange(() => UseOptions);
+                }
+            }
+        }
 
         [Import] 
         private Lazy<IShell> _shell;

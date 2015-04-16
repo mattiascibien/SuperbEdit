@@ -17,13 +17,13 @@ namespace SuperbEdit.Actions
         private IWindowManager _windowManager;
 
         public FindAction()
-            :base("Find...", "Opens the find and replace dialog...", "Edit.Find")
+            :base("Find and Replace...", "Opens the find and replace dialog...", "Edit.FindReplace")
         { }
 
         public override void Execute()
         {
             //TODO: should not create one view every time 
-            _windowManager.ShowDialog(new FindReplaceViewModel());
+            _windowManager.ShowWindow(new FindReplaceViewModel());
         }
     }
 }
