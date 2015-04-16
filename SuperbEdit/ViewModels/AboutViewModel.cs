@@ -42,7 +42,7 @@ namespace SuperbEdit.ViewModels
                     {
                         Name = ass.GetName().Name,
                         Version = ass.GetName().Version.ToString(),
-                        Author = ass.GetCustomAttribute<AssemblyCompanyAttribute>().Company
+                        Author = ass.GetCustomAttribute<AssemblyCompanyAttribute>() != null ? ass.GetCustomAttribute<AssemblyCompanyAttribute>().Company : "<no author>"
                     });
 
             LoadedPackages = LoadedPackages.Concat(
