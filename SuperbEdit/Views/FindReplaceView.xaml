@@ -17,16 +17,16 @@
 
         <StackPanel Grid.ColumnSpan="2">
             <TextBlock Margin="3">Find:</TextBlock>
-            <TextBox Margin="3" Name="FindReplaceText" />
+            <TextBox Margin="3" Name="FindText" />
             <TextBlock Margin="3" Text="Replace with:" />
             <TextBox Margin="3" Name="ReplaceText" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="5" HorizontalAlignment="Right" 
-                        Width="80" Content="Find Next" x:Name="FindNext2" />
+                        Width="80" Content="Find Next" x:Name="FindNext" />
                 <Button Margin="5" HorizontalAlignment="Right" 
-                        Width="80" Content="Replace" />
+                        Width="80" Content="Replace" x:Name="Replace" />
                 <Button Margin="5" HorizontalAlignment="Right" 
-                        Width="80" Content="Replace All" />
+                        Width="80" Content="Replace All" x:Name="ReplaceAll" />
             </StackPanel>
         </StackPanel>
 
