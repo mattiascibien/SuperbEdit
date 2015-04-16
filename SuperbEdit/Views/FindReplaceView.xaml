@@ -15,6 +15,8 @@
             <TextBox Margin="3" Name="FindText" />
             <TextBlock Margin="3" Text="Replace with:" />
             <TextBox Margin="3" Name="ReplaceText" />
+            <!---Temporary-->
+            <CheckBox Margin="3" Content="All open Tabs" x:Name="AllOpenTabs"></CheckBox>
         </StackPanel>
         <Expander Grid.Row="1" Header="Options" IsExpanded="{Binding UseOptions, Mode=TwoWay}">
             <Grid>

@@ -149,6 +149,24 @@ namespace SuperbEdit.ViewModels
                     NotifyOfPropertyChange(() => UseOptions);
                 }
             }
+        
+
+        //bool to determaine if we should use search options
+        private bool _allOpenTabs = false;
+        public bool AllOpenTabs
+        {
+            get
+            {
+                return _allOpenTabs;
+            }
+            set
+            {
+                if (_allOpenTabs != value)
+                {
+                    _allOpenTabs = value;
+                    NotifyOfPropertyChange(() => AllOpenTabs);
+                }
+            }
         }
 
         [Import] 
@@ -159,19 +177,51 @@ namespace SuperbEdit.ViewModels
             DisplayName = "Find & Replace";
         }
 
-        public void FindNext()
+        #region Concrete implementations
+        private void DoAction(Action<ITab> action)
+        {
+            if (AllOpenTabs)
+            {
+                foreach (var tab in _shell.Value.Items)
+                {
+                    action(tab);
+                }
+            }
+            else
+            {
+                action(_shell.Value.ActiveItem);
+            }
+        }
+
+        private void Replace(ITab tab)
         {
             
+        }
+
+        private void ReplaceAll(ITab tab)
+        {
+            
+        }
+        
+        private void FindNext(ITab tab)
+        {
+            
+        }
+        #endregion
+
+        public void FindNext()
+        {
+            DoAction(FindNext);
         }
 
         public void Replace()
         {
-            
+            DoAction(Replace);
         }
 
         public void ReplaceAll()
         {
-            
+            DoAction(ReplaceAll);
         }
     }
 }
