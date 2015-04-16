@@ -100,6 +100,7 @@
     </ApplicationDefinition>
     <Compile Include="Actions\EditMenu\EditGroup.cs" />
     <Compile Include="Actions\FileMenu\FileGroup.cs" />
+    <Compile Include="Actions\EditMenu\FindAction.cs" />
     <Compile Include="Actions\HelpMenu\AdditionalResourcesGroup.cs" />
     <Compile Include="Actions\EditMenu\RedoAction.cs" />
     <Compile Include="Actions\EditMenu\CutAction.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CommandWindowViewModel.cs" />
     <Compile Include="ViewModels\FallbackTabViewModel.cs" />
+    <Compile Include="ViewModels\FindReplaceViewModel.cs" />
     <Compile Include="ViewModels\PanelsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\CommandWindowView.xaml.cs">
@@ -203,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FindReplaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
