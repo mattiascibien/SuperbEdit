@@ -82,5 +82,7 @@ namespace SuperbEdit.Base
         void DetachItem(Tab item);
 
         bool FindNext(string textToFind, FindReplacOptions options);
+        void Replace(string textToFind, string replacement, FindReplacOptions options);
+        void ReplaceAll(string textToFind, string replacement, FindReplacOptions options);
     }
 }

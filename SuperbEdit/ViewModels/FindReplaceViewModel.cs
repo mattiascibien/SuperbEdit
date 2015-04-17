@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
 using SuperbEdit.Base;
 
@@ -108,12 +109,12 @@ namespace SuperbEdit.ViewModels
 
         private void Replace(ITab tab)
         {
-
+            tab.Replace(FindText, ReplaceText, Options);
         }
 
         private void ReplaceAll(ITab tab)
         {
-
+            tab.ReplaceAll(FindText, ReplaceText, Options);
         }
 
         private void FindNext(ITab tab)
@@ -134,7 +135,12 @@ namespace SuperbEdit.ViewModels
 
         public void ReplaceAll()
         {
-            DoAction(ReplaceAll);
+            if (MessageBox.Show("Are you sure you want to Replace All occurences of \"" +
+                                FindText + "\" with \"" + ReplaceText + "\"?",
+                "Replace All", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+            {
+                DoAction(ReplaceAll);
+            }
         }
     }
 }

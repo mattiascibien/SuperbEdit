@@ -306,7 +306,7 @@ namespace SuperbEdit.TextEditor.ViewModels
         public override bool FindNext(string textToFind, FindReplacOptions options)
         {
             ICSharpCode.AvalonEdit.TextEditor editor;
-            editor = (this.GetView() as TextEditorView).ModernTextEditor;
+            editor = ((TextEditorView) this.GetView()).ModernTextEditor;
             Regex regex = options.GetRegEx(textToFind);
             int start = regex.Options.HasFlag(RegexOptions.RightToLeft) ?
             editor.SelectionStart : editor.SelectionStart + editor.SelectionLength;
@@ -328,6 +328,37 @@ namespace SuperbEdit.TextEditor.ViewModels
             }
 
             return match.Success;
+        }
+
+        public override void Replace(string textToFind, string replacement, FindReplacOptions options)
+        {
+            ICSharpCode.AvalonEdit.TextEditor editor;
+            editor = ((TextEditorView)this.GetView()).ModernTextEditor;
+            Regex regex = options.GetRegEx(textToFind);
+            string input = editor.Text.Substring(editor.SelectionStart, editor.SelectionLength);
+            Match match = regex.Match(input);
+            bool replaced = false;
+            if (match.Success && match.Index == 0 && match.Length == input.Length)
+            {
+                editor.Document.Replace(editor.SelectionStart, editor.SelectionLength, replacement);
+                replaced = true;
+            }
+          
+        }
+
+        public override void ReplaceAll(string textToFind, string replacement, FindReplacOptions options)
+        {
+            ICSharpCode.AvalonEdit.TextEditor editor;
+            editor = ((TextEditorView)this.GetView()).ModernTextEditor;
+            Regex regex = options.GetRegEx(textToFind, true);
+            int offset = 0;
+            editor.BeginChange();
+            foreach (Match match in regex.Matches(editor.Text))
+            {
+                editor.Document.Replace(offset + match.Index, match.Length, replacement);
+                offset += replacement.Length - match.Length;
+            }
+            editor.EndChange();
         }
     }
 }
