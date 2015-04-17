@@ -56,6 +56,7 @@
     <Compile Include="AssemblyListComposer.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DisabledPackaged.cs" />
+    <Compile Include="FindReplaceOptions.cs" />
     <Compile Include="Folders.cs" />
     <Compile Include="IActionItem.cs" />
     <Compile Include="IConfig.cs" />

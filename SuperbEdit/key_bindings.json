@@ -13,7 +13,8 @@
         "Redo": "Ctrl+Y",
         "Cut": "Ctrl+X",
         "Copy": "Ctrl+C",
-        "Paste": "Ctrl+V"
+        "Paste": "Ctrl+V",
+        "FindReplace":  "Ctrl+F"
     },
 
 

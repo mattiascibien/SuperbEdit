@@ -86,5 +86,20 @@ namespace SuperbEdit.Base.ViewModels
                 //Does nothing
             }
         }
+
+        public override bool FindNext(string textToFind, FindReplacOptions options)
+        {
+            return false;
+        }
+
+        public override void Replace(string textToFind, string replacement, FindReplacOptions options)
+        {
+            
+        }
+
+        public override void ReplaceAll(string textToFind, string replacement, FindReplacOptions options)
+        {
+            
+        }
     }
 }

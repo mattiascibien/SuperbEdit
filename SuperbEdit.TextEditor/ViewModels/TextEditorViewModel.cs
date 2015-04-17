@@ -2,12 +2,14 @@ using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
 using SuperbEdit.TextEditor.Views;
 using System.Windows.Media;
+using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 
 namespace SuperbEdit.TextEditor.ViewModels
@@ -37,6 +39,11 @@ namespace SuperbEdit.TextEditor.ViewModels
             _originalFileContent = "";
             FileContent = _originalFileContent;
             FilePath = "";
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
         }
 
 
@@ -294,6 +301,64 @@ namespace SuperbEdit.TextEditor.ViewModels
                 _highlighter = value;
                 NotifyOfPropertyChange(() => Highlighter);
             }
+        }
+
+        public override bool FindNext(string textToFind, FindReplacOptions options)
+        {
+            ICSharpCode.AvalonEdit.TextEditor editor;
+            editor = ((TextEditorView) this.GetView()).ModernTextEditor;
+            Regex regex = options.GetRegEx(textToFind);
+            int start = regex.Options.HasFlag(RegexOptions.RightToLeft) ?
+            editor.SelectionStart : editor.SelectionStart + editor.SelectionLength;
+            Match match = regex.Match(editor.Text, start);
+
+            if (!match.Success)  // start again from beginning or end
+            {
+                if (regex.Options.HasFlag(RegexOptions.RightToLeft))
+                    match = regex.Match(editor.Text, editor.Text.Length);
+                else
+                    match = regex.Match(editor.Text, 0);
+            }
+
+            if (match.Success)
+            {
+                editor.Select(match.Index, match.Length);
+                TextLocation loc = editor.Document.GetLocation(match.Index);
+                editor.ScrollTo(loc.Line, loc.Column);
+            }
+
+            return match.Success;
+        }
+
+        public override void Replace(string textToFind, string replacement, FindReplacOptions options)
+        {
+            ICSharpCode.AvalonEdit.TextEditor editor;
+            editor = ((TextEditorView)this.GetView()).ModernTextEditor;
+            Regex regex = options.GetRegEx(textToFind);
+            string input = editor.Text.Substring(editor.SelectionStart, editor.SelectionLength);
+            Match match = regex.Match(input);
+            bool replaced = false;
+            if (match.Success && match.Index == 0 && match.Length == input.Length)
+            {
+                editor.Document.Replace(editor.SelectionStart, editor.SelectionLength, replacement);
+                replaced = true;
+            }
+          
+        }
+
+        public override void ReplaceAll(string textToFind, string replacement, FindReplacOptions options)
+        {
+            ICSharpCode.AvalonEdit.TextEditor editor;
+            editor = ((TextEditorView)this.GetView()).ModernTextEditor;
+            Regex regex = options.GetRegEx(textToFind, true);
+            int offset = 0;
+            editor.BeginChange();
+            foreach (Match match in regex.Matches(editor.Text))
+            {
+                editor.Document.Replace(offset + match.Index, match.Length, replacement);
+                offset += replacement.Length - match.Length;
+            }
+            editor.EndChange();
         }
     }
 }
