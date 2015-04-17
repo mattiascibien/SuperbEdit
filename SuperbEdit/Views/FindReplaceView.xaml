@@ -30,15 +30,15 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <CheckBox Grid.Row="0" Grid.Column="0" Margin="10,2" 
-            Name="CaseSensitive" Content="Match case" />
+            Name="CaseSensitive" Content="Match case" IsChecked="{Binding Options.CaseSensitive}" />
                 <CheckBox Grid.Row="1" Grid.Column="0" Margin="10,2" 
-            Name="WholeWord" Content="Match whole word" />
+            Name="WholeWord" Content="Match whole word" IsChecked="{Binding Options.WholeWord}" />
                 <CheckBox Grid.Row="0" Grid.Column="1" Margin="10,2" 
-            Name="Regex" Content="Regular Expression" />
+            Name="Regex" Content="Regular Expression" IsChecked="{Binding Options.Regex}" />
                 <CheckBox Grid.Row="1" Grid.Column="1" Margin="10,2" 
-            Name="Wildcards" Content="Wildcards" />
+            Name="Wildcards" Content="Wildcards" IsChecked="{Binding Options.Wildcards}" />
                 <CheckBox Grid.Row="2" Grid.Column="1" Margin="10,2" 
-            Name="SearchUp" Content="Search up" />
+            Name="SearchUp" Content="Search up" IsChecked="{Binding Options.SearchUp}" />
             </Grid>
         </Expander>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">

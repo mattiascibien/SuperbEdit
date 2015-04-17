@@ -16,6 +16,9 @@ namespace SuperbEdit.Actions
         [Import]
         private IWindowManager _windowManager;
 
+        [Import]
+        private Lazy<IShell> _shell;
+
         public FindAction()
             :base("Find and Replace...", "Opens the find and replace dialog...", "Edit.FindReplace")
         { }
@@ -23,7 +26,9 @@ namespace SuperbEdit.Actions
         public override void Execute()
         {
             //TODO: should not create one view every time 
-            _windowManager.ShowWindow(new FindReplaceViewModel());
+            _windowManager.ShowWindow(new FindReplaceViewModel(_shell.Value));
         }
+
+
     }
 }

@@ -2,12 +2,14 @@ using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using Caliburn.Micro;
 using Microsoft.Win32;
 using SuperbEdit.Base;
 using SuperbEdit.TextEditor.Views;
 using System.Windows.Media;
+using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 
 namespace SuperbEdit.TextEditor.ViewModels
@@ -37,6 +39,11 @@ namespace SuperbEdit.TextEditor.ViewModels
             _originalFileContent = "";
             FileContent = _originalFileContent;
             FilePath = "";
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
         }
 
 
@@ -294,6 +301,33 @@ namespace SuperbEdit.TextEditor.ViewModels
                 _highlighter = value;
                 NotifyOfPropertyChange(() => Highlighter);
             }
+        }
+
+        public override bool FindNext(string textToFind, FindReplacOptions options)
+        {
+            ICSharpCode.AvalonEdit.TextEditor editor;
+            editor = (this.GetView() as TextEditorView).ModernTextEditor;
+            Regex regex = options.GetRegEx(textToFind);
+            int start = regex.Options.HasFlag(RegexOptions.RightToLeft) ?
+            editor.SelectionStart : editor.SelectionStart + editor.SelectionLength;
+            Match match = regex.Match(editor.Text, start);
+
+            if (!match.Success)  // start again from beginning or end
+            {
+                if (regex.Options.HasFlag(RegexOptions.RightToLeft))
+                    match = regex.Match(editor.Text, editor.Text.Length);
+                else
+                    match = regex.Match(editor.Text, 0);
+            }
+
+            if (match.Success)
+            {
+                editor.Select(match.Index, match.Length);
+                TextLocation loc = editor.Document.GetLocation(match.Index);
+                editor.ScrollTo(loc.Line, loc.Column);
+            }
+
+            return match.Success;
         }
     }
 }

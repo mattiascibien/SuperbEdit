@@ -82,5 +82,8 @@ namespace SuperbEdit.Base
             var shell = item.Parent as IShell;
             shell.DetachItem(item);
         }
+
+
+        public abstract bool FindNext(string textToFind, FindReplacOptions options);
     }
 }
