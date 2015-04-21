@@ -51,7 +51,7 @@ namespace SuperbEdit.Base.Scripting
             {
                 try
                 {
-                    if (!DisabledPackaged.IsDisabled(Path.GetFileNameWithoutExtension(script)))
+                    if (!DisabledPackages.IsDisabled(Path.GetFileNameWithoutExtension(script)))
                         assemblies.Add(scriptCompiler.Compile(script));
                 }
                 catch(ScriptCompilerException ex)
@@ -67,7 +67,7 @@ namespace SuperbEdit.Base.Scripting
                 {
                     try
                     {
-                        if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
+                        if (!DisabledPackages.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
                             if (Directory.GetFiles(subDir, "*.boo", SearchOption.AllDirectories).Length > 0)
                                 assemblies.Add(scriptCompiler.CompileFolder(subDir));
                     }

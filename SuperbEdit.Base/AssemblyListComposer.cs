@@ -47,7 +47,7 @@ namespace SuperbEdit.Base
         {
             foreach (string assembly in Directory.GetFiles(folder, "*.dll"))
             {
-                if(!DisabledPackaged.IsDisabled(Path.GetFileNameWithoutExtension(assembly)))
+                if(!DisabledPackages.IsDisabled(Path.GetFileNameWithoutExtension(assembly)))
                     assemblies.Add(Assembly.LoadFrom(assembly));
             }
 
@@ -55,7 +55,7 @@ namespace SuperbEdit.Base
             {
                 if (!subDir.EndsWith("x86") && !subDir.EndsWith("x64"))
                 {
-                    if (!DisabledPackaged.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
+                    if (!DisabledPackages.IsDisabled(Path.GetFileName(Path.GetFileName(subDir))))
                         GetAssembliesInFolder(assemblies, subDir);
                 }
                 else

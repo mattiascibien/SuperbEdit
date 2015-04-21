@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Configuration;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -22,10 +23,13 @@ namespace SuperbEdit.Base
         //Used only for test
         internal Config(string defaultConfig, string userConfig)
         {
+            CreateUserFolderIfNotExsist(userConfig);
+
             ReloadConfig(false, userConfig);
             ReloadConfig(true, defaultConfig);
 
             _defaultConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(defaultConfig)) {Filter = Path.GetFileName(defaultConfig)};
+
             _userConfigWatcher = new FileSystemWatcher(Path.GetDirectoryName(userConfig)) { Filter = Path.GetFileName(userConfig) };
 
             _defaultConfigWatcher.EnableRaisingEvents = true;
@@ -33,6 +37,14 @@ namespace SuperbEdit.Base
 
             _defaultConfigWatcher.Changed += DefaultConfigChanged;
             _userConfigWatcher.Changed += UserConfigChanged;
+        }
+
+        private void CreateUserFolderIfNotExsist(string userConfig)
+        {
+            if (!Directory.Exists(Path.GetDirectoryName(userConfig)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(userConfig));
+            }
         }
 
         [ImportingConstructor]
